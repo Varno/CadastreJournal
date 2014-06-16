@@ -49,6 +49,8 @@ public class REListItem extends HorizontalLayout{
         editButton.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent event) {
+                REItemCard card = new REItemCard("Карточка объекта", item);
+                UI.getCurrent().addWindow(card);
 
             }
         });
@@ -68,7 +70,5 @@ public class REListItem extends HorizontalLayout{
                 UI.getCurrent().addWindow(reHistoryCard);
             }
         });
-
     }
-
 }

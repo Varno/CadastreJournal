@@ -8,6 +8,7 @@ import com.re.service.REHistoryService;
 import com.re.service.REHistoryServiceImpl;
 import com.re.service.RealEstateService;
 import com.re.service.RealEstateServiceImpl;
+import oracle.jdbc.pool.OracleDataSource;
 import org.apache.tomcat.dbcp.dbcp.BasicDataSource;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
@@ -60,8 +61,20 @@ public class ContextConfiguration {
         final BasicDataSource ds = new BasicDataSource();
         ds.setDriverClassName("oracle.jdbc.OracleDriver");
         ds.setUrl("jdbc:oracle:thin:@//pavel:1521/xe");
-        ds.setUsername("SYSTEM");
+        ds.setUsername("system");
         ds.setPassword("work");
+
+        /*final OracleDataSource ds = new OracleDataSource();
+        String url = "jdbc:oracle:thin:system@//pavel:1521/xe";
+        ds.setURL(url);
+        java.util.Properties prop = new java.util.Properties();
+        prop.put("user", "SYSTEM");
+        prop.put("password", "work");
+        prop.put("internal_logon", "sysoper");
+        ds.setConnectionProperties(prop);*/
+
         return ds;
+
+
     }
 }

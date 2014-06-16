@@ -12,11 +12,11 @@ public class REItemCard extends Window {
         setWidth("70%");
         setHeight("80%");
         VerticalLayout mainLayout = new VerticalLayout();
-/*        Button showHistory = new Button("Историю редактирования");
+        Button showHistory = new Button("Историю редактирования");
         HorizontalLayout buttonLayout = new HorizontalLayout();
         buttonLayout.setSpacing(true);
         buttonLayout.setMargin(true);
-        buttonLayout.addComponent(showHistory);*/
+        buttonLayout.addComponent(showHistory);
 
         FormLayout content = new FormLayout();
         content.setMargin(true);
