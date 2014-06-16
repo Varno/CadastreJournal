@@ -27,15 +27,19 @@ public class GetREHistoryStoredProcedure extends StoredProcedure {
                 OracleTypes.NUMBER));
         declareParameter(new SqlOutParameter(REHistoryDaoConstants.P_CURSOR,
                 OracleTypes.CURSOR, rowMapper));
+        declareParameter(new SqlOutParameter(REDaoConstants.P_COUNT,
+                OracleTypes.NUMBER, rowMapper));
         compile();
     }
 
     public Map getRealEstateHisoty(Long facilityId, int skipFirst, int numberOfItems) {
         Map<String, Object> inParameters = new HashMap<String, Object>();
+        Integer count = 0;
         inParameters.put(REDaoConstants.P_FACILITY_ID, facilityId);
         inParameters.put(REDaoConstants.P_SKIP, skipFirst);
         inParameters.put(REDaoConstants.P_TAKE, numberOfItems);
         inParameters.put(REDaoConstants.P_CURSOR, new HashMap());
+        inParameters.put(REDaoConstants.P_COUNT, count);
 
         return execute(inParameters);
     }
