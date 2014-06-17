@@ -26,13 +26,13 @@ public class WebConfig extends ContextConfiguration {
 
     @Bean
     @UIScope
-    public RealEstateList realEstateList() {
+    public RealEstateList realEstateList() throws java.sql.SQLException{
         return new RealEstateList(realEstateService(), pagination(), reHistoryService());
     }
 
     @Bean
     @UIScope
-    public RootUI rootUI() {
+    public RootUI rootUI() throws java.sql.SQLException{
         return new RootUI(realEstateList());
     }
 }

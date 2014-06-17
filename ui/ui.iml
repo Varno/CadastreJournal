@@ -89,7 +89,7 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-tx:4.0.5.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.apache.tomcat:tomcat-jdbc:7.0.54" level="project" />
     <orderEntry type="library" name="Maven: org.apache.tomcat:tomcat-juli:7.0.54" level="project" />
-    <orderEntry type="library" name="Maven: com.oracle:ojdbc14:10.2.0.4.0" level="project" />
+    <orderEntry type="library" name="Maven: com.oracle:ojdbc6:11.2.0.4" level="project" />
     <orderEntry type="library" name="Maven: org.apache.tomcat:dbcp:6.0.29" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-security:1.1.1.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.security:spring-security-config:3.2.4.RELEASE" level="project" />

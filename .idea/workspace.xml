@@ -55,6 +55,23 @@
       </breakpoint>
     </breakpoint_any>
     <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
+    <line_breakpoints>
+      <breakpoint url="file://$PROJECT_DIR$/ui/src/main/java/com/re/components/RealEstateList.java" line="77" class="com.re.components.RealEstateList" package="com.re.components">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+    </line_breakpoints>
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -64,85 +81,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ContextConfiguration.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="ContextConfiguration.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/backend/src/main/java/com/re/ContextConfiguration.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="62" column="33" selection-start="2089" selection-end="2089" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="918">
+            <state line="46" column="0" selection-start="1527" selection-end="1527" vertical-scroll-proportion="0.80244756" vertical-offset="0" max-vertical-offset="1122">
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GetREHistoryStoredProcedure.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backend/src/main/java/com/re/dao/rehistory/GetREHistoryStoredProcedure.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="0" selection-start="1881" selection-end="1881" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="714">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RealEstateList.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/ui/src/main/java/com/re/components/RealEstateList.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="90" column="41" selection-start="3729" selection-end="3729" vertical-scroll-proportion="2.5283756" vertical-offset="0" max-vertical-offset="1547">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="REHistoryDaoConstants.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backend/src/main/java/com/re/dao/rehistory/REHistoryDaoConstants.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="0" selection-start="667" selection-end="667" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="357">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RootUI.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ui/src/main/java/com/re/ui/RootUI.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="6" selection-start="168" selection-end="168" vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="459">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RealEstate.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backend/src/main/java/com/re/entity/RealEstate.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="114" column="20" selection-start="3474" selection-end="3474" vertical-scroll-proportion="0.0" vertical-offset="697" max-vertical-offset="1598">
-              <folding>
-                <element signature="e#315#316#0" expanded="false" />
-                <element signature="e#340#341#0" expanded="false" />
-                <element signature="e#374#375#0" expanded="false" />
-                <element signature="e#402#403#0" expanded="false" />
-                <element signature="e#444#445#0" expanded="false" />
-                <element signature="e#482#483#0" expanded="false" />
-                <element signature="e#544#545#0" expanded="false" />
-                <element signature="e#598#599#0" expanded="false" />
-                <element signature="e#631#632#0" expanded="false" />
-                <element signature="e#660#661#0" expanded="false" />
-                <element signature="e#704#705#0" expanded="false" />
-                <element signature="e#740#741#0" expanded="false" />
-                <element signature="e#778#779#0" expanded="false" />
-                <element signature="e#814#815#0" expanded="false" />
-                <element signature="e#870#871#0" expanded="false" />
-                <element signature="e#915#916#0" expanded="false" />
-                <element signature="e#957#958#0" expanded="false" />
-                <element signature="e#995#996#0" expanded="false" />
-                <element signature="e#1057#1058#0" expanded="false" />
-                <element signature="e#1111#1112#0" expanded="false" />
-                <element signature="e#1143#1144#0" expanded="false" />
-                <element signature="e#1173#1174#0" expanded="false" />
-                <element signature="e#1217#1218#0" expanded="false" />
-                <element signature="e#1255#1256#0" expanded="false" />
-                <element signature="e#1289#1290#0" expanded="false" />
-                <element signature="e#1319#1320#0" expanded="false" />
-                <element signature="e#1365#1366#0" expanded="false" />
-                <element signature="e#1403#1404#0" expanded="false" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -150,25 +93,70 @@
       <file leaf-file-name="pom.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="58" column="43" selection-start="1820" selection-end="1820" vertical-scroll-proportion="0.0" vertical-offset="382" max-vertical-offset="1224">
+            <state line="58" column="43" selection-start="1820" selection-end="1820" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1224">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="pom.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ui/pom.xml">
+        <entry file="file://$PROJECT_DIR$/backend/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="200" column="0" selection-start="6629" selection-end="6629" vertical-scroll-proportion="0.0" vertical-offset="3565" max-vertical-offset="4352">
+            <state line="24" column="23" selection-start="919" selection-end="919" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="663">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="REDaoConstants.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backend/src/main/java/com/re/dao/realestate/REDaoConstants.java">
+      <file leaf-file-name="JdbcTemplate.class" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-jdbc/4.0.5.RELEASE/spring-jdbc-4.0.5.RELEASE.jar!/org/springframework/jdbc/core/JdbcTemplate.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="31" selection-start="1170" selection-end="1170" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="527">
+            <state line="20" column="11" selection-start="882" selection-end="882" vertical-scroll-proportion="-6.8" vertical-offset="153" max-vertical-offset="4726">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BasicDataSource.class" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/dbcp/6.0.29/dbcp-6.0.29.jar!/org/apache/tomcat/dbcp/dbcp/BasicDataSource.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="6" column="13" selection-start="170" selection-end="170" vertical-scroll-proportion="92.48" vertical-offset="2397" max-vertical-offset="3519">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OracleDataSource.class" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/com/oracle/ojdbc14/10.2.0.4.0/ojdbc14-10.2.0.4.0.jar!/oracle/jdbc/pool/OracleDataSource.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="43" column="11" selection-start="2058" selection-end="2058" vertical-scroll-proportion="-6.48" vertical-offset="552" max-vertical-offset="3026">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WebConfig.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ui/src/main/java/com/re/config/WebConfig.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="34" column="55" selection-start="1047" selection-end="1047" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="612">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SynchronizedRequestHandler.class" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/com/vaadin/vaadin-server/7.2.2/vaadin-server-7.2.2.jar!/com/vaadin/server/SynchronizedRequestHandler.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="11" column="28" selection-start="545" selection-end="545" vertical-scroll-proportion="-6.8" vertical-offset="0" max-vertical-offset="323">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="VaadinService.class" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/com/vaadin/vaadin-server/7.2.2/vaadin-server-7.2.2.jar!/com/vaadin/server/VaadinService.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="165" column="19" selection-start="9584" selection-end="9584" vertical-scroll-proportion="-6.8" vertical-offset="2618" max-vertical-offset="3383">
               <folding />
             </state>
           </provider>
@@ -177,7 +165,7 @@
       <file leaf-file-name="GetREStoredProcedure.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backend/src/main/java/com/re/dao/realestate/GetREStoredProcedure.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="75" selection-start="1611" selection-end="1611" vertical-scroll-proportion="0.0" vertical-offset="258" max-vertical-offset="782">
+            <state line="12" column="0" selection-start="401" selection-end="401" vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="782">
               <folding />
             </state>
           </provider>
@@ -210,9 +198,7 @@
         <option value="$PROJECT_DIR$/backend/src/main/java/com/re/entity/REHistory.java" />
         <option value="$PROJECT_DIR$/ui/src/main/java/com/re/components/REHistory.java" />
         <option value="$PROJECT_DIR$/ui/src/main/java/com/re/components/REHistoryListItem.java" />
-        <option value="$PROJECT_DIR$/ui/src/main/java/com/re/config/WebConfig.java" />
         <option value="$PROJECT_DIR$/ui/src/main/java/com/re/components/REHistoryCard.java" />
-        <option value="$PROJECT_DIR$/ui/src/main/java/com/re/components/REItemCard.java" />
         <option value="$PROJECT_DIR$/ui/src/main/java/com/re/ui/RootUI.java" />
         <option value="$PROJECT_DIR$/ui/src/main/java/com/re/components/history/REHistoryListItem.java" />
         <option value="$PROJECT_DIR$/backend/src/main/java/com/re/dao/rehistory/REHistoryDao.java" />
@@ -220,20 +206,22 @@
         <option value="$PROJECT_DIR$/backend/src/main/java/com/re/service/REHistoryService.java" />
         <option value="$PROJECT_DIR$/backend/src/main/java/com/re/service/REHistoryServiceImpl.java" />
         <option value="$PROJECT_DIR$/backend/src/main/java/com/re/dao/rehistory/REHistoryRowMapper.java" />
-        <option value="$PROJECT_DIR$/ui/src/main/java/com/re/components/REListItem.java" />
         <option value="$PROJECT_DIR$/ui/src/main/java/com/re/components/history/REHistoryCard.java" />
         <option value="$PROJECT_DIR$/ui/src/main/java/com/re/components/history/ItemConnector.java" />
-        <option value="$PROJECT_DIR$/backend/pom.xml" />
         <option value="$PROJECT_DIR$/backend/src/main/java/com/re/dao/realestate/REDaoConstants.java" />
         <option value="$PROJECT_DIR$/backend/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/ui/src/main/webapp/WEB-INF/application.properties" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/ui/src/main/java/com/re/components/RealEstateList.java" />
         <option value="$PROJECT_DIR$/ui/pom.xml" />
         <option value="$PROJECT_DIR$/backend/src/main/java/com/re/dao/realestate/GetREStoredProcedure.java" />
-        <option value="$PROJECT_DIR$/backend/src/main/java/com/re/ContextConfiguration.java" />
         <option value="$PROJECT_DIR$/backend/src/main/java/com/re/dao/rehistory/GetREHistoryStoredProcedure.java" />
         <option value="$PROJECT_DIR$/backend/src/main/java/com/re/dao/rehistory/REHistoryDaoConstants.java" />
+        <option value="$PROJECT_DIR$/ui/src/main/java/com/re/components/RealEstateList.java" />
+        <option value="$PROJECT_DIR$/ui/src/main/java/com/re/components/REItemCard.java" />
+        <option value="$PROJECT_DIR$/ui/src/main/java/com/re/components/REListItem.java" />
+        <option value="$PROJECT_DIR$/ui/src/main/java/com/re/config/WebConfig.java" />
+        <option value="$PROJECT_DIR$/backend/pom.xml" />
+        <option value="$PROJECT_DIR$/backend/src/main/java/com/re/ContextConfiguration.java" />
       </list>
     </option>
   </component>
@@ -246,30 +234,6 @@
   </component>
   <component name="MavenProjectNavigator">
     <treeState>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="" />
-          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="Vaadin Web Application" />
-          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="" />
-          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="Vaadin Web Application" />
-          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="Plugins" />
-          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$PluginsNode" />
-        </PATH_ELEMENT>
-      </PATH>
       <PATH>
         <PATH_ELEMENT>
           <option name="myItemId" value="" />
@@ -343,6 +307,84 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="ui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="re-test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CadastreJournal" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WEB-INF" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="re-test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CadastreJournal" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="re-test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CadastreJournal" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -670,16 +712,16 @@
       <updated>1402811394100</updated>
       <workItem from="1402811397956" duration="51611000" />
       <workItem from="1402903964448" duration="11182000" />
-      <workItem from="1402916938905" duration="1845000" />
+      <workItem from="1402916938905" duration="10966000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="64638000" />
+    <option name="totallyTimeSpent" value="73759000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1932" height="1050" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -692,19 +734,19 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23717949" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23557693" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34216335" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3289183" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.36534217" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31236205" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3289183" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29220086" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25587606" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -766,119 +808,9 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/ui/src/main/java/com/re/components/REItemCard.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-beans/4.0.5.RELEASE/spring-beans-4.0.5.RELEASE.jar!/org/springframework/beans/factory/support/DefaultSingletonBeanRegistry.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0" />
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-beans/4.0.5.RELEASE/spring-beans-4.0.5.RELEASE.jar!/org/springframework/beans/factory/support/AbstractBeanFactory.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0" />
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-beans/4.0.5.RELEASE/spring-beans-4.0.5.RELEASE.jar!/org/springframework/beans/factory/support/DefaultListableBeanFactory.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0" />
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/4.0.5.RELEASE/spring-web-4.0.5.RELEASE.jar!/org/springframework/web/SpringServletContainerInitializer.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0" />
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/4.0.5.RELEASE/spring-context-4.0.5.RELEASE.jar!/org/springframework/context/support/AbstractApplicationContext.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/src/main/java/com/re/service/RealEstateService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/src/main/java/com/re/dao/realestate/RealEstateDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/src/main/java/com/re/dao/rehistory/REHistoryDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/src/main/java/com/re/dao/rehistory/REHistoryDaoImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/src/main/java/com/re/service/REHistoryService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/src/main/java/com/re/dao/rehistory/REHistoryRowMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/src/main/java/com/re/service/REHistoryServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#336#337#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/src/main/java/com/re/service/RealEstateServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ui/src/main/java/com/re/components/REListItem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ui/src/main/java/com/re/components/history/REHistoryListItem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ui/src/main/java/com/re/components/history/REHistoryCard.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="13" column="0" selection-start="300" selection-end="300" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="952" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="25" selection-start="912" selection-end="912" vertical-scroll-proportion="0.0" vertical-offset="131" max-vertical-offset="663">
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/backend/src/main/java/com/re/entity/REHistory.java">
@@ -921,16 +853,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-beans/4.0.5.RELEASE/spring-beans-4.0.5.RELEASE.jar!/org/springframework/beans/factory/support/SimpleInstantiationStrategy.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="28" selection-start="1651" selection-end="1651" vertical-scroll-proportion="-13.6" vertical-offset="0" max-vertical-offset="459" />
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-beans/4.0.5.RELEASE/spring-beans-4.0.5.RELEASE.jar!/org/springframework/beans/factory/support/ConstructorResolver.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="49" selection-start="1092" selection-end="1092" vertical-scroll-proportion="-6.8" vertical-offset="102" max-vertical-offset="986" />
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-beans/4.0.5.RELEASE/spring-beans-4.0.5.RELEASE.jar!/org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory.class">
       <provider selected="true" editor-type-id="text-editor">
         <state line="64" column="31" selection-start="4573" selection-end="4573" vertical-scroll-proportion="-6.16" vertical-offset="917" max-vertical-offset="2312" />
@@ -965,11 +887,6 @@
         <state line="3" column="16" selection-start="130" selection-end="130" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="170" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ui/src/main/webapp/WEB-INF/application.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="16" selection-start="102" selection-end="102" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="153" />
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/4.0.5.RELEASE/spring-context-4.0.5.RELEASE.jar!/org/springframework/context/annotation/Bean.class">
       <provider selected="true" editor-type-id="text-editor">
         <state line="9" column="18" selection-start="419" selection-end="419" vertical-scroll-proportion="-5.44" vertical-offset="0" max-vertical-offset="374" />
@@ -992,13 +909,6 @@
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-jdbc/4.0.5.RELEASE/spring-jdbc-4.0.5.RELEASE.jar!/org/springframework/jdbc/object/RdbmsOperation.class">
       <provider selected="true" editor-type-id="text-editor">
         <state line="61" column="22" selection-start="2662" selection-end="2662" vertical-scroll-proportion="-6.8" vertical-offset="850" max-vertical-offset="1411">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ui/src/main/java/com/re/config/WebConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="62" selection-start="906" selection-end="906" vertical-scroll-proportion="0.0" vertical-offset="89" max-vertical-offset="612">
           <folding />
         </state>
       </provider>
@@ -1067,30 +977,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="58" column="43" selection-start="1820" selection-end="1820" vertical-scroll-proportion="0.0" vertical-offset="675" max-vertical-offset="1224">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ui/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="200" column="0" selection-start="6629" selection-end="6629" vertical-scroll-proportion="0.0" vertical-offset="3565" max-vertical-offset="4352">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/src/main/java/com/re/dao/realestate/GetREStoredProcedure.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="75" selection-start="1611" selection-end="1611" vertical-scroll-proportion="0.0" vertical-offset="258" max-vertical-offset="782">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/src/main/java/com/re/ContextConfiguration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="62" column="33" selection-start="2089" selection-end="2089" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="918">
           <folding />
         </state>
       </provider>
@@ -1116,9 +1005,187 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/ui/src/main/java/com/re/components/REItemCard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="20" selection-start="363" selection-end="363" vertical-scroll-proportion="0.0" vertical-offset="327" max-vertical-offset="884">
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/vaadin/addons/pagingcomponent/0.9.5/pagingcomponent-0.9.5.jar!/org/vaadin/pagingcomponent/ComponentsManager.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="0" selection-start="1" selection-end="1" vertical-scroll-proportion="-0.64" vertical-offset="1" max-vertical-offset="1020">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/vaadin/addons/pagingcomponent/0.9.5/pagingcomponent-0.9.5.jar!/org/vaadin/pagingcomponent/PagingComponent.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="28" selection-start="169" selection-end="184" vertical-scroll-proportion="-2.4" vertical-offset="25" max-vertical-offset="2992">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ui/src/main/java/com/re/components/REListItem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="20" selection-start="539" selection-end="539" vertical-scroll-proportion="0.0" vertical-offset="3" max-vertical-offset="1139">
+          <folding>
+            <element signature="e#1707#1970#0" expanded="true" />
+            <element signature="e#1959#1960#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ui/src/main/webapp/WEB-INF/application.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="56" selection-start="148" selection-end="172" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="153">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/vaadin/addons/pagingcomponent/0.9.5/pagingcomponent-0.9.5.jar!/org/vaadin/pagingcomponent/listener/impl/LazyPagingComponentListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="44" column="44" selection-start="1650" selection-end="1650" vertical-scroll-proportion="0.33213645" vertical-offset="444" max-vertical-offset="1156">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/ui/src/main/java/com/re/components/RealEstateList.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="90" column="41" selection-start="3729" selection-end="3729" vertical-scroll-proportion="2.5283756" vertical-offset="0" max-vertical-offset="1547">
+        <state line="32" column="31" selection-start="1196" selection-end="1209" vertical-scroll-proportion="-11.724138" vertical-offset="0" max-vertical-offset="1649">
+          <folding>
+            <element signature="e#3570#3849#0" expanded="true" />
+            <element signature="e#3838#3839#0" expanded="true" />
+            <element signature="e#3906#4137#0" expanded="true" />
+            <element signature="e#4126#4127#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_25/src.zip!/java/sql/Connection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1339" column="25" selection-start="64767" selection-end="64771" vertical-scroll-proportion="71.31035" vertical-offset="24423" max-vertical-offset="24956">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-beans/4.0.5.RELEASE/spring-beans-4.0.5.RELEASE.jar!/org/springframework/beans/factory/support/SimpleInstantiationStrategy.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="28" selection-start="1651" selection-end="1651" vertical-scroll-proportion="-13.6" vertical-offset="0" max-vertical-offset="459">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_25/src.zip!/javax/sql/DataSource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="17" selection-start="225" selection-end="234" vertical-scroll-proportion="0.0648855" vertical-offset="0" max-vertical-offset="1360">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/vaadin/vaadin-server/7.2.2/vaadin-server-7.2.2.jar!/com/vaadin/server/VaadinServlet.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="97" column="7" selection-start="5945" selection-end="5945" vertical-scroll-proportion="-14.68" vertical-offset="1265" max-vertical-offset="2210">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/vaadin/vaadin-server/7.2.2/vaadin-server-7.2.2.jar!/com/vaadin/server/communication/UIInitHandler.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="19" selection-start="612" selection-end="612" vertical-scroll-proportion="0.34979424" vertical-offset="68" max-vertical-offset="595">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/vaadin/spring/spring-vaadin/0.0.2-SNAPSHOT/spring-vaadin-0.0.2-20140610.061202-10.jar!/org/vaadin/spring/servlet/internal/AbstractSpringAwareUIProvider.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="28" selection-start="1347" selection-end="1347" vertical-scroll-proportion="0.8116233" vertical-offset="3" max-vertical-offset="527">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-beans/4.0.5.RELEASE/spring-beans-4.0.5.RELEASE.jar!/org/springframework/beans/factory/support/AbstractBeanFactory.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="38" column="21" selection-start="2724" selection-end="2724" vertical-scroll-proportion="0.31827113" vertical-offset="467" max-vertical-offset="3298">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-beans/4.0.5.RELEASE/spring-beans-4.0.5.RELEASE.jar!/org/springframework/beans/factory/support/ConstructorResolver.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="49" selection-start="1092" selection-end="1092" vertical-scroll-proportion="0.33398822" vertical-offset="102" max-vertical-offset="986">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/dbcp/6.0.29/dbcp-6.0.29.jar!/org/apache/tomcat/dbcp/dbcp/BasicDataSource.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="13" selection-start="170" selection-end="170" vertical-scroll-proportion="92.48" vertical-offset="2397" max-vertical-offset="3519">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ui/src/main/java/com/re/config/WebConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="55" selection-start="1047" selection-end="1047" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="612">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-jdbc/4.0.5.RELEASE/spring-jdbc-4.0.5.RELEASE.jar!/org/springframework/jdbc/core/JdbcTemplate.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="11" selection-start="882" selection-end="882" vertical-scroll-proportion="-6.8" vertical-offset="153" max-vertical-offset="4726">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/vaadin/vaadin-server/7.2.2/vaadin-server-7.2.2.jar!/com/vaadin/server/VaadinService.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="165" column="19" selection-start="9584" selection-end="9584" vertical-scroll-proportion="-6.8" vertical-offset="2618" max-vertical-offset="3383">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/vaadin/vaadin-server/7.2.2/vaadin-server-7.2.2.jar!/com/vaadin/server/SynchronizedRequestHandler.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="28" selection-start="545" selection-end="545" vertical-scroll-proportion="-6.8" vertical-offset="0" max-vertical-offset="323">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/src/main/java/com/re/dao/realestate/GetREStoredProcedure.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="0" selection-start="401" selection-end="401" vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="782">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/oracle/ojdbc14/10.2.0.4.0/ojdbc14-10.2.0.4.0.jar!/oracle/jdbc/pool/OracleDataSource.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="43" column="11" selection-start="2058" selection-end="2058" vertical-scroll-proportion="-6.48" vertical-offset="552" max-vertical-offset="3026">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="58" column="43" selection-start="1820" selection-end="1820" vertical-scroll-proportion="0.0" vertical-offset="675" max-vertical-offset="1224">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="23" selection-start="919" selection-end="919" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="663">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/src/main/java/com/re/ContextConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="46" column="0" selection-start="1527" selection-end="1527" vertical-scroll-proportion="0.80244756" vertical-offset="0" max-vertical-offset="1122">
           <folding />
         </state>
       </provider>

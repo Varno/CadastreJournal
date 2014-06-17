@@ -74,7 +74,7 @@ public class RealEstateList extends VerticalLayout {
     }
 
     private void initPagination() {
- /*       // Allow to hide these buttons when the last page is selected
+        // Allow to hide these buttons when the last page is selected
         ComponentsManager manager = pagingComponent.getComponentsManager();
         boolean isLastPage = !manager.isLastPage();
         pagination.getPreviousPage().setVisible(isLastPage);
@@ -83,7 +83,7 @@ public class RealEstateList extends VerticalLayout {
         // Allow to hide these buttons when the first page is selected
         boolean isFirst = !manager.isFirstPage();
         pagination.getPreviousPage().setVisible(isFirst);
-        pagination.getNextPage().setVisible(isFirst);*/
+        pagination.getNextPage().setVisible(isFirst);
 
         pagination.getNextPage().addClickListener(new Button.ClickListener() {
             @Override
