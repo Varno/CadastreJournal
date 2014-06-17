@@ -17,4 +17,9 @@ public class REHistoryServiceImpl implements REHistoryService {
     public List<REHistory> getHistoryItems(Long realEstateId, int skipFirst, int numberOfItems) {
         return reHistoryDao.getHistoryItems(realEstateId, skipFirst, numberOfItems);
     }
+
+    @Override
+    public int getNumberOfItems(Long facilityId) {
+        return reHistoryDao.getNumberOfItems(facilityId);
+    }
 }

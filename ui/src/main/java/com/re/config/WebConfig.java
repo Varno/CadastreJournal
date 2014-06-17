@@ -1,10 +1,10 @@
 package com.re.config;
 
 import com.re.ContextConfiguration;
-import com.re.components.Pagination;
-import com.re.components.REItemCard;
-import com.re.components.RealEstateList;
+import com.re.components.RETable;
+import com.re.components.ToolBar;
 import com.re.ui.RootUI;
+import com.re.views.RealEstateView;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.context.request.RequestContextListener;
@@ -20,19 +20,25 @@ public class WebConfig extends ContextConfiguration {
 
     @Bean
     @UIScope
-    public Pagination pagination(){
-       return new Pagination();
+    public RealEstateView realEstateView(){
+       return new RealEstateView(reTable(), toolBar(), realEstateService());
     }
 
     @Bean
     @UIScope
-    public RealEstateList realEstateList() throws java.sql.SQLException{
-        return new RealEstateList(realEstateService(), pagination(), reHistoryService());
+    public RETable reTable(){
+        return new RETable(reHistoryService());
+    }
+
+    @Bean
+    @UIScope
+    public ToolBar toolBar(){
+        return new ToolBar();
     }
 
     @Bean
     @UIScope
     public RootUI rootUI() throws java.sql.SQLException{
-        return new RootUI(realEstateList());
+        return new RootUI(realEstateView());
     }
 }

@@ -96,7 +96,6 @@
     <orderEntry type="library" name="Maven: org.springframework.security:spring-security-core:3.2.4.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.security:spring-security-web:3.2.4.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.vaadin.addons:pagingcomponent:0.9.5" level="project" />
-    <orderEntry type="library" name="Maven: org.vaadin:lazylist:0.0.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: junit:junit:3.8.1" level="project" />
   </component>
 </module>
