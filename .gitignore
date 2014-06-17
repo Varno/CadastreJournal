@@ -1,2 +1,6 @@
 .idea/
 *.iml
+*.class
+backend/target/
+ui/src/main/webapp/VAADIN/widgetsets/
+ui/target/
