@@ -39,5 +39,10 @@ public class RealEstateServiceImpl implements RealEstateService {
         }
         return realEstateDao.getNumberOfItems(cadastralNumber);
     }
+
+    @Override
+    public void saveOrUdate(RealEstate realEstate) {
+        realEstateDao.saveOrUdate(realEstate);
+    }
 }
 

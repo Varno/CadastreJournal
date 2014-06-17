@@ -19,6 +19,11 @@ public class RealEstate {
     private String address;
 
     public RealEstate() {
+        this.id = 0L;
+        this.cadastralNumber = "";
+        this.square = 0D;
+        this.areaDescription = "";
+        this.address = "";
     }
 
     public Long getId() {
@@ -46,7 +51,7 @@ public class RealEstate {
     }
 
     public Long getDestinationId() {
-        return destinationId;
+        return 1L; //destinationId;
     }
 
     public void setDestinationId(Long destinationId) {
@@ -62,7 +67,7 @@ public class RealEstate {
     }
 
     public Long getUsageId() {
-        return usageId;
+        return 1L; //usageId;
     }
 
     public void setUsageId(Long usageId) {

@@ -3,6 +3,7 @@ package com.re.config;
 import com.re.ContextConfiguration;
 import com.re.components.RETable;
 import com.re.components.ToolBar;
+import com.re.components.history.REEditWindow;
 import com.re.ui.RootUI;
 import com.re.views.RealEstateView;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -27,18 +28,18 @@ public class WebConfig extends ContextConfiguration {
     @Bean
     @UIScope
     public RETable reTable(){
-        return new RETable(reHistoryService());
+        return new RETable(realEstateService(), reHistoryService());
     }
 
     @Bean
     @UIScope
     public ToolBar toolBar(){
-        return new ToolBar();
+        return new ToolBar(realEstateService());
     }
 
     @Bean
     @UIScope
-    public RootUI rootUI() throws java.sql.SQLException{
+    public RootUI rootUI() {
         return new RootUI(realEstateView());
     }
 }
