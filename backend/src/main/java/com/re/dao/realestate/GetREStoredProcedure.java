@@ -15,7 +15,7 @@ public class GetREStoredProcedure extends StoredProcedure {
         RowMapper rowMapper = new RERowMapper();
         declareParameter(new SqlParameter(REDaoConstants.P_FACILITY_ID,
                 OracleTypes.NUMBER));
-        declareParameter(new SqlParameter(REDaoConstants.P_CADASTRAL_NUMBER,
+        declareParameter(new SqlParameter(REDaoConstants.P_SEARCH_STRING,
                 OracleTypes.VARCHAR));
         declareParameter(new SqlParameter(REDaoConstants.P_SKIP,
                 OracleTypes.NUMBER));
@@ -28,11 +28,11 @@ public class GetREStoredProcedure extends StoredProcedure {
         compile();
     }
 
-    public Map getRealEstates(Long facilityId, String cadastralNumber, int skipFirst, int numberOfItems) {
+    public Map getRealEstates(Long facilityId, String searchQuery, int skipFirst, int numberOfItems) {
         Map<String, Object> inParameters = new HashMap<String, Object>();
         Integer count = 0;
         inParameters.put(REDaoConstants.P_FACILITY_ID, facilityId);
-        inParameters.put(REDaoConstants.P_CADASTRAL_NUMBER, cadastralNumber);
+        inParameters.put(REDaoConstants.P_SEARCH_STRING, searchQuery);
         inParameters.put(REDaoConstants.P_SKIP, skipFirst);
         inParameters.put(REDaoConstants.P_TAKE, numberOfItems);
         inParameters.put(REDaoConstants.P_CURSOR, new HashMap());
