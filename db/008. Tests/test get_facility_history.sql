@@ -12,7 +12,7 @@ DECLARE
 BEGIN
 
   RRTEST.GET_FACILITY_HISTORY
-    (p_facility_id    => 123,
+    (p_facility_id    => 12275,
     p_skip => 0,
     p_take => 20,
     p_cursor => l_cursor,
@@ -23,6 +23,8 @@ BEGIN
     INTO  l_id, l_md, l_mb, l_mi, l_a, l_d; -- xmltype in output ignored 
     EXIT WHEN l_cursor%NOTFOUND;
     DBMS_OUTPUT.PUT_LINE(l_id || ', ' || l_md || ', ' || l_mb || ', ' || l_mi || ', ' || l_a );
+    DBMS_OUTPUT.PUT_LINE('xml: 
+' ||  l_d.getCLOBVal() );
   END LOOP;
   CLOSE l_cursor;
   
