@@ -49,7 +49,7 @@ loop
     , trunc(dbms_random.value(1,9999), 2)
     , trunc(dbms_random.value(1,5))
     , tmp_area(trunc(dbms_random.value(0, 9)))
-    , trunc(dbms_random.value(1,2))
+    , trunc(dbms_random.value(1,13))
     , 'г. Санкт-Петербург, ' || tmp_street(trunc(dbms_random.value(0, 9))) || ', д. ' || trunc(dbms_random.value(1, 100))
     , sysdate
     , 'test'
@@ -59,7 +59,7 @@ loop
   from
     dual
   connect by 
-    level <= 100;
+    level <= 1000;
 
   commit;
 
