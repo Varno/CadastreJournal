@@ -1,5 +1,6 @@
 package com.re.dao.realestate;
 
+import com.re.dao.realestate.REDaoConstants;
 import com.re.entity.RealEstate;
 import org.springframework.jdbc.core.RowMapper;
 

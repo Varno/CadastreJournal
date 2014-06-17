@@ -32,7 +32,6 @@ public class GetREStoredProcedure extends StoredProcedure {
         Map<String, Object> inParameters = new HashMap<String, Object>();
         Integer count = 0;
         inParameters.put(REDaoConstants.P_FACILITY_ID, facilityId);
-        //fixme: stored procedure doesn't work with null cadastralNumber
         inParameters.put(REDaoConstants.P_CADASTRAL_NUMBER, cadastralNumber);
         inParameters.put(REDaoConstants.P_SKIP, skipFirst);
         inParameters.put(REDaoConstants.P_TAKE, numberOfItems);

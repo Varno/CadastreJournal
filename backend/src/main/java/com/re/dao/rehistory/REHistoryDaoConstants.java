@@ -12,4 +12,6 @@ public interface REHistoryDaoConstants {
     public static final String P_SKIP = "p_skip";
     public static final String P_TAKE = "p_take";
     public static final String P_CURSOR = "p_cursor";
+    public static final String P_COUNT = "p_rowcount";
+
 }

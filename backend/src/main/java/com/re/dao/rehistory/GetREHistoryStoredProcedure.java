@@ -1,7 +1,6 @@
 package com.re.dao.rehistory;
 
 import com.re.dao.realestate.REDaoConstants;
-import com.re.dao.realestate.RERowMapper;
 import oracle.jdbc.OracleTypes;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -28,7 +27,7 @@ public class GetREHistoryStoredProcedure extends StoredProcedure {
         declareParameter(new SqlOutParameter(REHistoryDaoConstants.P_CURSOR,
                 OracleTypes.CURSOR, rowMapper));
         declareParameter(new SqlOutParameter(REDaoConstants.P_COUNT,
-                OracleTypes.NUMBER, rowMapper));
+                OracleTypes.NUMBER));
         compile();
     }
 

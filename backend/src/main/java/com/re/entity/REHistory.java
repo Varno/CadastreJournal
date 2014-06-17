@@ -4,6 +4,13 @@ import java.io.Serializable;
 import java.util.Calendar;
 
 public class REHistory implements Serializable {
+    public static final String FIELD_ID = "id";
+    public static final String FIELD_REAL_ESTATE_ID = "realEstateId";
+    public static final String FIELD_MODIFIED_DATE = "modifiedDate";
+    public static final String FIELD_MODIFIED_BY = "modifiedBy";
+    public static final String FIELD_MODIFIED_BY_IP = "modifiedByIp";
+    public static final String FIELD_DESCRIPTION = "description";
+
     private Long id;
     private Long realEstateId;
     private Calendar modifiedDate;

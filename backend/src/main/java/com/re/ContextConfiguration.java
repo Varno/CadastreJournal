@@ -8,15 +8,11 @@ import com.re.service.REHistoryService;
 import com.re.service.REHistoryServiceImpl;
 import com.re.service.RealEstateService;
 import com.re.service.RealEstateServiceImpl;
-import oracle.jdbc.pool.OracleDataSource;
 import org.apache.tomcat.dbcp.dbcp.BasicDataSource;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 
 import javax.sql.DataSource;
 import java.util.Locale;
@@ -60,21 +56,11 @@ public class ContextConfiguration {
         Locale.setDefault(Locale.ENGLISH);
         final BasicDataSource ds = new BasicDataSource();
         ds.setDriverClassName("oracle.jdbc.OracleDriver");
-        ds.setUrl("jdbc:oracle:thin:@//pavel:1521/xe");
-        ds.setUsername("system");
-        ds.setPassword("work");
+        ds.setUrl("jdbc:oracle:thin:@//localhost:1521/xe");
 
-        /*final OracleDataSource ds = new OracleDataSource();
-        String url = "jdbc:oracle:thin:system@//pavel:1521/xe";
-        ds.setURL(url);
-        java.util.Properties prop = new java.util.Properties();
-        prop.put("user", "SYSTEM");
-        prop.put("password", "work");
-        prop.put("internal_logon", "sysoper");
-        ds.setConnectionProperties(prop);*/
+        ds.setUsername("RRTEST");
+        ds.setPassword("1111");
 
         return ds;
-
-
     }
 }

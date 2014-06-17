@@ -2,15 +2,28 @@ package com.re.entity;
 
 
 public class RealEstate {
+    public static final String FIELD_ID = "id";
+    public static final String FIELD_CADASTRAL_NUMBER = "cadastralNumber";
+    public static final String FIELD_SQUARE = "square";
+    public static final String FIELD_DESTINATION_ID = "destinationId";
+    public static final String FIELD_AREA_DESCRIPTION = "areaDescription";
+    public static final String FIELD_USAGE_ID = "usageId";
+    public static final String FIELD_ADDRESS = "address";
+
     private Long id;
     private String cadastralNumber;
     private Double square;
-    private Long DestinationId;
+    private Long destinationId;
     private String areaDescription;
     private Long usageId;
     private String address;
 
     public RealEstate() {
+        this.id = 0L;
+        this.cadastralNumber = "";
+        this.square = 0D;
+        this.areaDescription = "";
+        this.address = "";
     }
 
     public Long getId() {
@@ -38,11 +51,11 @@ public class RealEstate {
     }
 
     public Long getDestinationId() {
-        return DestinationId;
+        return 1L; //destinationId;
     }
 
     public void setDestinationId(Long destinationId) {
-        DestinationId = destinationId;
+        this.destinationId = destinationId;
     }
 
     public String getAreaDescription() {
@@ -54,7 +67,7 @@ public class RealEstate {
     }
 
     public Long getUsageId() {
-        return usageId;
+        return 1L; //usageId;
     }
 
     public void setUsageId(Long usageId) {
@@ -76,7 +89,7 @@ public class RealEstate {
 
         RealEstate that = (RealEstate) o;
 
-        if (DestinationId != null ? !DestinationId.equals(that.DestinationId) : that.DestinationId != null)
+        if (destinationId != null ? !destinationId.equals(that.destinationId) : that.destinationId != null)
             return false;
         if (address != null ? !address.equals(that.address) : that.address != null) return false;
         if (areaDescription != null ? !areaDescription.equals(that.areaDescription) : that.areaDescription != null)
@@ -95,7 +108,7 @@ public class RealEstate {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (cadastralNumber != null ? cadastralNumber.hashCode() : 0);
         result = 31 * result + (square != null ? square.hashCode() : 0);
-        result = 31 * result + (DestinationId != null ? DestinationId.hashCode() : 0);
+        result = 31 * result + (destinationId != null ? destinationId.hashCode() : 0);
         result = 31 * result + (areaDescription != null ? areaDescription.hashCode() : 0);
         result = 31 * result + (usageId != null ? usageId.hashCode() : 0);
         result = 31 * result + (address != null ? address.hashCode() : 0);
@@ -108,7 +121,7 @@ public class RealEstate {
                 "id=" + id +
                 ", cadastralNumber='" + cadastralNumber + '\'' +
                 ", square=" + square +
-                ", DestinationId=" + DestinationId +
+                ", destinationId=" + destinationId +
                 ", areaDescription='" + areaDescription + '\'' +
                 ", usageId=" + usageId +
                 ", address='" + address + '\'' +

@@ -21,5 +21,14 @@ public interface REDaoConstants {
     public static final String P_TAKE     = "p_take";
     public static final String P_CURSOR  = "p_cursor";
     public static final String P_COUNT  = "p_rowcount";
+    public static final String P_INSERTED_ID  = "p_inserted_id";
+    public static final String P_SQUARE       = "p_square";
+    public static final String P_DESTINATION_ID = "p_destination_id";
+    public static final String P_AREA_DESCRIPTION = "p_area_description";
+    public static final String P_USAGE_ID     = "p_usage_id";
+    public static final String P_ADDRESS     = "p_address";
+    public static final String P_USER_NAME     = "p_user_name";
+    public static final String P_USER_IP     = "p_user_ip";
+
 }
 

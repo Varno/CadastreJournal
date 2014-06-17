@@ -6,4 +6,5 @@ import java.util.List;
 public interface REHistoryService {
     List<REHistory> getHistoryItems(Long realEstateId, int skipFirst, int numberOfItems);
 
+    int getNumberOfItems(Long facilityId);
 }
