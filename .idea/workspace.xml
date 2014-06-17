@@ -2,21 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ee44fb81-dee8-4b1f-bbf9-3e7a5e042790" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ui/src/main/java/com/re/components/history/HistoryTable.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ui/src/main/java/com/re/components/history/REEditWindow.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ui/src/main/java/com/re/components/RETable.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ui/src/main/java/com/re/views/RealEstateView.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ui/src/main/java/com/re/components/ToolBar.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/src/main/java/com/re/ContextConfiguration.java" afterPath="$PROJECT_DIR$/backend/src/main/java/com/re/ContextConfiguration.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/src/main/java/com/re/entity/RealEstate.java" afterPath="$PROJECT_DIR$/backend/src/main/java/com/re/entity/RealEstate.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/src/main/java/com/re/dao/realestate/RealEstateDaoImpl.java" afterPath="$PROJECT_DIR$/backend/src/main/java/com/re/dao/realestate/RealEstateDaoImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/src/main/java/com/re/service/RealEstateService.java" afterPath="$PROJECT_DIR$/backend/src/main/java/com/re/service/RealEstateService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/src/main/java/com/re/service/RealEstateServiceImpl.java" afterPath="$PROJECT_DIR$/backend/src/main/java/com/re/service/RealEstateServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ui/src/main/java/com/re/config/WebConfig.java" afterPath="$PROJECT_DIR$/ui/src/main/java/com/re/config/WebConfig.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/src/main/resources/application.properties" afterPath="$PROJECT_DIR$/backend/src/main/resources/application.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ui/src/main/webapp/WEB-INF/application.properties" afterPath="$PROJECT_DIR$/ui/src/main/webapp/WEB-INF/application.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ui/src/main/webapp/VAADIN/widgetsets/com.re.AppWidgetSet/com.re.AppWidgetSet.nocache.js" afterPath="$PROJECT_DIR$/ui/src/main/webapp/VAADIN/widgetsets/com.re.AppWidgetSet/com.re.AppWidgetSet.nocache.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ui/src/main/webapp/VAADIN/widgetsets/com.re.AppWidgetSet/compilation-mappings.txt" afterPath="$PROJECT_DIR$/ui/src/main/webapp/VAADIN/widgetsets/com.re.AppWidgetSet/compilation-mappings.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ui/src/main/java/com/re/components/RETable.java" afterPath="$PROJECT_DIR$/ui/src/main/java/com/re/components/RETable.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="re-test.iws" />
@@ -97,120 +83,7 @@
     <favorites_list name="re-test" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="RealEstateView.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ui/src/main/java/com/re/views/RealEstateView.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="49" selection-start="488" selection-end="503" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="782">
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RETable.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ui/src/main/java/com/re/components/RETable.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="72" column="0" selection-start="2943" selection-end="2943" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1938">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Window.class" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/com/vaadin/vaadin-server/7.2.2/vaadin-server-7.2.2.jar!/com/vaadin/ui/Window.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="213" column="28" selection-start="8435" selection-end="8435" vertical-scroll-proportion="-10.08" vertical-offset="3352" max-vertical-offset="3859">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ToolBar.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ui/src/main/java/com/re/components/ToolBar.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="0" selection-start="332" selection-end="332" vertical-scroll-proportion="0.0" vertical-offset="295" max-vertical-offset="986">
-              <folding>
-                <element signature="e#1210#1457#0" expanded="true" />
-                <element signature="e#1442#1443#0" expanded="true" />
-                <element signature="e#1515#1516#0" expanded="true" />
-                <element signature="e#1549#1550#0" expanded="true" />
-                <element signature="e#1606#1607#0" expanded="true" />
-                <element signature="e#1652#1653#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="REHistoryCard.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ui/src/main/java/com/re/components/history/REHistoryCard.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="13" selection-start="214" selection-end="214" vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="748">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="REEditWindow.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/ui/src/main/java/com/re/components/history/REEditWindow.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="50" column="55" selection-start="2013" selection-end="2013" vertical-scroll-proportion="0.27468583" vertical-offset="612" max-vertical-offset="1343">
-              <folding>
-                <element signature="e#2016#2590#0" expanded="true" />
-                <element signature="e#2579#2580#0" expanded="true" />
-                <element signature="e#2650#2846#0" expanded="true" />
-                <element signature="e#2835#2836#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RealEstate.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backend/src/main/java/com/re/entity/RealEstate.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="20" selection-start="747" selection-end="747" vertical-scroll-proportion="0.0" vertical-offset="227" max-vertical-offset="1258">
-              <folding>
-                <element signature="method#equals#0;class#RealEstate#0" expanded="false" />
-                <element signature="method#hashCode#0;class#RealEstate#0" expanded="false" />
-                <element signature="method#toString#0;class#RealEstate#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="REHistoryListItem.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ui/src/main/java/com/re/components/history/REHistoryListItem.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="13" selection-start="187" selection-end="187" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="289">
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RealEstateServiceImpl.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backend/src/main/java/com/re/service/RealEstateServiceImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="45" column="0" selection-start="1555" selection-end="1555" vertical-scroll-proportion="0.0" vertical-offset="305" max-vertical-offset="850">
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WebConfig.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ui/src/main/java/com/re/config/WebConfig.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="48" selection-start="966" selection-end="966" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="714">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -271,9 +144,9 @@
         <option value="$PROJECT_DIR$/ui/src/main/java/com/re/components/history/REEditForm.java" />
         <option value="$PROJECT_DIR$/ui/src/main/java/com/re/config/WebConfig.java" />
         <option value="$PROJECT_DIR$/ui/src/main/java/com/re/components/ToolBar.java" />
-        <option value="$PROJECT_DIR$/ui/src/main/java/com/re/components/RETable.java" />
         <option value="$PROJECT_DIR$/backend/src/main/java/com/re/entity/RealEstate.java" />
         <option value="$PROJECT_DIR$/ui/src/main/java/com/re/components/history/REEditWindow.java" />
+        <option value="$PROJECT_DIR$/ui/src/main/java/com/re/components/RETable.java" />
       </list>
     </option>
   </component>
@@ -1353,12 +1226,12 @@
       <workItem from="1402916938905" duration="10966000" />
       <workItem from="1402944206344" duration="21837000" />
       <workItem from="1402988081766" duration="13492000" />
-      <workItem from="1403004745416" duration="10134000" />
+      <workItem from="1403004745416" duration="10907000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="119222000" />
+    <option name="totallyTimeSpent" value="119995000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1382,7 +1255,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1932" height="1050" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3289183" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1402,9 +1275,9 @@
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960597" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32781458" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34216335" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34216335" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3289183" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3289183" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.44675186" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1445,13 +1318,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ui/src/main/java/com/re/components/REItemCard.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="13" selection-start="100" selection-end="100" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="884">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/backend/src/main/java/com/re/service/REHistoryService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="5" column="17" selection-start="98" selection-end="98" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255" />
@@ -1479,13 +1345,6 @@
     <entry file="file://$PROJECT_DIR$/ui/src/main/java/com/re/components/RealEstateList.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="22" column="21" selection-start="770" selection-end="770" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1547">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ui/src/main/java/com/re/components/REListItem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="13" selection-start="309" selection-end="309" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1088">
           <folding />
         </state>
       </provider>
@@ -1753,15 +1612,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ui/src/main/java/com/re/views/RealEstateView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="49" selection-start="488" selection-end="503" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="782">
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ui/src/main/java/com/re/config/WebConfig.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="30" column="48" selection-start="966" selection-end="966" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="714">
@@ -1790,13 +1640,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ui/src/main/java/com/re/components/RETable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="72" column="0" selection-start="2943" selection-end="2943" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1938">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/backend/src/main/java/com/re/entity/RealEstate.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="21" column="20" selection-start="747" selection-end="747" vertical-scroll-proportion="0.0" vertical-offset="227" max-vertical-offset="1258">
@@ -1810,12 +1653,46 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ui/src/main/java/com/re/components/history/REEditWindow.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="55" selection-start="2013" selection-end="2013" vertical-scroll-proportion="0.27468583" vertical-offset="612" max-vertical-offset="1343">
+        <state line="58" column="21" selection-start="2354" selection-end="2354" vertical-scroll-proportion="0.0" vertical-offset="233" max-vertical-offset="1343">
           <folding>
             <element signature="e#2016#2590#0" expanded="true" />
             <element signature="e#2579#2580#0" expanded="true" />
             <element signature="e#2650#2846#0" expanded="true" />
             <element signature="e#2835#2836#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ui/src/main/java/com/re/components/REItemCard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="13" selection-start="100" selection-end="100" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="884">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ui/src/main/java/com/re/components/REListItem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="13" selection-start="309" selection-end="309" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1088">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ui/src/main/java/com/re/components/RETable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="72" column="47" selection-start="2975" selection-end="2990" vertical-scroll-proportion="1.7779816" vertical-offset="0" max-vertical-offset="1921">
+          <folding>
+            <element signature="e#2801#3049#0" expanded="true" />
+            <element signature="e#3022#3023#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ui/src/main/java/com/re/views/RealEstateView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="49" selection-start="488" selection-end="503" vertical-scroll-proportion="0.29929578" vertical-offset="0" max-vertical-offset="782">
+          <folding>
+            <element signature="e#875#1430#0" expanded="true" />
+            <element signature="e#1419#1420#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -70,8 +70,7 @@ public class RETable extends Table {
                         reItemCard.addCloseListener(new Window.CloseListener() {
                             @Override
                             public void windowClose(Window.CloseEvent e) {
-
-
+                                refreshRowCache();
                             }
                         });
                         UI.getCurrent().addWindow(reItemCard);
