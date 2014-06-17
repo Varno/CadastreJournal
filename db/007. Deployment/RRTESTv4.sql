@@ -385,7 +385,7 @@ create or replace
 procedure rrtest.get_facilities
 (
   p_facility_id in number
-  , p_cadastral_number in varchar2
+  , p_search_string in varchar2
   , p_skip in number
   , p_take in number
   , p_cursor out SYS_REFCURSOR
