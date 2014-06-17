@@ -13,7 +13,7 @@ DECLARE
 BEGIN
   RRTEST.GET_FACILITIES
     (p_facility_id    => null,
-    p_cadastral_number => null,
+    p_search_string => 'ОТнюдь',
     p_skip => 0,
     p_take => 20,
     p_cursor => l_cursor,

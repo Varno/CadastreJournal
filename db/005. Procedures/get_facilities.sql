@@ -2,7 +2,7 @@ create or replace
 procedure rrtest.get_facilities
 (
   p_facility_id in number
-  , p_cadastral_number in varchar2
+  , p_search_string in nvarchar2
   , p_skip in number
   , p_take in number
   , p_cursor out SYS_REFCURSOR
@@ -10,6 +10,7 @@ procedure rrtest.get_facilities
 )
 authid current_user
 as
+  l_search_string nvarchar2(32767);
 begin
 
   if (p_facility_id is not null) then
@@ -30,7 +31,10 @@ begin
     from RRTEST.FACILITIES
     where FACILITY_ID = p_facility_id;
     
-  elsif (p_cadastral_number is not null) then
+  elsif (p_search_string is not null) then
+
+    l_search_string := '%' || 
+      replace(replace(upper(p_search_string), '_', '|_'), '%', '|%') || '%';
 
     open p_cursor for
     select 
@@ -53,13 +57,27 @@ begin
       , ADDRESS    
       , rank() over (order by CADASTRAL_NUMBER asc) as rnk
     from RRTEST.FACILITIES
-    where CADASTRAL_NUMBER like p_cadastral_number || '%'
+    where 
+      upper(CADASTRAL_NUMBER) like l_search_string escape '|'
+      or upper(AREA_DESCRIPTION) like l_search_string escape '|'
+      or upper(ADDRESS) like l_search_string escape '|'
+      or DESTINATION_ID in (select d.DESTINATION_ID from RRTEST.DESTINATIONS d 
+        where upper(d.DESCRIPTION) like l_search_string escape '|')
+      or USAGE_ID in (select u.USAGE_ID from RRTEST.USAGES u
+        where upper(u.DESCRIPTION) like l_search_string escape '|')
     ) p
     where p.rnk > p_skip and p.rnk <= p_take;
 
     select count(*) into p_rowcount
     from RRTEST.FACILITIES
-    where CADASTRAL_NUMBER like p_cadastral_number || '%';
+    where 
+      upper(CADASTRAL_NUMBER) like l_search_string escape '|'
+      or upper(AREA_DESCRIPTION) like l_search_string escape '|'
+      or upper(ADDRESS) like l_search_string escape '|'
+      or DESTINATION_ID in (select d.DESTINATION_ID from RRTEST.DESTINATIONS d 
+        where upper(d.DESCRIPTION) like l_search_string escape '|')
+      or USAGE_ID in (select u.USAGE_ID from RRTEST.USAGES u
+        where upper(u.DESCRIPTION) like l_search_string escape '|');
   
   else
   
