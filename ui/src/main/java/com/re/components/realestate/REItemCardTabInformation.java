@@ -20,10 +20,10 @@ public class REItemCardTabInformation extends VerticalLayout {
         content.setMargin(true);
         content.setSpacing(true);
         Label cadastralNumber = new Label(realEstate.getCadastralNumber());
-        cadastralNumber.setCaption("Кадастровый номер: ");
+        cadastralNumber.setCaption("Кадастровый №: ");
         content.addComponent(cadastralNumber);
 
-        Label square = new Label(realEstate.getSquare().toString());
+        Label square = new Label(realEstate.getSquare().toString() + " м2");
         square.setCaption("Площадь: ");
         content.addComponent(square);
 

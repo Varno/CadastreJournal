@@ -17,15 +17,18 @@ public class ToolBar extends HorizontalLayout {
         setMargin(true);
         setWidth("50%");
         addComponent(createREButton);
-        addComponent(searchField);
+        HorizontalLayout hl = new HorizontalLayout();
+        hl.setSpacing(true);
+        hl.addComponent(searchField);
+        addComponent(hl);
         setComponentAlignment(createREButton, Alignment.BOTTOM_LEFT);
-        setComponentAlignment(searchField, Alignment.BOTTOM_LEFT);
+        setComponentAlignment(hl, Alignment.BOTTOM_LEFT);
     }
 
     private void initSearch() {
         if(searchField == null){
-            searchField = new TextField();
-            searchField.setInputPrompt("Поиск..");
+            searchField = new TextField("Поиск");
+            searchField.setInputPrompt("...");
             searchField.setColumns(30);
             searchField.setImmediate(true);
         }
