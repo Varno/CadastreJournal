@@ -23,8 +23,8 @@ public class REEditWindow extends Window{
     private ComboBox destinationCombobox = new ComboBox("Назначение");
     private ComboBox usageCombobox = new ComboBox("Разрешенное использование");
 
-    public REEditWindow(String caption, RealEstate entity, RealEstateService realEstateService) {
-        super(caption);
+    public REEditWindow(RealEstate entity, RealEstateService realEstateService) {
+        super(entity.getId() == null ? "Создать объект недвижимости" : "Изменить объект недвижимости");
         this.entity = entity;
         this.realEstateService = realEstateService;
         center();
@@ -61,8 +61,10 @@ public class REEditWindow extends Window{
         usageCombobox.setContainerDataSource(reUsagesContainer);
         final BeanFieldGroup binder = new BeanFieldGroup<RealEstate>(RealEstate.class);
         binder.setItemDataSource(entity);
+
         form.addComponent(cadastralNumberField);
         binder.bind(cadastralNumberField, "cadastralNumber");
+        cadastralNumberField.setReadOnly(entity.getId() != null);
 
         HorizontalLayout squareLayout = new HorizontalLayout();
         squareLayout.setSpacing(true);
@@ -111,8 +113,7 @@ public class REEditWindow extends Window{
     }
 
     public static Window Build(RealEstateService reService, RealEstate entity, CloseListener handler){
-        String caption = entity.getId() == null ? "Создать объект недвижимости" : "Изменить объект недвижимости";
-        REEditWindow result = new REEditWindow(caption, entity, reService);
+        REEditWindow result = new REEditWindow(entity, reService);
         result.addCloseListener(handler);
         return  result;
     }
