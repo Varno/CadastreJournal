@@ -5,21 +5,22 @@ import java.util.Calendar;
 
 public class REHistory implements Serializable {
     public static final String FIELD_ID = "id";
-    public static final String FIELD_REAL_ESTATE_ID = "realEstateId";
     public static final String FIELD_MODIFIED_DATE = "modifiedDate";
     public static final String FIELD_MODIFIED_BY = "modifiedBy";
     public static final String FIELD_MODIFIED_BY_IP = "modifiedByIp";
     public static final String FIELD_DESCRIPTION = "description";
+    public static final String FIELD_ACTION = "action";
 
     private Long id;
-    private Long realEstateId;
     private Calendar modifiedDate;
     private String modifiedBy;
     private String modifiedByIp;
     private String description;
+    private String action;
 
     public REHistory() {
     }
+
 
     public Long getId() {
         return id;
@@ -61,12 +62,12 @@ public class REHistory implements Serializable {
         this.description = description;
     }
 
-    public Long getRealEstateId() {
-        return realEstateId;
+    public String getAction() {
+        return action;
     }
 
-    public void setRealEstateId(Long realEstateId) {
-        this.realEstateId = realEstateId;
+    public void setAction(String action) {
+        this.action = action;
     }
 
     @Override
@@ -84,8 +85,10 @@ public class REHistory implements Serializable {
             return false;
         if (modifiedDate != null ? !modifiedDate.equals(reHistory.modifiedDate) : reHistory.modifiedDate != null)
             return false;
+/*
         if (realEstateId != null ? !realEstateId.equals(reHistory.realEstateId) : reHistory.realEstateId != null)
             return false;
+*/
 
         return true;
     }
@@ -93,7 +96,7 @@ public class REHistory implements Serializable {
     @Override
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (realEstateId != null ? realEstateId.hashCode() : 0);
+        result = 31 * result + (action != null ? action.hashCode() : 0);
         result = 31 * result + (modifiedDate != null ? modifiedDate.hashCode() : 0);
         result = 31 * result + (modifiedBy != null ? modifiedBy.hashCode() : 0);
         result = 31 * result + (modifiedByIp != null ? modifiedByIp.hashCode() : 0);
@@ -105,7 +108,7 @@ public class REHistory implements Serializable {
     public String toString() {
         return "REHistory{" +
                 "id=" + id +
-                ", realEstateId=" + realEstateId +
+                ", action=" + action +
                 ", modifiedDate=" + modifiedDate +
                 ", modifiedBy='" + modifiedBy + '\'' +
                 ", modifiedByIp='" + modifiedByIp + '\'' +

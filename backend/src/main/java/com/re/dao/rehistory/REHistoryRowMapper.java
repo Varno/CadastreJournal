@@ -17,6 +17,7 @@ public class REHistoryRowMapper implements RowMapper<REHistory> {
         reHistory.setModifiedDate(dateToCalendar(rs.getDate(REHistoryDaoConstants.MODIFIED_DATE)));
         reHistory.setModifiedBy(rs.getString(REHistoryDaoConstants.MODIFIED_BY));
         reHistory.setModifiedByIp(rs.getString(REHistoryDaoConstants.MODIFIED_BY_IP));
+        reHistory.setAction(rs.getString(REHistoryDaoConstants.ACTION));
         reHistory.setDescription(rs.getString(REHistoryDaoConstants.DESCRIPTION));
         return reHistory;
     }

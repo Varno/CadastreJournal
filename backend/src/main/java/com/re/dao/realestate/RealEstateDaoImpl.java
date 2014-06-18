@@ -1,14 +1,11 @@
 package com.re.dao.realestate;
 
-import com.re.dao.realestate.procedures.GetREStoredProcedure;
-import com.re.dao.realestate.procedures.UpdateREStoredProcedure;
+
 import com.re.entity.RealEstate;
-import oracle.jdbc.OracleTypes;
-import oracle.sql.CLOB;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.SqlOutParameter;
-import org.springframework.jdbc.core.SqlParameter;
 import org.springframework.jdbc.core.support.SqlLobValue;
+import org.springframework.jdbc.support.lob.DefaultLobHandler;
+import org.springframework.jdbc.support.lob.LobHandler;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -44,7 +41,8 @@ public class RealEstateDaoImpl implements RealEstateDao {
         inputs.put(REDaoConstants.P_ADDRESS, realEstate.getAddress());
         inputs.put(REDaoConstants.P_USER_IP, "127.0.0.1");
         inputs.put(REDaoConstants.P_USER_NAME, "TestUser");
-        updateREStoredProcedure.execute(inputs);
+        Map result = updateREStoredProcedure.execute(inputs);
+        Map r = result;
     }
 
     @Override

@@ -29,6 +29,7 @@ public interface REDaoConstants {
     public static final String P_ADDRESS     = "p_address";
     public static final String P_USER_NAME     = "p_user_name";
     public static final String P_USER_IP     = "p_user_ip";
+    public static final String P_SEARCH_STRING = "p_search_string";
 
 }
 

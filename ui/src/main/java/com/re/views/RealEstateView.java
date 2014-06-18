@@ -1,48 +1,41 @@
 package com.re.views;
 
-import com.re.components.RETable;
-import com.re.components.ToolBar;
-import com.re.entity.REHistory;
+import com.re.components.history.HistoryTab;
+import com.re.components.realestate.RETab;
+import com.re.components.realestate.RETable;
+import com.re.components.realestate.ToolBar;
 import com.re.entity.RealEstate;
 import com.re.service.RealEstateService;
 import com.vaadin.data.Property;
+import com.vaadin.ui.TabSheet;
 import com.vaadin.ui.VerticalLayout;
 
 import java.util.List;
 
 public class RealEstateView extends VerticalLayout {
+    private TabSheet tabSheet;
+    private HistoryTab historyTab;
+    private RETab reTab;
 
-    private RETable realEstateTable;
-    private ToolBar toolBar;
-    private RealEstateService reService;
-
-    public RealEstateView(RETable realEstateTable, ToolBar toolBar, RealEstateService reService) {
-        this.realEstateTable = realEstateTable;
-        this.toolBar = toolBar;
-        this.reService = reService;
+    public RealEstateView(HistoryTab historyTab, RETab reTab) {
+        this.historyTab = historyTab;
+        this.reTab = reTab;
         initLayout();
-        refresh();
+        initTabSheet();
+    }
+
+    private void initTabSheet() {
+        if (tabSheet == null) {
+            tabSheet = new TabSheet();
+            tabSheet.addTab(reTab).setCaption("Объекты недвижимости");
+            tabSheet.addTab(historyTab).setCaption("История изменений");
+        }
+        addComponent(tabSheet);
     }
 
     private void initLayout() {
-        addComponent(toolBar);
-        addComponent(realEstateTable);
-        toolBar.getSearchField().addValueChangeListener(new Property.ValueChangeListener() {
-            @Override
-            public void valueChange(Property.ValueChangeEvent event) {
-                String value = (String) event.getProperty().getValue();
-                realEstateTable.getBeanItemContainer().removeAllItems();
-                int numberOfItems = reService.getNumberOfItems(null);
-                List<RealEstate> reHistoryList = reService.getItemsFromRange(null, value, 0, numberOfItems);
-                realEstateTable.getBeanItemContainer().addAll(reHistoryList);
-            }
-        });
+        setSizeFull();
     }
 
-    private void refresh(){
-        realEstateTable.getBeanItemContainer().removeAllItems();
-        int numberOfItems = reService.getNumberOfItems(null);
-        List<RealEstate> reHistoryList = reService.getItemsFromRange(0, numberOfItems);
-        realEstateTable.getBeanItemContainer().addAll(reHistoryList);
-    }
+
 }

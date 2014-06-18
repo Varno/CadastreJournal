@@ -1,14 +1,10 @@
 package com.re.entity;
 
 
+
 public class RealEstate {
-    public static final String FIELD_ID = "id";
     public static final String FIELD_CADASTRAL_NUMBER = "cadastralNumber";
     public static final String FIELD_SQUARE = "square";
-    public static final String FIELD_DESTINATION_ID = "destinationId";
-    public static final String FIELD_AREA_DESCRIPTION = "areaDescription";
-    public static final String FIELD_USAGE_ID = "usageId";
-    public static final String FIELD_ADDRESS = "address";
 
     private Long id;
     private String cadastralNumber;
@@ -17,13 +13,30 @@ public class RealEstate {
     private String areaDescription;
     private Long usageId;
     private String address;
+    private REDestination reDestination;
+    private REUsage reUsage;
 
     public RealEstate() {
-        this.id = 0L;
         this.cadastralNumber = "";
         this.square = 0D;
         this.areaDescription = "";
         this.address = "";
+    }
+
+    public REDestination getReDestination() {
+        return reDestination;
+    }
+
+    public void setReDestination(REDestination reDestination) {
+        this.reDestination = reDestination;
+    }
+
+    public REUsage getReUsage() {
+        return reUsage;
+    }
+
+    public void setReUsage(REUsage reUsage) {
+        this.reUsage = reUsage;
     }
 
     public Long getId() {
@@ -89,14 +102,17 @@ public class RealEstate {
 
         RealEstate that = (RealEstate) o;
 
-        if (destinationId != null ? !destinationId.equals(that.destinationId) : that.destinationId != null)
-            return false;
         if (address != null ? !address.equals(that.address) : that.address != null) return false;
         if (areaDescription != null ? !areaDescription.equals(that.areaDescription) : that.areaDescription != null)
             return false;
         if (cadastralNumber != null ? !cadastralNumber.equals(that.cadastralNumber) : that.cadastralNumber != null)
             return false;
+        if (destinationId != null ? !destinationId.equals(that.destinationId) : that.destinationId != null)
+            return false;
         if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (reDestination != null ? !reDestination.equals(that.reDestination) : that.reDestination != null)
+            return false;
+        if (reUsage != null ? !reUsage.equals(that.reUsage) : that.reUsage != null) return false;
         if (square != null ? !square.equals(that.square) : that.square != null) return false;
         if (usageId != null ? !usageId.equals(that.usageId) : that.usageId != null) return false;
 
@@ -112,6 +128,8 @@ public class RealEstate {
         result = 31 * result + (areaDescription != null ? areaDescription.hashCode() : 0);
         result = 31 * result + (usageId != null ? usageId.hashCode() : 0);
         result = 31 * result + (address != null ? address.hashCode() : 0);
+        result = 31 * result + (reDestination != null ? reDestination.hashCode() : 0);
+        result = 31 * result + (reUsage != null ? reUsage.hashCode() : 0);
         return result;
     }
 
@@ -125,6 +143,8 @@ public class RealEstate {
                 ", areaDescription='" + areaDescription + '\'' +
                 ", usageId=" + usageId +
                 ", address='" + address + '\'' +
+                ", reDestination=" + reDestination +
+                ", reUsage=" + reUsage +
                 '}';
     }
 }

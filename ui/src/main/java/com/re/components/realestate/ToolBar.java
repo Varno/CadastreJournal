@@ -1,19 +1,16 @@
-package com.re.components;
+package com.re.components.realestate;
 
-import com.re.components.history.REEditWindow;
+import com.re.components.realestate.REEditWindow;
 import com.re.entity.RealEstate;
 import com.re.service.RealEstateService;
-import com.vaadin.data.Property;
 import com.vaadin.ui.*;
 
 
 public class ToolBar extends HorizontalLayout {
-    private RealEstateService reService;
     private Button createREButton;
     private TextField searchField;
 
-    public ToolBar(RealEstateService reService) {
-        this.reService = reService;
+    public ToolBar() {
         initButton();
         initSearch();
         setSpacing(true);
@@ -28,7 +25,7 @@ public class ToolBar extends HorizontalLayout {
     private void initSearch() {
         if(searchField == null){
             searchField = new TextField();
-            searchField.setValue("Поиск..");
+            searchField.setInputPrompt("Поиск..");
             searchField.setColumns(30);
             searchField.setImmediate(true);
         }
@@ -37,12 +34,6 @@ public class ToolBar extends HorizontalLayout {
     private void initButton() {
         if(createREButton == null){
             createREButton = new Button("Добавить");
-            createREButton.addClickListener(new Button.ClickListener() {
-                @Override
-                public void buttonClick(Button.ClickEvent event) {
-                    UI.getCurrent().addWindow(new REEditWindow(new RealEstate(), reService));
-                }
-            });
         }
     }
 
@@ -50,7 +41,7 @@ public class ToolBar extends HorizontalLayout {
         return searchField;
     }
 
-    public void setSearchField(TextField searchField) {
-        this.searchField = searchField;
+    public Button getCreateREButton() {
+        return this.createREButton;
     }
 }

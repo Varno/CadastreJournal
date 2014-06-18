@@ -1,9 +1,13 @@
 package com.re;
 
+import com.re.dao.destination.DestinationDao;
+import com.re.dao.destination.DestinationDaoImpl;
 import com.re.dao.realestate.RealEstateDao;
 import com.re.dao.realestate.RealEstateDaoImpl;
 import com.re.dao.rehistory.REHistoryDao;
 import com.re.dao.rehistory.REHistoryDaoImpl;
+import com.re.dao.usage.UsageDao;
+import com.re.dao.usage.UsageDaoImpl;
 import com.re.service.REHistoryService;
 import com.re.service.REHistoryServiceImpl;
 import com.re.service.RealEstateService;
@@ -20,20 +24,29 @@ import java.util.Locale;
 
 @Configuration
 public class ContextConfiguration {
-
-    @Bean
-    public RealEstateService realEstateService() {
-        return new RealEstateServiceImpl(realEstateDao());
-    }
-
     @Bean
     public RealEstateDao realEstateDao() {
         return new RealEstateDaoImpl(jdbcTemplate());
     }
 
     @Bean
+    public DestinationDao destinationDao() {
+        return new DestinationDaoImpl(jdbcTemplate());
+    }
+
+    @Bean
+    public UsageDao usageDao() {
+        return new UsageDaoImpl(jdbcTemplate());
+    }
+
+    @Bean
     public REHistoryDao reHistoryDao() {
         return new REHistoryDaoImpl(jdbcTemplate());
+    }
+
+    @Bean
+    public RealEstateService realEstateService() {
+        return new RealEstateServiceImpl(realEstateDao(), destinationDao(), usageDao());
     }
 
     @Bean
@@ -57,7 +70,6 @@ public class ContextConfiguration {
         final BasicDataSource ds = new BasicDataSource();
         ds.setDriverClassName("oracle.jdbc.OracleDriver");
         ds.setUrl("jdbc:oracle:thin:@//localhost:1521/xe");
-
         ds.setUsername("RRTEST");
         ds.setPassword("1111");
 
