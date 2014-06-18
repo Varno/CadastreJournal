@@ -12,7 +12,7 @@ DECLARE
 BEGIN
 
   RRTEST.GET_FACILITY_HISTORY
-    (p_facility_id    => 12275,
+    (p_facility_id    => null,
     p_skip => 0,
     p_take => 20,
     p_cursor => l_cursor,
