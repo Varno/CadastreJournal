@@ -25,7 +25,7 @@ public class ToolBar extends HorizontalLayout {
     private void initSearch() {
         if(searchField == null){
             searchField = new TextField();
-            searchField.setValue("Поиск..");
+            searchField.setInputPrompt("Поиск..");
             searchField.setColumns(30);
             searchField.setImmediate(true);
         }

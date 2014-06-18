@@ -9,7 +9,6 @@ import org.springframework.jdbc.object.StoredProcedure;
 public class UpdateREStoredProcedure extends StoredProcedure {
     private static final String SPROC_NAME = "RRTEST.update_facility";
 
-
     public UpdateREStoredProcedure(JdbcTemplate jdbcTemplate) {
         super(jdbcTemplate, SPROC_NAME);
 
@@ -35,18 +34,4 @@ public class UpdateREStoredProcedure extends StoredProcedure {
                 OracleTypes.NUMBER));
         compile();
     }
-
-/*    public Map saveOrUpdate(RealEstate realestate) {
-        Map<String, Object> inParameters = new HashMap<String, Object>();
-        Integer count = 0;
-        inParameters.put(REDaoConstants.P_FACILITY_ID, facilityId);
-        //fixme: stored procedure doesn't work with null cadastralNumber
-        inParameters.put(REDaoConstants.P_CADASTRAL_NUMBER, cadastralNumber);
-        inParameters.put(REDaoConstants.P_SKIP, skipFirst);
-        inParameters.put(REDaoConstants.P_TAKE, numberOfItems);
-        inParameters.put(REDaoConstants.P_CURSOR, new HashMap());
-        inParameters.put(REDaoConstants.P_COUNT, count);
-
-        return execute(inParameters);
-    }*/
 }
