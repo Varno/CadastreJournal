@@ -10,6 +10,7 @@ public class REHistory implements Serializable {
     public static final String FIELD_MODIFIED_BY = "modifiedBy";
     public static final String FIELD_MODIFIED_BY_IP = "modifiedByIp";
     public static final String FIELD_DESCRIPTION = "description";
+    public static final String FIELD_ACTION = "action";
 
     private Long id;
     private Long realEstateId;
@@ -17,9 +18,11 @@ public class REHistory implements Serializable {
     private String modifiedBy;
     private String modifiedByIp;
     private String description;
+    private String action;
 
     public REHistory() {
     }
+
 
     public Long getId() {
         return id;
@@ -67,6 +70,14 @@ public class REHistory implements Serializable {
 
     public void setRealEstateId(Long realEstateId) {
         this.realEstateId = realEstateId;
+    }
+
+    public String getAction() {
+        return action;
+    }
+
+    public void setAction(String action) {
+        this.action = action;
     }
 
     @Override

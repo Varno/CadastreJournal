@@ -22,4 +22,14 @@ public class REHistoryServiceImpl implements REHistoryService {
     public int getNumberOfItems(Long facilityId) {
         return reHistoryDao.getNumberOfItems(facilityId);
     }
+
+    @Override
+    public List<REHistory> getHistoryItems(int skipFirst, int numberOfItems) {
+        return getHistoryItems(null, skipFirst, numberOfItems);
+    }
+
+    @Override
+    public int getNumberOfItems() {
+        return getNumberOfItems(null);
+    }
 }

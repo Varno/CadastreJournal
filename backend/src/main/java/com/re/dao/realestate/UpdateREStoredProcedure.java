@@ -1,15 +1,10 @@
 package com.re.dao.realestate;
 
-import com.re.dao.realestate.REDaoConstants;
-import com.re.entity.RealEstate;
 import oracle.jdbc.OracleTypes;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.SqlOutParameter;
 import org.springframework.jdbc.core.SqlParameter;
 import org.springframework.jdbc.object.StoredProcedure;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class UpdateREStoredProcedure extends StoredProcedure {
     private static final String SPROC_NAME = "RRTEST.update_facility";
@@ -41,7 +36,7 @@ public class UpdateREStoredProcedure extends StoredProcedure {
         compile();
     }
 
-/*    public Map saveOrUpdate(RealEstate realEstate) {
+/*    public Map saveOrUpdate(RealEstate realestate) {
         Map<String, Object> inParameters = new HashMap<String, Object>();
         Integer count = 0;
         inParameters.put(REDaoConstants.P_FACILITY_ID, facilityId);

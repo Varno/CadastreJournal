@@ -1,9 +1,8 @@
-package com.re.components;
+package com.re.components.realestate;
 
-import com.re.components.history.REEditWindow;
+import com.re.components.realestate.REEditWindow;
 import com.re.entity.RealEstate;
 import com.re.service.RealEstateService;
-import com.vaadin.data.Property;
 import com.vaadin.ui.*;
 
 
@@ -40,7 +39,7 @@ public class ToolBar extends HorizontalLayout {
             createREButton.addClickListener(new Button.ClickListener() {
                 @Override
                 public void buttonClick(Button.ClickEvent event) {
-                    UI.getCurrent().addWindow(new REEditWindow(new RealEstate(), reService));
+                    UI.getCurrent().addWindow(new REEditWindow("Создать объект недвижимости", new RealEstate(), reService));
                 }
             });
         }

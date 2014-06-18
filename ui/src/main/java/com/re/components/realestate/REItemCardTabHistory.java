@@ -1,36 +1,28 @@
-package com.re.components.history;
+package com.re.components.realestate;
 
 
+import com.re.components.history.HistoryTable;
 import com.re.entity.REHistory;
 import com.re.service.REHistoryService;
 import com.vaadin.ui.VerticalLayout;
-import com.vaadin.ui.Window;
 
 import java.util.List;
 
-
-public class REHistoryCard extends Window {
-
+public class REItemCardTabHistory extends VerticalLayout {
     final private REHistoryService reHistoryService;
     private Long facilityId;
     private HistoryTable historyTable;
+    public REItemCardTabHistory(REHistoryService reHistoryService, Long facilityId) {
 
-    public REHistoryCard(REHistoryService reHistoryService, Long facilityId) {
-        super("История изменений объекта недвижимости");
         this.reHistoryService = reHistoryService;
         this.facilityId = facilityId;
         initLayout();
     }
 
     private void initLayout() {
-        center();
-        setWidth("70%");
-        setHeight("80%");
-        setResizable(false);
-        VerticalLayout mainLayout = new VerticalLayout();
+        setSizeFull();
         historyTable = new HistoryTable();
-        mainLayout.addComponent(historyTable);
-        setContent(mainLayout);
+        addComponent(historyTable);
         refresh();
     }
 
