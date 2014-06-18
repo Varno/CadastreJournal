@@ -1,8 +1,16 @@
 declare
-  type tmp_table_type is table of clob index by binary_integer;
+  type tmp_table_type is table of RRTEST.FACILITIES.AREA_DESCRIPTION%TYPE index by binary_integer;
   tmp_area tmp_table_type;
   tmp_street tmp_table_type;
-  tmp_descr clob;
+  l_destination_id number;
+  l_destination RRTEST.DESTINATIONS.DESCRIPTION%TYPE;
+  l_usage_id number;
+  l_usage RRTEST.USAGES.DESCRIPTION%TYPE;
+  
+  l_cadastral_number RRTEST.FACILITIES.CADASTRAL_NUMBER%TYPE;
+  l_area_description RRTEST.FACILITIES.AREA_DESCRIPTION%TYPE;
+  l_address RRTEST.FACILITIES.ADDRESS%TYPE;
+  l_search_key RRTEST.FACILITIES.SEARCH_KEY%TYPE;
 begin
 
   tmp_area(0) := 'Гостиница Акме расположилась в окружении архитектурных памятников: от здания всего две минуты до Гостиного двора, за четверть часа можно дойти до Казанского собора, Русского музея или храма Спас на крови, Дворцовой площади и Эрмитажа. Ближайшие станции метро «Гостиный двор» и «Невский проспект».';
@@ -27,42 +35,69 @@ begin
   tmp_street(8) := 'ул. Казанская';
   tmp_street(9) := 'пр. Жуковского';
   
-for i in 1..10
+for i in 1..10000
 loop
 
+  l_destination_id := trunc(dbms_random.value(1,5));
+  l_usage_id := trunc(dbms_random.value(1,13));
+  l_cadastral_number := trunc(dbms_random.value(11,99)) || ':' 
+    || trunc(dbms_random.value(11,99)) || ':' 
+    || trunc(dbms_random.value(100001,999999)) || ':' 
+    || trunc(dbms_random.value(11,99));
+  l_area_description := tmp_area(trunc(dbms_random.value(0, 9)));
+  l_address := 'г. Санкт-Петербург, ' 
+    || tmp_street(trunc(dbms_random.value(0, 9))) 
+    || ', д. ' || trunc(dbms_random.value(1, 100));
+
+  select DESCRIPTION into l_destination
+  from rrtest.destinations
+  where destination_id = l_destination_id;
+  
+  select DESCRIPTION into l_usage
+  from rrtest.usages
+  where usage_id = l_usage_id;
+  
+  l_search_key := nvl(l_cadastral_number, ' ') || ' ' 
+    || nvl(l_destination, ' ') || ' '
+    || nvl(l_usage, ' ') || ' ' 
+    || nvl(l_area_description, ' ') || ' '
+    || nvl(l_address, ' ');
+
   insert into rrtest.facilities
-  (FACILITY_ID
-  , CADASTRAL_NUMBER
-  , SQUARE
-  , DESTINATION_ID
-  , AREA_DESCRIPTION
-  , USAGE_ID
-  , ADDRESS
-  , CREATED_DATE
-  , CREATED_BY
-  , MODIFIED_DATE
-  , MODIFIED_BY
-  , MODIFIED_BY_IP)
+    (FACILITY_ID
+    , CADASTRAL_NUMBER
+    , SQUARE
+    , DESTINATION_ID
+    , AREA_DESCRIPTION
+    , USAGE_ID
+    , ADDRESS
+    , SEARCH_KEY
+    , CREATED_DATE
+    , CREATED_BY
+    , MODIFIED_DATE
+    , MODIFIED_BY
+    , MODIFIED_BY_IP)
   select 
     rrtest.facility_seq.nextval
-    , trunc(dbms_random.value(11,99)) || ':' || trunc(dbms_random.value(11,99)) || ':' || trunc(dbms_random.value(100001,999999)) || ':' || level
+    , l_cadastral_number
     , trunc(dbms_random.value(1,9999), 2)
-    , trunc(dbms_random.value(1,5))
-    , tmp_area(trunc(dbms_random.value(0, 9)))
-    , trunc(dbms_random.value(1,13))
-    , 'г. Санкт-Петербург, ' || tmp_street(trunc(dbms_random.value(0, 9))) || ', д. ' || trunc(dbms_random.value(1, 100))
+    , l_destination_id
+    , l_area_description
+    , l_usage_id
+    , l_address
+    , l_search_key
     , sysdate
     , 'test'
     , sysdate
     , 'test'
     , '123'
   from
-    dual
-  connect by 
-    level <= 1000;
+    dual;
 
   commit;
 
 end loop;
 
 end;
+/
+alter index "RRTEST"."FACILITIES_FT_IDX" rebuild;

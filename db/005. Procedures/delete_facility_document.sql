@@ -7,7 +7,6 @@ procedure rrtest.delete_facility_document
 )
 authid current_user
 as
-  l_sql_text long;
 begin
 
   update rrtest.facility_documents

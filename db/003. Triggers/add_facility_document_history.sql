@@ -2,8 +2,8 @@ create or replace trigger rrtest.add_facility_document_history
 after insert or update or delete on rrtest.facility_documents
 for each row
 declare
-  changes nclob;
-  changed_item nclob;
+  changes clob;
+  changed_item clob;
   descr xmltype;
   action RRTEST.FACILITY_HISTORY.ACTION%TYPE;
   facility_id  RRTEST.FACILITY_HISTORY.FACILITY_ID%TYPE;

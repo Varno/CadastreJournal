@@ -9,11 +9,12 @@ DECLARE
   l_ad  RRTEST.FACILITIES.AREA_DESCRIPTION%TYPE;
   l_uid  RRTEST.FACILITIES.USAGE_ID%TYPE;
   l_a  RRTEST.FACILITIES.ADDRESS%TYPE;
+  l_md RRTEST.FACILITIES.MODIFIED_DATE%TYPE;
   l_cnt number;
 BEGIN
   RRTEST.GET_FACILITIES
     (p_facility_id    => null,
-    p_search_string => 'ОТнюдь',
+    p_search_string => 'bbsb',
     p_skip => 0,
     p_take => 20,
     p_cursor => l_cursor,
@@ -21,9 +22,9 @@ BEGIN
 
   LOOP 
     FETCH l_cursor 
-    INTO  l_id, l_cn, l_sq, l_did, l_ad, l_uid, l_a;
+    INTO  l_id, l_cn, l_sq, l_did, l_ad, l_uid, l_a, l_md;
     EXIT WHEN l_cursor%NOTFOUND;
-    DBMS_OUTPUT.PUT_LINE(l_id || ', ' || l_cn || ', ' || l_sq || ', ' || l_did || ', ' || l_ad || ', ' || l_uid || ', ' || l_a);
+    DBMS_OUTPUT.PUT_LINE(l_id || ', ' || l_cn || ', ' || l_sq || ', ' || l_did || ', ' || l_ad || ', ' || l_uid || ', ' || l_a || ', ' || l_md);
   END LOOP;
   CLOSE l_cursor;
   

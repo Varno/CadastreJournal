@@ -14,8 +14,24 @@ procedure rrtest.update_facility
 )
 authid current_user
 as
-  l_sql_text long;
+  l_search_key clob;
+  l_destination RRTEST.DESTINATIONS.DESCRIPTION%TYPE;
+  l_usage RRTEST.USAGES.DESCRIPTION%TYPE;
 begin
+
+  select DESCRIPTION into l_destination
+  from rrtest.destinations
+  where destination_id = p_destination_id;
+  
+  select DESCRIPTION into l_usage
+  from rrtest.usages
+  where usage_id = p_usage_id;
+  
+  l_search_key := nvl(p_cadastral_number, ' ') || ' ' 
+    || nvl(l_destination, ' ') || ' '
+    || nvl(l_usage, ' ') || ' ' 
+    || nvl(p_area_description, ' ') || ' '
+    || nvl(p_address, ' ');
 
   if (p_facility_id is not null) then
 
@@ -26,6 +42,7 @@ begin
       , AREA_DESCRIPTION = p_area_description
       , USAGE_ID = p_usage_id
       , ADDRESS = p_address
+      , SEARCH_KEY = l_search_key
       , MODIFIED_DATE = sysdate
       , MODIFIED_BY = p_user_name
       , MODIFIED_BY_IP = p_user_ip
@@ -45,6 +62,7 @@ begin
       , AREA_DESCRIPTION
       , USAGE_ID
       , ADDRESS
+      , SEARCH_KEY
       , CREATED_DATE
       , CREATED_BY
       , MODIFIED_DATE
@@ -58,6 +76,7 @@ begin
       , p_area_description
       , p_usage_id
       , p_address
+      , l_search_key
       , sysdate
       , p_user_name
       , sysdate

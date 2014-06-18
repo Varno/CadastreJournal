@@ -10,7 +10,6 @@ procedure rrtest.get_facilities
 )
 authid current_user
 as
-  l_search_string nvarchar2(32767);
 begin
 
   if (p_facility_id is not null) then
@@ -23,7 +22,8 @@ begin
       , DESTINATION_ID
       , AREA_DESCRIPTION
       , USAGE_ID
-      , ADDRESS    
+      , ADDRESS
+      , MODIFIED_DATE
     from RRTEST.FACILITIES
     where FACILITY_ID = p_facility_id;
     
@@ -33,9 +33,6 @@ begin
     
   elsif (p_search_string is not null) then
 
-    l_search_string := '%' || 
-      replace(replace(upper(p_search_string), '_', '|_'), '%', '|%') || '%';
-
     open p_cursor for
     select 
       FACILITY_ID
@@ -44,7 +41,8 @@ begin
       , DESTINATION_ID
       , AREA_DESCRIPTION
       , USAGE_ID
-      , ADDRESS       
+      , ADDRESS 
+      , MODIFIED_DATE
     from 
     (
     select 
@@ -52,32 +50,21 @@ begin
       , CADASTRAL_NUMBER
       , SQUARE
       , DESTINATION_ID
-      , AREA_DESCRIPTION
+      , (substr(AREA_DESCRIPTION, 1, 256) || case when length(AREA_DESCRIPTION) > 256 then '...' else '' end) AREA_DESCRIPTION
       , USAGE_ID
-      , ADDRESS    
+      , ADDRESS
+      , MODIFIED_DATE
       , rank() over (order by CADASTRAL_NUMBER asc) as rnk
     from RRTEST.FACILITIES
     where 
-      upper(CADASTRAL_NUMBER) like l_search_string escape '|'
-      or upper(AREA_DESCRIPTION) like l_search_string escape '|'
-      or upper(ADDRESS) like l_search_string escape '|'
-      or DESTINATION_ID in (select d.DESTINATION_ID from RRTEST.DESTINATIONS d 
-        where upper(d.DESCRIPTION) like l_search_string escape '|')
-      or USAGE_ID in (select u.USAGE_ID from RRTEST.USAGES u
-        where upper(u.DESCRIPTION) like l_search_string escape '|')
+      contains(SEARCH_KEY, p_search_string) > 0
     ) p
     where p.rnk > p_skip and p.rnk <= p_take;
 
     select count(*) into p_rowcount
     from RRTEST.FACILITIES
     where 
-      upper(CADASTRAL_NUMBER) like l_search_string escape '|'
-      or upper(AREA_DESCRIPTION) like l_search_string escape '|'
-      or upper(ADDRESS) like l_search_string escape '|'
-      or DESTINATION_ID in (select d.DESTINATION_ID from RRTEST.DESTINATIONS d 
-        where upper(d.DESCRIPTION) like l_search_string escape '|')
-      or USAGE_ID in (select u.USAGE_ID from RRTEST.USAGES u
-        where upper(u.DESCRIPTION) like l_search_string escape '|');
+      contains(SEARCH_KEY, p_search_string) > 0;
   
   else
   
@@ -89,7 +76,8 @@ begin
       , DESTINATION_ID
       , AREA_DESCRIPTION
       , USAGE_ID
-      , ADDRESS       
+      , ADDRESS
+      , MODIFIED_DATE
     from 
     (
     select 
@@ -97,10 +85,11 @@ begin
       , CADASTRAL_NUMBER
       , SQUARE
       , DESTINATION_ID
-      , AREA_DESCRIPTION
+      , (substr(AREA_DESCRIPTION, 1, 256) || case when length(AREA_DESCRIPTION) > 256 then '...' else '' end) AREA_DESCRIPTION
       , USAGE_ID
-      , ADDRESS    
-      , rank() over (order by FACILITY_ID asc) as rnk
+      , ADDRESS 
+      , MODIFIED_DATE
+      , rank() over (order by CADASTRAL_NUMBER asc) as rnk
     from RRTEST.FACILITIES
     ) p
     where p.rnk > p_skip and p.rnk <= p_take;

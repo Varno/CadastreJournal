@@ -11,7 +11,6 @@ procedure rrtest.update_facility_document
 )
 authid current_user
 as
-  l_sql_text long;
 begin
 
   if (p_document_id is not null) then
