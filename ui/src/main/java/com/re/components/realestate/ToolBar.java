@@ -1,14 +1,12 @@
-package com.re.components;
+package com.re.components.realestate;
 
-import com.re.components.history.REEditWindow;
+import com.re.components.realestate.REEditWindow;
 import com.re.entity.RealEstate;
 import com.re.service.RealEstateService;
-import com.vaadin.data.Property;
 import com.vaadin.ui.*;
 
 
 public class ToolBar extends HorizontalLayout {
-    private RealEstateService reService;
     private Button createREButton;
     private TextField searchField;
 
@@ -43,7 +41,7 @@ public class ToolBar extends HorizontalLayout {
         return searchField;
     }
 
-    public Button getCreateButton() {
+    public Button getCreateREButton() {
         return this.createREButton;
     }
 }

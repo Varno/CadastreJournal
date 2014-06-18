@@ -116,7 +116,7 @@ public class REDocument implements Serializable {
     public String toString() {
         return "REDocument{" +
                 "id=" + id +
-                ", realEstate=" + realEstate +
+                ", realestate=" + realEstate +
                 ", storedPath='" + storedPath + '\'' +
                 ", createdDate=" + createdDate +
                 ", createdBy='" + createdBy + '\'' +

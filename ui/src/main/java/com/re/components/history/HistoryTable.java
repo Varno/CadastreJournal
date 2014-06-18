@@ -4,6 +4,7 @@ import com.re.entity.REHistory;
 import com.vaadin.data.Property;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.ui.*;
+import com.vaadin.ui.themes.Runo;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -19,6 +20,7 @@ public class HistoryTable extends Table {
     private void initTable() {
         setContainerDataSource(getBeanItemContainer());
         setSizeFull();
+        setStyleName(Runo.TABLE_BORDERLESS);
         setVisibleColumns(getFields());
         setColumnHeaders(getHeaders());
         setPageLength(20);
@@ -39,8 +41,8 @@ public class HistoryTable extends Table {
 
     private String[] getHeaders() {
         List<String> list = new ArrayList<String>();
-        list.add("ИД");
-        list.add("Объект недвижимости");
+        list.add("ID");
+        list.add("Действие");
         list.add("Описание");
         list.add("Кем изменен");
         list.add("Дата изменений");
@@ -58,7 +60,7 @@ public class HistoryTable extends Table {
     protected String[] getFields() {
         List<String> list = new ArrayList<String>();
         list.add(REHistory.FIELD_ID);
-        list.add(REHistory.FIELD_REAL_ESTATE_ID);
+        list.add(REHistory.FIELD_ACTION);
         list.add(REHistory.FIELD_DESCRIPTION);
         list.add(REHistory.FIELD_MODIFIED_BY);
         list.add(REHistory.FIELD_MODIFIED_DATE);
