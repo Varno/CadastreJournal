@@ -1,6 +1,5 @@
 package com.re.components.history;
 
-
 import com.re.entity.RealEstate;
 import com.re.service.RealEstateService;
 import com.vaadin.data.fieldgroup.BeanFieldGroup;
@@ -12,13 +11,9 @@ public class REEditWindow extends Window{
     private RealEstateService realEstateService;
     private RealEstate entity;
 
-    @PropertyId("cadastralNumber")
     private TextField cadastralNumberField = new TextField("Кадастровый Номер");
-    @PropertyId("square")
     private TextField squareField = new TextField("Площадь");
-    @PropertyId("areaDescription")
     private RichTextArea areaDescriptionField = new RichTextArea("Описание");
-    @PropertyId("address")
     private TextField addressField = new TextField("Адрес");
 
     public REEditWindow(RealEstate entity, RealEstateService realEstateService) {
@@ -52,12 +47,13 @@ public class REEditWindow extends Window{
             @Override
             public void buttonClick(Button.ClickEvent event) {
                 try {
+
                     if (binder.isValid()) {
                         binder.commit();
                         realEstateService.saveOrUdate(entity);
                         close();
+                        Notification.show("Объект сохранен");
                     }
-                    Notification.show("Объект добавлен");
                 } catch (FieldGroup.CommitException e) {
                     Notification.show("Ошибка!");
                     close();

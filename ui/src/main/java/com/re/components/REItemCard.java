@@ -22,7 +22,7 @@ public class REItemCard extends Window {
         content.setMargin(true);
         content.setSpacing(true);
         Label id = new Label(realEstate.getId().toString());
-        id.setCaption("ID: ");
+        id.setCaption("ИД: ");
         content.addComponent(id);
 
         Label cadastralNumber = new Label(realEstate.getCadastralNumber());

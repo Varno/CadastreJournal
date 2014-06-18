@@ -12,8 +12,7 @@ public class ToolBar extends HorizontalLayout {
     private Button createREButton;
     private TextField searchField;
 
-    public ToolBar(RealEstateService reService) {
-        this.reService = reService;
+    public ToolBar() {
         initButton();
         initSearch();
         setSpacing(true);
@@ -37,12 +36,6 @@ public class ToolBar extends HorizontalLayout {
     private void initButton() {
         if(createREButton == null){
             createREButton = new Button("Добавить");
-            createREButton.addClickListener(new Button.ClickListener() {
-                @Override
-                public void buttonClick(Button.ClickEvent event) {
-                    UI.getCurrent().addWindow(new REEditWindow(new RealEstate(), reService));
-                }
-            });
         }
     }
 
@@ -50,7 +43,7 @@ public class ToolBar extends HorizontalLayout {
         return searchField;
     }
 
-    public void setSearchField(TextField searchField) {
-        this.searchField = searchField;
+    public Button getCreateButton() {
+        return this.createREButton;
     }
 }

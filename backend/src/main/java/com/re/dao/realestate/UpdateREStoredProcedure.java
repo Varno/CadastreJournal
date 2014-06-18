@@ -14,7 +14,6 @@ import java.util.Map;
 public class UpdateREStoredProcedure extends StoredProcedure {
     private static final String SPROC_NAME = "RRTEST.update_facility";
 
-
     public UpdateREStoredProcedure(JdbcTemplate jdbcTemplate) {
         super(jdbcTemplate, SPROC_NAME);
 
@@ -27,7 +26,7 @@ public class UpdateREStoredProcedure extends StoredProcedure {
         declareParameter(new SqlParameter(REDaoConstants.P_DESTINATION_ID,
                 OracleTypes.NUMBER));
         declareParameter(new SqlParameter(REDaoConstants.P_AREA_DESCRIPTION,
-                OracleTypes.NCLOB));
+                OracleTypes.VARCHAR));
         declareParameter(new SqlParameter(REDaoConstants.P_USAGE_ID,
                 OracleTypes.NUMBER));
         declareParameter(new SqlParameter(REDaoConstants.P_ADDRESS,
@@ -40,18 +39,4 @@ public class UpdateREStoredProcedure extends StoredProcedure {
                 OracleTypes.NUMBER));
         compile();
     }
-
-/*    public Map saveOrUpdate(RealEstate realEstate) {
-        Map<String, Object> inParameters = new HashMap<String, Object>();
-        Integer count = 0;
-        inParameters.put(REDaoConstants.P_FACILITY_ID, facilityId);
-        //fixme: stored procedure doesn't work with null cadastralNumber
-        inParameters.put(REDaoConstants.P_CADASTRAL_NUMBER, cadastralNumber);
-        inParameters.put(REDaoConstants.P_SKIP, skipFirst);
-        inParameters.put(REDaoConstants.P_TAKE, numberOfItems);
-        inParameters.put(REDaoConstants.P_CURSOR, new HashMap());
-        inParameters.put(REDaoConstants.P_COUNT, count);
-
-        return execute(inParameters);
-    }*/
 }

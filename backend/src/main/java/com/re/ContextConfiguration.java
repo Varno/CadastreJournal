@@ -57,7 +57,6 @@ public class ContextConfiguration {
         final BasicDataSource ds = new BasicDataSource();
         ds.setDriverClassName("oracle.jdbc.OracleDriver");
         ds.setUrl("jdbc:oracle:thin:@//localhost:1521/xe");
-
         ds.setUsername("RRTEST");
         ds.setPassword("1111");
 

@@ -34,7 +34,7 @@ public class WebConfig extends ContextConfiguration {
     @Bean
     @UIScope
     public ToolBar toolBar(){
-        return new ToolBar(realEstateService());
+        return new ToolBar();
     }
 
     @Bean

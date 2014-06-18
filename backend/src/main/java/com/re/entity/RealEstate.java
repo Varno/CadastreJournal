@@ -19,7 +19,6 @@ public class RealEstate {
     private String address;
 
     public RealEstate() {
-        this.id = 0L;
         this.cadastralNumber = "";
         this.square = 0D;
         this.areaDescription = "";

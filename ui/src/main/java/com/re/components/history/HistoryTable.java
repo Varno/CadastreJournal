@@ -39,7 +39,7 @@ public class HistoryTable extends Table {
 
     private String[] getHeaders() {
         List<String> list = new ArrayList<String>();
-        list.add("ID");
+        list.add("ИД");
         list.add("Объект недвижимости");
         list.add("Описание");
         list.add("Кем изменен");

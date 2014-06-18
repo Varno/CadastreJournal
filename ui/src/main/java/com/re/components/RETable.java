@@ -51,7 +51,7 @@ public class RETable extends Table {
             @Override
             public Action[] getActions(Object target, Object sender) {
                 return new Action[]{
-                        ACTION_SHOW,
+/*                        ACTION_SHOW,*/
                         ACTION_EDIT,
                         ACTION_HISTORY
                 };
@@ -70,7 +70,8 @@ public class RETable extends Table {
                         reItemCard.addCloseListener(new Window.CloseListener() {
                             @Override
                             public void windowClose(Window.CloseEvent e) {
-                                refreshRowCache();
+                                // refreshRowCache();
+                                fireItemSetChange();
                             }
                         });
                         UI.getCurrent().addWindow(reItemCard);
