@@ -76,7 +76,8 @@ create table rrtest.facilities
 );
 
 create index rrtest.facilities_ft_idx ON rrtest.facilities ( search_key ) 
-indextype is ctxsys.context;
+indextype is ctxsys.context
+parameters ('sync (every "SYSDATE+5/1440") TRANSACTIONAL');
 
 create table rrtest.facility_documents
 (

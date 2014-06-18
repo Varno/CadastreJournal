@@ -35,7 +35,7 @@ begin
   tmp_street(8) := 'ул. Казанская';
   tmp_street(9) := 'пр. Жуковского';
   
-for i in 1..10000
+for i in 1..100
 loop
 
   l_destination_id := trunc(dbms_random.value(1,5));
@@ -100,4 +100,4 @@ end loop;
 
 end;
 /
-alter index "RRTEST"."FACILITIES_FT_IDX" rebuild;
+EXECUTE CTX_DDL.SYNC_INDEX ( 'rrtest.facilities_ft_idx' );
