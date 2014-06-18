@@ -30,7 +30,7 @@ public class WebConfig extends ContextConfiguration {
     @Bean
     @UIScope
     public RETab reTab(){
-        return new RETab(reTable(), toolBar(), realEstateService());
+        return new RETab(toolBar(), realEstateService(), reHistoryService());
     }
 
     @Bean
@@ -43,13 +43,6 @@ public class WebConfig extends ContextConfiguration {
     @UIScope
     public HistoryTable historyTable(){
         return new HistoryTable();
-    }
-
-
-    @Bean
-    @UIScope
-    public RETable reTable(){
-        return new RETable(realEstateService(), reHistoryService());
     }
 
     @Bean

@@ -11,11 +11,13 @@ import com.vaadin.ui.themes.Runo;
 public class RETableButtons implements Table.ColumnGenerator {
     private RealEstateService realEstateService;
     private REHistoryService reHistoryService;
+    private Window.CloseListener editWindowCloseHandler;
 
-
-    public RETableButtons(RealEstateService realEstateService, REHistoryService reHistoryService) {
+    public RETableButtons(RealEstateService realEstateService, REHistoryService reHistoryService,
+                          Window.CloseListener editWindowCloseHandler) {
         this.realEstateService = realEstateService;
         this.reHistoryService = reHistoryService;
+        this.editWindowCloseHandler = editWindowCloseHandler;
     }
 
     @Override
@@ -29,14 +31,8 @@ public class RETableButtons implements Table.ColumnGenerator {
                 Item item = source.getItem(itemId);
                 BeanItem<RealEstate> beanItem = (BeanItem<RealEstate>) item;
                 RealEstate realEstate = beanItem.getBean();
-                REEditWindow reItemCard = new REEditWindow("Редактирование объекта недвижимости", realEstate, realEstateService);
-                reItemCard.addCloseListener(new Window.CloseListener() {
-                    @Override
-                    public void windowClose(Window.CloseEvent e) {
-                        source.refreshRowCache();
-                    }
-                });
-                UI.getCurrent().addWindow(reItemCard);
+                Window editWindow = REEditWindow.Build(realEstateService, realEstate, editWindowCloseHandler);
+                UI.getCurrent().addWindow(editWindow);
             }
         });
         Button show = new Button("Просмотр");

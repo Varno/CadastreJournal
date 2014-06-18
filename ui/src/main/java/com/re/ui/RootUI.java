@@ -3,6 +3,7 @@ package com.re.ui;
 import com.re.views.RealEstateView;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.ui.UI;
+import com.vaadin.ui.Window;
 import org.vaadin.spring.VaadinUI;
 
 @VaadinUI

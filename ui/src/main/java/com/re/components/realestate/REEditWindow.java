@@ -1,14 +1,12 @@
 package com.re.components.realestate;
 
 
-import com.re.dao.destination.DestinationDao;
 import com.re.entity.REDestination;
 import com.re.entity.REUsage;
 import com.re.entity.RealEstate;
 import com.re.service.RealEstateService;
 import com.vaadin.data.fieldgroup.BeanFieldGroup;
 import com.vaadin.data.fieldgroup.FieldGroup;
-import com.vaadin.data.fieldgroup.PropertyId;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.ui.*;
 
@@ -18,17 +16,11 @@ public class REEditWindow extends Window{
     private RealEstateService realEstateService;
     private RealEstate entity;
 
-    @PropertyId("cadastralNumber")
-    private TextField cadastralNumberField = new TextField("Кадастровый Номер");
-    @PropertyId("square")
-    private TextField squareField = new TextField("Площадь");
-    @PropertyId("areaDescription")
+    private TextField cadastralNumberField = new TextField("Кадастровый №");
+    private TextField squareField = new TextField();
     private RichTextArea areaDescriptionField = new RichTextArea("Описание");
-    @PropertyId("address")
     private TextField addressField = new TextField("Адрес");
-    @PropertyId("reDestination.")
     private ComboBox destinationCombobox = new ComboBox("Назначение");
-    @PropertyId("reUsage")
     private ComboBox usageCombobox = new ComboBox("Разрешенное использование");
 
     public REEditWindow(String caption, RealEstate entity, RealEstateService realEstateService) {
@@ -71,8 +63,15 @@ public class REEditWindow extends Window{
         binder.setItemDataSource(entity);
         form.addComponent(cadastralNumberField);
         binder.bind(cadastralNumberField, "cadastralNumber");
-        form.addComponent(squareField);
+
+        HorizontalLayout squareLayout = new HorizontalLayout();
+        squareLayout.setSpacing(true);
+        squareLayout.setCaption("Площадь");
+        squareLayout.addComponent(squareField);
+        squareLayout.addComponent(new Label(" м2"));
+        form.addComponent(squareLayout);
         binder.bind(squareField, "square");
+
         form.addComponent(areaDescriptionField);
         binder.bind(areaDescriptionField, "areaDescription");
         form.addComponent(addressField);
@@ -92,7 +91,7 @@ public class REEditWindow extends Window{
                         realEstateService.saveOrUdate(entity);
                         close();
                     }
-                    Notification.show("Объект добавлен");
+                    Notification.show("Объект сохранен");
                 } catch (FieldGroup.CommitException e) {
                     Notification.show("Ошибка!");
                     close();
@@ -109,5 +108,12 @@ public class REEditWindow extends Window{
         }));
         form.addComponent(buttonLayout);
         setContent(form);
+    }
+
+    public static Window Build(RealEstateService reService, RealEstate entity, CloseListener handler){
+        String caption = entity.getId() == null ? "Создать объект недвижимости" : "Изменить объект недвижимости";
+        REEditWindow result = new REEditWindow(caption, entity, reService);
+        result.addCloseListener(handler);
+        return  result;
     }
 }

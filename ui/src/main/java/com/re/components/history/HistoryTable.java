@@ -22,6 +22,7 @@ public class HistoryTable extends Table {
         setSizeFull();
         setStyleName(Runo.TABLE_BORDERLESS);
         setVisibleColumns(getFields());
+        setSortEnabled(false);
         setColumnHeaders(getHeaders());
         setPageLength(20);
     }

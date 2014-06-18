@@ -1,29 +1,37 @@
 package com.re.components.realestate;
 
 
+import com.re.entity.REHistory;
 import com.re.entity.RealEstate;
+import com.re.service.REHistoryService;
+import com.re.service.REHistoryServiceImpl;
 import com.re.service.RealEstateService;
 import com.vaadin.data.Property;
-import com.vaadin.ui.Alignment;
+import com.vaadin.ui.*;
 import com.vaadin.ui.Button;
-import com.vaadin.ui.UI;
-import com.vaadin.ui.VerticalLayout;
-
+import com.vaadin.ui.Window;
 import java.util.List;
 
 public class RETab extends VerticalLayout {
     private RETable realEstateTable;
     private ToolBar toolBar;
     private final RealEstateService reService;
+    private Window.CloseListener editWindowCloseHandler = new Window.CloseListener() {
+        @Override
+        public void windowClose(Window.CloseEvent closeEvent) {
+            refresh();
+        }
+    };
 
-    public RETab(RETable realEstateTable, ToolBar toolBar, RealEstateService _reService) {
+    public RETab(ToolBar toolBar, RealEstateService _reService, REHistoryService _histService) {
         this.reService = _reService;
-        this.realEstateTable = realEstateTable;
+        this.realEstateTable = new RETable(reService, _histService, editWindowCloseHandler);
         this.toolBar = toolBar;
         this.toolBar.getCreateREButton().addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent clickEvent) {
-                UI.getCurrent().addWindow(new REEditWindow("Создать объект недвижимости", new RealEstate(), reService));
+                Window editWindow = REEditWindow.Build(reService, new RealEstate(), editWindowCloseHandler);
+                UI.getCurrent().addWindow(editWindow);
             }
         });
 
