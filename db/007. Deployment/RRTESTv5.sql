@@ -95,6 +95,9 @@ create table rrtest.facility_documents
       references rrtest.facilities(facility_id)
 );
 
+create index rrtest.facility_document_facility_idx 
+  on rrtest.facility_documents(facility_id asc, document_id asc);
+
 create table rrtest.facility_history
 (
   facility_history_id number constraint facility_hist_id_nn not null
@@ -108,6 +111,9 @@ create table rrtest.facility_history
   , constraint facility_history_facility_fk foreign key(facility_id)
       references rrtest.facilities(facility_id)
 );
+
+create index rrtest.facility_history_facility_idx 
+  on rrtest.facility_history(facility_id asc, facility_history_id desc);
 
 create sequence rrtest.facility_seq start with 1 increment by 1;
 create sequence rrtest.facility_document_seq start with 1 increment by 1;
@@ -433,6 +439,7 @@ procedure rrtest.get_facilities
 )
 authid current_user
 as
+  l_search_string nvarchar2(32767);
 begin
 
   if (p_facility_id is not null) then
@@ -456,38 +463,56 @@ begin
     
   elsif (p_search_string is not null) then
 
+    l_search_string := replace(replace(p_search_string, '%', '|%'), '_', '|_') || '%';
+    
     open p_cursor for
-    select 
-      FACILITY_ID
-      , CADASTRAL_NUMBER
-      , SQUARE
-      , DESTINATION_ID
-      , AREA_DESCRIPTION
-      , USAGE_ID
-      , ADDRESS 
-      , MODIFIED_DATE
+    select
+      x.FACILITY_ID
+      , x.CADASTRAL_NUMBER
+      , f.SQUARE
+      , f.DESTINATION_ID
+      , (substr(f.AREA_DESCRIPTION, 1, 256) || case when length(f.AREA_DESCRIPTION) > 256 then '...' else '' end) AREA_DESCRIPTION
+      , f.USAGE_ID
+      , f.ADDRESS
+      , f.MODIFIED_DATE
     from 
-    (
-    select 
-      FACILITY_ID
-      , CADASTRAL_NUMBER
-      , SQUARE
-      , DESTINATION_ID
-      , (substr(AREA_DESCRIPTION, 1, 256) || case when length(AREA_DESCRIPTION) > 256 then '...' else '' end) AREA_DESCRIPTION
-      , USAGE_ID
-      , ADDRESS
-      , MODIFIED_DATE
-      , rank() over (order by CADASTRAL_NUMBER asc) as rnk
-    from RRTEST.FACILITIES
-    where 
-      contains(SEARCH_KEY, p_search_string) > 0
-    ) p
-    where p.rnk > p_skip and p.rnk <= p_take;
+      (select 
+          p.FACILITY_ID
+          , p.CADASTRAL_NUMBER
+          , row_number() over (order by p.CADASTRAL_NUMBER asc) as rnk
+        from
+          (select 
+            FACILITY_ID
+            , CADASTRAL_NUMBER
+          from RRTEST.FACILITIES
+          where rownum <= 1000
+            and CADASTRAL_NUMBER like l_search_string escape '|'
+          union 
+          select 
+            FACILITY_ID
+            , CADASTRAL_NUMBER
+          from RRTEST.FACILITIES
+          where rownum <= 1000
+            and contains(SEARCH_KEY, p_search_string) > 0 
+          order by CADASTRAL_NUMBER
+          ) p
+      ) x
+      inner join RRTEST.FACILITIES f
+        on x.FACILITY_ID = F.FACILITY_ID
+    where
+      x.rnk > p_skip and x.rnk <= p_take;   
 
     select count(*) into p_rowcount
-    from RRTEST.FACILITIES
-    where 
-      contains(SEARCH_KEY, p_search_string) > 0;
+    from
+    (
+      select rowid
+      from RRTEST.FACILITIES
+      where CADASTRAL_NUMBER like l_search_string escape '|'
+      union
+      select rowid
+      from RRTEST.FACILITIES
+      where contains(SEARCH_KEY, p_search_string) > 0
+    );
   
   else
   
@@ -512,8 +537,9 @@ begin
       , USAGE_ID
       , ADDRESS 
       , MODIFIED_DATE
-      , rank() over (order by CADASTRAL_NUMBER asc) as rnk
+      , row_number() over (order by CADASTRAL_NUMBER asc) as rnk
     from RRTEST.FACILITIES
+    where rownum <= 1000
     ) p
     where p.rnk > p_skip and p.rnk <= p_take;
 
@@ -549,7 +575,7 @@ begin
       DOCUMENT_ID
       , FILE_NAME
       , STORED_PATH      
-      , rank() over (order by DOCUMENT_ID asc) as rnk
+      , row_number() over (order by DOCUMENT_ID asc) as rnk
     from RRTEST.FACILITY_DOCUMENTS
     where FACILITY_ID = p_facility_id
   ) p
@@ -579,25 +605,21 @@ begin
 
     open p_cursor for
     select 
-      FACILITY_HISTORY_ID
-      , MODIFIED_DATE
-      , MODIFIED_BY
-      , MODIFIED_BY_IP
-      , ACTION
-      , DESCRIPTION
+      p.FACILITY_HISTORY_ID
+      , fh.MODIFIED_DATE
+      , fh.MODIFIED_BY
+      , fh.MODIFIED_BY_IP
+      , fh.ACTION
+      , fh.DESCRIPTION
     from 
-    (
-      select 
-        FACILITY_HISTORY_ID
-        , MODIFIED_DATE
-        , MODIFIED_BY
-        , MODIFIED_BY_IP
-        , ACTION
-        , DESCRIPTION
-        , rank() over (order by FACILITY_HISTORY_ID desc) as rnk
-      from RRTEST.FACILITY_HISTORY
-      where FACILITY_ID = p_facility_id
-    ) p
+      (select 
+          FACILITY_HISTORY_ID
+          , row_number() over (order by FACILITY_HISTORY_ID desc) as rnk
+        from RRTEST.FACILITY_HISTORY
+        where FACILITY_ID = p_facility_id
+      ) p
+      inner join RRTEST.FACILITY_HISTORY fh
+        on p.FACILITY_HISTORY_ID = fh.FACILITY_HISTORY_ID
     where p.rnk > p_skip and p.rnk <= p_take;
   
     select count(*) into p_rowcount
@@ -623,7 +645,7 @@ begin
         , MODIFIED_BY_IP
         , ACTION
         , DESCRIPTION
-        , rank() over (order by FACILITY_HISTORY_ID desc) as rnk
+        , row_number() over (order by FACILITY_HISTORY_ID desc) as rnk
       from RRTEST.FACILITY_HISTORY
     ) p
     where p.rnk > p_skip and p.rnk <= p_take;
@@ -665,8 +687,7 @@ begin
   from rrtest.usages
   where usage_id = p_usage_id;
   
-  l_search_key := nvl(p_cadastral_number, ' ') || ' ' 
-    || nvl(l_destination, ' ') || ' '
+  l_search_key := nvl(l_destination, ' ') || ' '
     || nvl(l_usage, ' ') || ' ' 
     || nvl(p_area_description, ' ') || ' '
     || nvl(p_address, ' ');
