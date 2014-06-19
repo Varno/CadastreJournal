@@ -29,7 +29,7 @@ public class RealEstateDaoImpl implements RealEstateDao {
     }
 
     @Override
-    public void saveOrUdate(RealEstate realEstate) {
+    public Long saveOrUpdate(RealEstate realEstate) {
         UpdateREStoredProcedure updateREStoredProcedure = new UpdateREStoredProcedure(jdbcTemplate);
         Map inputs = new HashMap();
         inputs.put(REDaoConstants.P_FACILITY_ID, realEstate.getId());
@@ -42,7 +42,8 @@ public class RealEstateDaoImpl implements RealEstateDao {
         inputs.put(REDaoConstants.P_USER_IP, "127.0.0.1");
         inputs.put(REDaoConstants.P_USER_NAME, "TestUser");
         Map result = updateREStoredProcedure.execute(inputs);
-        Map r = result;
+        BigDecimal count = (BigDecimal)result.get(REDaoConstants.P_INSERTED_ID);
+        return count.longValue();
     }
 
     @Override

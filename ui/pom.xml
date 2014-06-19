@@ -79,14 +79,12 @@
 		  compilation classpath by vaadin-maven-plugin so normally there is no need for an
 		  explicit dependency.
 		-->
-		<!--
 		<dependency>
 			<groupId>com.vaadin</groupId>
 			<artifactId>vaadin-client-compiler</artifactId>
 			<version>${vaadin.version}</version>
 			<scope>provided</scope>
 		</dependency>
-		-->
 		<dependency>
 			<groupId>com.vaadin</groupId>
 			<artifactId>vaadin-client</artifactId>
@@ -115,10 +113,11 @@
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>org.vaadin.addons</groupId>
-            <artifactId>pagingcomponent</artifactId>
-            <version>0.9.5</version>
+            <groupId>org.vaadin.addon</groupId>
+            <artifactId>easyuploads</artifactId>
+            <version>7.2.0</version>
         </dependency>
+
 	</dependencies>
 
 	<build>

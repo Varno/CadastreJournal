@@ -1,6 +1,7 @@
 package com.re.entity;
 
 
+import java.util.List;
 
 public class RealEstate {
     public static final String FIELD_CADASTRAL_NUMBER = "cadastralNumber";
@@ -15,6 +16,7 @@ public class RealEstate {
     private String address;
     private REDestination reDestination;
     private REUsage reUsage;
+    private List<REDocument> reDocumentList;
 
     public RealEstate() {
         this.cadastralNumber = "";
@@ -93,6 +95,14 @@ public class RealEstate {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public List<REDocument> getReDocumentList() {
+        return reDocumentList;
+    }
+
+    public void setReDocumentList(List<REDocument> reDocumentList) {
+        this.reDocumentList = reDocumentList;
     }
 
     @Override

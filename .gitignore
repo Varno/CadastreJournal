@@ -4,3 +4,6 @@
 backend/target/
 ui/src/main/webapp/VAADIN/widgetsets/
 ui/target/
+ui/src/main/webapp/WEB-INF/images/1.png
+ui/src/main/webapp/WEB-INF/images/current_db.png0
+ui/src/main/webapp/WEB-INF/images/

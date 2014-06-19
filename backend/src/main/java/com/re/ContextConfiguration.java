@@ -2,16 +2,15 @@ package com.re;
 
 import com.re.dao.destination.DestinationDao;
 import com.re.dao.destination.DestinationDaoImpl;
+import com.re.dao.document.REDocumentDao;
+import com.re.dao.document.REDocumentDaoImpl;
 import com.re.dao.realestate.RealEstateDao;
 import com.re.dao.realestate.RealEstateDaoImpl;
 import com.re.dao.rehistory.REHistoryDao;
 import com.re.dao.rehistory.REHistoryDaoImpl;
 import com.re.dao.usage.UsageDao;
 import com.re.dao.usage.UsageDaoImpl;
-import com.re.service.REHistoryService;
-import com.re.service.REHistoryServiceImpl;
-import com.re.service.RealEstateService;
-import com.re.service.RealEstateServiceImpl;
+import com.re.service.*;
 import org.apache.tomcat.dbcp.dbcp.BasicDataSource;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -45,8 +44,18 @@ public class ContextConfiguration {
     }
 
     @Bean
+    public REDocumentDao reDocumentDao() {
+        return new REDocumentDaoImpl(jdbcTemplate());
+    }
+
+    @Bean
+    public REDocumentService reDocumentService() {
+        return new REDocumentServiceImpl(reDocumentDao());
+    }
+
+    @Bean
     public RealEstateService realEstateService() {
-        return new RealEstateServiceImpl(realEstateDao(), destinationDao(), usageDao());
+        return new RealEstateServiceImpl(realEstateDao(), destinationDao(), usageDao(), reDocumentDao());
     }
 
     @Bean

@@ -1,6 +1,8 @@
 package com.re.config;
 
 import com.re.ContextConfiguration;
+import com.re.ui.RootUI;
+import com.vaadin.annotations.VaadinServletConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.web.SpringBootServletInitializer;
 import org.vaadin.spring.boot.VaadinAutoConfiguration;
