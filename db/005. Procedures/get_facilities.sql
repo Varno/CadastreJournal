@@ -10,6 +10,7 @@ procedure rrtest.get_facilities
 )
 authid current_user
 as
+  l_search_string nvarchar2(32767);
 begin
 
   if (p_facility_id is not null) then
@@ -33,38 +34,56 @@ begin
     
   elsif (p_search_string is not null) then
 
+    l_search_string := replace(replace(p_search_string, '%', '|%'), '_', '|_') || '%';
+    
     open p_cursor for
-    select 
-      FACILITY_ID
-      , CADASTRAL_NUMBER
-      , SQUARE
-      , DESTINATION_ID
-      , AREA_DESCRIPTION
-      , USAGE_ID
-      , ADDRESS 
-      , MODIFIED_DATE
+    select
+      x.FACILITY_ID
+      , x.CADASTRAL_NUMBER
+      , f.SQUARE
+      , f.DESTINATION_ID
+      , (substr(f.AREA_DESCRIPTION, 1, 256) || case when length(f.AREA_DESCRIPTION) > 256 then '...' else '' end) AREA_DESCRIPTION
+      , f.USAGE_ID
+      , f.ADDRESS
+      , f.MODIFIED_DATE
     from 
-    (
-    select 
-      FACILITY_ID
-      , CADASTRAL_NUMBER
-      , SQUARE
-      , DESTINATION_ID
-      , (substr(AREA_DESCRIPTION, 1, 256) || case when length(AREA_DESCRIPTION) > 256 then '...' else '' end) AREA_DESCRIPTION
-      , USAGE_ID
-      , ADDRESS
-      , MODIFIED_DATE
-      , rank() over (order by CADASTRAL_NUMBER asc) as rnk
-    from RRTEST.FACILITIES
-    where 
-      contains(SEARCH_KEY, p_search_string) > 0
-    ) p
-    where p.rnk > p_skip and p.rnk <= p_take;
+      (select 
+          p.FACILITY_ID
+          , p.CADASTRAL_NUMBER
+          , row_number() over (order by p.CADASTRAL_NUMBER asc) as rnk
+        from
+          (select 
+            FACILITY_ID
+            , CADASTRAL_NUMBER
+          from RRTEST.FACILITIES
+          where rownum <= 1000
+            and CADASTRAL_NUMBER like l_search_string escape '|'
+          union 
+          select 
+            FACILITY_ID
+            , CADASTRAL_NUMBER
+          from RRTEST.FACILITIES
+          where rownum <= 1000
+            and contains(SEARCH_KEY, p_search_string) > 0 
+          order by CADASTRAL_NUMBER
+          ) p
+      ) x
+      inner join RRTEST.FACILITIES f
+        on x.FACILITY_ID = F.FACILITY_ID
+    where
+      x.rnk > p_skip and x.rnk <= p_take;   
 
     select count(*) into p_rowcount
-    from RRTEST.FACILITIES
-    where 
-      contains(SEARCH_KEY, p_search_string) > 0;
+    from
+    (
+      select rowid
+      from RRTEST.FACILITIES
+      where CADASTRAL_NUMBER like l_search_string escape '|'
+      union
+      select rowid
+      from RRTEST.FACILITIES
+      where contains(SEARCH_KEY, p_search_string) > 0
+    );
   
   else
   
@@ -89,8 +108,9 @@ begin
       , USAGE_ID
       , ADDRESS 
       , MODIFIED_DATE
-      , rank() over (order by CADASTRAL_NUMBER asc) as rnk
+      , row_number() over (order by CADASTRAL_NUMBER asc) as rnk
     from RRTEST.FACILITIES
+    where rownum <= 1000
     ) p
     where p.rnk > p_skip and p.rnk <= p_take;
 

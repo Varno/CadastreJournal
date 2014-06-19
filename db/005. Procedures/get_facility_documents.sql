@@ -22,7 +22,7 @@ begin
       DOCUMENT_ID
       , FILE_NAME
       , STORED_PATH      
-      , rank() over (order by DOCUMENT_ID asc) as rnk
+      , row_number() over (order by DOCUMENT_ID asc) as rnk
     from RRTEST.FACILITY_DOCUMENTS
     where FACILITY_ID = p_facility_id
   ) p
