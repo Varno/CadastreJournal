@@ -62,9 +62,9 @@ create table rrtest.facilities
   , usage_id int constraint facility_usage_id_nn not null
   , address varchar2(1024) 
   , search_key clob constraint facility_search_key_nn not null
-  , created_date date constraint facility_created_date_nn not null
+  , created_date TIMESTAMP constraint facility_created_date_nn not null
   , created_by varchar2(256) constraint facility_created_by_nn not null
-  , modified_date date constraint facility_modified_date_nn not null
+  , modified_date TIMESTAMP constraint facility_modified_date_nn not null
   , modified_by varchar2(256) constraint facility_modified_by_nn not null
   , modified_by_ip varchar2(256) constraint facility_modified_by_ip_nn not null
   , constraint facility_pk primary key(facility_id)
@@ -85,9 +85,9 @@ create table rrtest.facility_documents
   , facility_id number constraint facility_doc_facil_id_nn not null
   , file_name varchar2(100) constraint facility_doc_file_name_nn not null
   , stored_path varchar2(1024) constraint facility_doc_stored_path_nn not null
-  , created_date date constraint facility_doc_created_date_nn not null
+  , created_date TIMESTAMP constraint facility_doc_created_date_nn not null
   , created_by varchar2(256) constraint facility_doc_created_by_nn not null
-  , modified_date date constraint facility_doc_modified_date_nn not null
+  , modified_date TIMESTAMP constraint facility_doc_modified_date_nn not null
   , modified_by varchar2(256) constraint facility_doc_modified_by_nn not null
   , modified_by_ip varchar2(256) constraint facility_doc_modified_by_ip_nn not null
   , constraint facility_document_pk primary key(document_id)
@@ -99,7 +99,7 @@ create table rrtest.facility_history
 (
   facility_history_id number constraint facility_hist_id_nn not null
   , facility_id number constraint facility_hist_fac_id_nn not null
-  , modified_date date constraint facility_hist_mod_date_nn not null
+  , modified_date TIMESTAMP constraint facility_hist_mod_date_nn not null
   , modified_by varchar2(256) constraint facility_hist_mod_by_nn not null
   , modified_by_ip varchar2(256) constraint facility_hist_mod_by_ip_nn not null
   , action varchar2(50) constraint facility_hist_action_nn not null
