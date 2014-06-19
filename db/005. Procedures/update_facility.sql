@@ -27,8 +27,7 @@ begin
   from rrtest.usages
   where usage_id = p_usage_id;
   
-  l_search_key := nvl(p_cadastral_number, ' ') || ' ' 
-    || nvl(l_destination, ' ') || ' '
+  l_search_key := nvl(l_destination, ' ') || ' '
     || nvl(l_usage, ' ') || ' ' 
     || nvl(p_area_description, ' ') || ' '
     || nvl(p_address, ' ');
