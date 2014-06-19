@@ -1,12 +1,7 @@
 package com.re.dao.realestate;
 
-
 import com.re.entity.RealEstate;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.support.SqlLobValue;
-import org.springframework.jdbc.support.lob.DefaultLobHandler;
-import org.springframework.jdbc.support.lob.LobHandler;
-
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
@@ -39,6 +34,7 @@ public class RealEstateDaoImpl implements RealEstateDao {
         inputs.put(REDaoConstants.P_AREA_DESCRIPTION, realEstate.getAreaDescription());
         inputs.put(REDaoConstants.P_USAGE_ID, realEstate.getUsageId());
         inputs.put(REDaoConstants.P_ADDRESS, realEstate.getAddress());
+        // fixme: pass ip & userName from params
         inputs.put(REDaoConstants.P_USER_IP, "127.0.0.1");
         inputs.put(REDaoConstants.P_USER_NAME, "TestUser");
         Map result = updateREStoredProcedure.execute(inputs);

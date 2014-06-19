@@ -3,6 +3,9 @@ package com.re.components.history;
 
 import com.re.entity.REHistory;
 import com.re.service.REHistoryService;
+import com.vaadin.event.LayoutEvents;
+import com.vaadin.server.ClientConnector;
+import com.vaadin.ui.TabSheet;
 import com.vaadin.ui.VerticalLayout;
 
 import java.util.List;
@@ -19,10 +22,9 @@ public class HistoryTab extends VerticalLayout {
 
     private void initLayout() {
         addComponent(historyTable);
-        refresh();
     }
 
-    private void refresh() {
+    public void refresh() {
         historyTable.getBeanItemContainer().removeAllItems();
         int numberOfItems = reHistoryService.getNumberOfItems();
         List<REHistory> reHistoryList = reHistoryService.getHistoryItems(0, numberOfItems);

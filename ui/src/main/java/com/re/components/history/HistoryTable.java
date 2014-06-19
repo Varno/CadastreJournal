@@ -1,5 +1,6 @@
 package com.re.components.history;
 
+import com.re.components.CommonSettings;
 import com.re.entity.REHistory;
 import com.vaadin.data.Property;
 import com.vaadin.data.util.BeanItemContainer;
@@ -31,10 +32,8 @@ public class HistoryTable extends Table {
     protected String formatPropertyValue(Object rowId,
                                          Object colId, Property property) {
         if (property.getType() == java.util.Calendar.class) {
-            SimpleDateFormat df =
-                    new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
             Calendar c = (Calendar) property.getValue();
-            return df.format(c.getTime());
+            return CommonSettings.DATE_FORMAT.format(c.getTime());
         }
 
         return super.formatPropertyValue(rowId, colId, property);
