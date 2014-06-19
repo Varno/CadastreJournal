@@ -5,23 +5,33 @@ import com.re.entity.REDestination;
 import com.re.entity.REUsage;
 import com.re.entity.RealEstate;
 import com.re.service.RealEstateService;
+import com.re.util.MultiUpload;
+import com.vaadin.data.Property;
 import com.vaadin.data.fieldgroup.BeanFieldGroup;
 import com.vaadin.data.fieldgroup.FieldGroup;
 import com.vaadin.data.util.BeanItemContainer;
+import com.vaadin.server.ClientConnector;
+import com.vaadin.server.FileResource;
+import com.vaadin.server.Resource;
+import com.vaadin.server.StreamResource;
 import com.vaadin.ui.*;
+import org.vaadin.easyuploads.FileBuffer;
+import org.vaadin.easyuploads.MultiFileUpload;
+import org.vaadin.peter.imagestrip.ImageStrip;
 
+import java.io.*;
 import java.util.List;
 
-public class REEditWindow extends Window{
+public class REEditWindow extends Window {
     private RealEstateService realEstateService;
     private RealEstate entity;
-
     private TextField cadastralNumberField = new TextField("Кадастровый №");
     private TextField squareField = new TextField();
     private RichTextArea areaDescriptionField = new RichTextArea("Описание");
     private TextField addressField = new TextField("Адрес");
     private ComboBox destinationCombobox = new ComboBox("Назначение");
     private ComboBox usageCombobox = new ComboBox("Разрешенное использование");
+    private MultiUpload multiUploader = new MultiUpload();
 
     public REEditWindow(RealEstate entity, RealEstateService realEstateService) {
         super(entity.getId() == null ? "Создать объект недвижимости" : "Изменить объект недвижимости");
@@ -30,10 +40,13 @@ public class REEditWindow extends Window{
         center();
         setModal(true);
         initLayout();
+        multiUploader.setCaption("Документы: ");
         cadastralNumberField.setInputPrompt("номер..");
         squareField.setInputPrompt("площадь..");
         addressField.setInputPrompt("адрес..");
     }
+
+
 
     private void initLayout() {
         FormLayout form = new FormLayout();
@@ -108,6 +121,8 @@ public class REEditWindow extends Window{
                 close();
             }
         }));
+
+        form.addComponent(multiUploader);
         form.addComponent(buttonLayout);
         setContent(form);
     }
