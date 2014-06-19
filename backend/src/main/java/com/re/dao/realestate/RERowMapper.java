@@ -20,7 +20,7 @@ public class RERowMapper implements RowMapper<RealEstate> {
         realEstate.setAreaDescription(rs.getString(REDaoConstants.AREA_DESCRIPTION));
         realEstate.setUsageId(rs.getLong(REDaoConstants.USAGE_ID));
         realEstate.setAddress(rs.getString(REDaoConstants.ADDRESS));
-        realEstate.setModifiedDate(CommonHelper.dateToCalendar(rs.getDate(REDaoConstants.MODIFIED_DATE)));
+        realEstate.setModifiedDate(CommonHelper.dateToCalendar(rs.getTimestamp(REDaoConstants.MODIFIED_DATE)));
 
         return realEstate;
     }

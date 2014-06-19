@@ -14,7 +14,7 @@ public class REHistoryRowMapper implements RowMapper<REHistory> {
     public REHistory mapRow(ResultSet rs, int rowNum) throws SQLException {
         REHistory reHistory = new REHistory();
         reHistory.setId(rs.getLong(REHistoryDaoConstants.FACILITY_HISTORY_ID));
-        reHistory.setModifiedDate(CommonHelper.dateToCalendar(rs.getDate(REHistoryDaoConstants.MODIFIED_DATE)));
+        reHistory.setModifiedDate(CommonHelper.dateToCalendar(rs.getTimestamp(REHistoryDaoConstants.MODIFIED_DATE)));
         reHistory.setModifiedBy(rs.getString(REHistoryDaoConstants.MODIFIED_BY));
         reHistory.setModifiedByIp(rs.getString(REHistoryDaoConstants.MODIFIED_BY_IP));
         reHistory.setAction(rs.getString(REHistoryDaoConstants.ACTION));
