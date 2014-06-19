@@ -1,9 +1,11 @@
 package com.re.service;
 
 import com.re.dao.destination.DestinationDao;
+import com.re.dao.document.REDocumentDao;
 import com.re.dao.realestate.RealEstateDao;
 import com.re.dao.usage.UsageDao;
 import com.re.entity.REDestination;
+import com.re.entity.REDocument;
 import com.re.entity.REUsage;
 import com.re.entity.RealEstate;
 
@@ -16,12 +18,14 @@ public class RealEstateServiceImpl implements RealEstateService {
     private RealEstateDao realEstateDao;
     private DestinationDao destinationDao;
     private UsageDao usageDao;
+    private REDocumentDao reDocumentDao;
     private final String EMPTY_SEARCH = "";
 
-    public RealEstateServiceImpl(RealEstateDao realEstateDao, DestinationDao destinationDao, UsageDao usageDao) {
+    public RealEstateServiceImpl(RealEstateDao realEstateDao, DestinationDao destinationDao, UsageDao usageDao, REDocumentDao reDocumentDao) {
         this.realEstateDao = realEstateDao;
         this.destinationDao = destinationDao;
         this.usageDao = usageDao;
+        this.reDocumentDao=reDocumentDao;
     }
 
     @Override
@@ -67,8 +71,12 @@ public class RealEstateServiceImpl implements RealEstateService {
     }
 
     @Override
-    public void saveOrUdate(RealEstate realEstate) {
-        realEstateDao.saveOrUdate(realEstate);
+    public void saveOrUpdate(RealEstate realEstate) {
+        Long id = realEstateDao.saveOrUpdate(realEstate);
+        for(REDocument reDocument: realEstate.getReDocumentList()){
+            reDocument.setRealEstate(realEstate);
+            reDocumentDao.saveOrUpdate(reDocument);
+        }
     }
 
 
