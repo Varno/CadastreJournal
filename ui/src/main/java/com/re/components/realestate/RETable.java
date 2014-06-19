@@ -48,7 +48,7 @@ public class RETable extends Table {
         setColumnExpandRatio("number", 3);
         setColumnExpandRatio("square", 1);
         setColumnExpandRatio("desc", 14);
-        setPageLength(30);
+        setPageLength(10);
     }
 
      @Override

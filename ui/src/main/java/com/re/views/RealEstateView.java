@@ -7,6 +7,7 @@ import com.re.components.realestate.ToolBar;
 import com.re.entity.RealEstate;
 import com.re.service.RealEstateService;
 import com.vaadin.data.Property;
+import com.vaadin.ui.Component;
 import com.vaadin.ui.TabSheet;
 import com.vaadin.ui.VerticalLayout;
 
@@ -29,6 +30,16 @@ public class RealEstateView extends VerticalLayout {
             tabSheet = new TabSheet();
             tabSheet.addTab(reTab).setCaption("Объекты недвижимости");
             tabSheet.addTab(historyTab).setCaption("История изменений");
+            tabSheet.addSelectedTabChangeListener(new TabSheet.SelectedTabChangeListener() {
+                @Override
+                public void selectedTabChange(TabSheet.SelectedTabChangeEvent selectedTabChangeEvent) {
+                    Component selectedTab = selectedTabChangeEvent.getTabSheet().getSelectedTab();
+                    HistoryTab historyTab = (selectedTab instanceof HistoryTab) ? (HistoryTab) selectedTab : null;
+                    if (historyTab != null) {
+                        historyTab.refresh();
+                    }
+                }
+            });
         }
         addComponent(tabSheet);
     }

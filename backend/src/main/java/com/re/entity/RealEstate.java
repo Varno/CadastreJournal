@@ -1,11 +1,9 @@
 package com.re.entity;
 
 
+import java.util.Calendar;
 
 public class RealEstate {
-    public static final String FIELD_CADASTRAL_NUMBER = "cadastralNumber";
-    public static final String FIELD_SQUARE = "square";
-
     private Long id;
     private String cadastralNumber;
     private Double square;
@@ -15,6 +13,7 @@ public class RealEstate {
     private String address;
     private REDestination reDestination;
     private REUsage reUsage;
+    private Calendar modifiedDate;
 
     public RealEstate() {
         this.cadastralNumber = "";
@@ -29,6 +28,10 @@ public class RealEstate {
 
     public void setReDestination(REDestination reDestination) {
         this.reDestination = reDestination;
+        if (this.reDestination != null)
+            this.destinationId = this.reDestination.getId();
+        else
+            this.destinationId = null;
     }
 
     public REUsage getReUsage() {
@@ -37,6 +40,10 @@ public class RealEstate {
 
     public void setReUsage(REUsage reUsage) {
         this.reUsage = reUsage;
+        if (this.reUsage != null)
+            this.usageId = this.reUsage.getId();
+        else
+            this.usageId = null;
     }
 
     public Long getId() {
@@ -64,7 +71,7 @@ public class RealEstate {
     }
 
     public Long getDestinationId() {
-        return 1L; //destinationId;
+        return destinationId;
     }
 
     public void setDestinationId(Long destinationId) {
@@ -80,7 +87,7 @@ public class RealEstate {
     }
 
     public Long getUsageId() {
-        return 1L; //usageId;
+        return usageId;
     }
 
     public void setUsageId(Long usageId) {
@@ -93,6 +100,14 @@ public class RealEstate {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public Calendar getModifiedDate() {
+        return modifiedDate;
+    }
+
+    public void setModifiedDate(Calendar modifiedDate) {
+        this.modifiedDate = modifiedDate;
     }
 
     @Override
