@@ -9,6 +9,8 @@ authid current_user
 as
 begin
 
+  savepoint begin_delete_facility_doc;
+
   update rrtest.facility_documents
   set 
     MODIFIED_DATE = sysdate
@@ -20,6 +22,10 @@ begin
   where DOCUMENT_ID = p_document_id;
 
   commit;
+
+  exception
+    when others then rollback to begin_delete_facility_doc;
+    raise;
 
 end;
 /

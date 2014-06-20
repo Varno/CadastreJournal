@@ -19,6 +19,8 @@ as
   l_usage RRTEST.USAGES.DESCRIPTION%TYPE;
 begin
 
+  savepoint begin_update_facility;
+
   select DESCRIPTION into l_destination
   from rrtest.destinations
   where destination_id = p_destination_id;
@@ -85,6 +87,10 @@ begin
   end if;
 
   commit;
+
+  exception
+    when others then rollback to begin_update_facility;
+    raise;
 
 end;
 /

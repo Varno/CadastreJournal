@@ -13,6 +13,8 @@ authid current_user
 as
 begin
 
+  savepoint begin_update_facility_doc;
+
   if (p_document_id is not null) then
 
     update rrtest.facility_documents
@@ -54,6 +56,10 @@ begin
   end if;
 
   commit;
+
+  exception
+    when others then rollback to begin_update_facility_doc;
+    raise;
 
 end;
 /
