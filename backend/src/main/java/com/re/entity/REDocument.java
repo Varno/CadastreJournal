@@ -5,7 +5,9 @@ import java.util.Calendar;
 
 public class REDocument implements Serializable {
     private Long id;
+    private Long realEstateId;
     private RealEstate realEstate;
+    private String fileName;
     private String storedPath;
     private Calendar createdDate;
     private String createdBy;
@@ -78,6 +80,22 @@ public class REDocument implements Serializable {
 
     public void setModifiedByIp(String modifiedByIp) {
         this.modifiedByIp = modifiedByIp;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+    public Long getRealEstateId() {
+        return realEstateId;
+    }
+
+    public void setRealEstateId(Long realEstateId) {
+        this.realEstateId = realEstateId;
     }
 
     @Override

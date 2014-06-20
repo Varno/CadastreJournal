@@ -1,9 +1,11 @@
 package com.re.service;
 
 import com.re.dao.destination.DestinationDao;
+import com.re.dao.document.REDocumentDao;
 import com.re.dao.realestate.RealEstateDao;
 import com.re.dao.usage.UsageDao;
 import com.re.entity.REDestination;
+import com.re.entity.REDocument;
 import com.re.entity.REUsage;
 import com.re.entity.RealEstate;
 
@@ -13,15 +15,19 @@ import java.util.List;
 import java.util.Map;
 
 public class RealEstateServiceImpl implements RealEstateService {
+
+    private static List<REUsage> cachedUsages;
     private RealEstateDao realEstateDao;
     private DestinationDao destinationDao;
     private UsageDao usageDao;
+    private REDocumentDao reDocumentDao;
     private final String EMPTY_SEARCH = "";
 
-    public RealEstateServiceImpl(RealEstateDao realEstateDao, DestinationDao destinationDao, UsageDao usageDao) {
+    public RealEstateServiceImpl(RealEstateDao realEstateDao, DestinationDao destinationDao, UsageDao usageDao, REDocumentDao reDocumentDao) {
         this.realEstateDao = realEstateDao;
         this.destinationDao = destinationDao;
         this.usageDao = usageDao;
+        this.reDocumentDao=reDocumentDao;
     }
 
     @Override
@@ -57,18 +63,59 @@ public class RealEstateServiceImpl implements RealEstateService {
     }
 
     @Override
+    public RealEstate getItem(Long facilityId) {
+        RealEstate result = realEstateDao.getItem(facilityId);
+        result.setReUsage(getUsageById(result.getUsageId()));
+        result.setReDestination(getDestinationById(result.getDestinationId()));
+        List<REDocument> docs = reDocumentDao.getDocuments(facilityId);
+        for (REDocument doc : docs)
+            doc.setRealEstate(result);
+        result.setReDocumentList(docs);
+
+        return result;
+    }
+
+    @Override
     public List<REDestination> findAllREDestinations() {
         return destinationDao.getAll();
     }
 
     @Override
     public List<REUsage> findAllREUsages() {
-        return usageDao.findAll();
+        if (cachedUsages == null)
+            cachedUsages = usageDao.findAll();
+        return cachedUsages;
+    }
+
+    private REUsage getUsageById(Long id) {
+        REUsage result = null;
+        for (REUsage usage : findAllREUsages())
+            if (usage.getId() == id) {
+                result = usage;
+                break;
+            }
+        return result;
+    }
+
+    private REDestination getDestinationById(Long id) {
+        REDestination result = null;
+        for (REDestination destination : findAllREDestinations())
+            if (destination.getId() == id) {
+                result = destination;
+                break;
+            }
+        return result;
     }
 
     @Override
-    public void saveOrUdate(RealEstate realEstate) {
-        realEstateDao.saveOrUdate(realEstate);
+    public long saveOrUpdate(RealEstate realEstate) {
+        Long id = realEstateDao.saveOrUpdate(realEstate);
+        realEstate.setId(id);
+        for(REDocument reDocument: realEstate.getReDocumentList()){
+            reDocument.setRealEstate(realEstate);
+            reDocumentDao.saveOrUpdate(reDocument);
+        }
+        return id;
     }
 
 
