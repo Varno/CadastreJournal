@@ -42,7 +42,8 @@ public class RETableButtons implements Table.ColumnGenerator {
                 Item item = source.getItem(itemId);
                 BeanItem<RealEstate> beanItem = (BeanItem<RealEstate>) item;
                 RealEstate realEstate = beanItem.getBean();
-                REItemCard reItemCard = new REItemCard("Карточка объекта",realEstate, reHistoryService);
+                realEstate = realEstateService.getItem(realEstate.getId());
+                REItemCard reItemCard = new REItemCard("Карточка объекта", realEstate, reHistoryService);
                 UI.getCurrent().addWindow(reItemCard);
             }
         });

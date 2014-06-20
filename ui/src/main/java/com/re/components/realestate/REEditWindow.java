@@ -200,8 +200,9 @@ public class REEditWindow extends Window {
     }
 
     public static Window Build(RealEstateService reService, RealEstate entity, CloseListener handler) {
-        RealEstate targetEntity = reService.getItem(entity.getId());
-        REEditWindow result = new REEditWindow(targetEntity, reService);
+        if (entity.getId() != null)
+            entity = reService.getItem(entity.getId());
+        REEditWindow result = new REEditWindow(entity, reService);
         result.addCloseListener(handler);
         return result;
     }
