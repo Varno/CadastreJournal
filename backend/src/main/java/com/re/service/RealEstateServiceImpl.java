@@ -15,6 +15,8 @@ import java.util.List;
 import java.util.Map;
 
 public class RealEstateServiceImpl implements RealEstateService {
+
+    private static List<REUsage> cachedUsages;
     private RealEstateDao realEstateDao;
     private DestinationDao destinationDao;
     private UsageDao usageDao;
@@ -61,13 +63,48 @@ public class RealEstateServiceImpl implements RealEstateService {
     }
 
     @Override
+    public RealEstate getItem(Long facilityId) {
+        RealEstate result = realEstateDao.getItem(facilityId);
+        result.setReUsage(getUsageById(result.getUsageId()));
+        result.setReDestination(getDestinationById(result.getDestinationId()));
+        List<REDocument> docs = reDocumentDao.getDocuments(facilityId);
+        for (REDocument doc : docs)
+            doc.setRealEstate(result);
+        result.setReDocumentList(docs);
+
+        return result;
+    }
+
+    @Override
     public List<REDestination> findAllREDestinations() {
         return destinationDao.getAll();
     }
 
     @Override
     public List<REUsage> findAllREUsages() {
-        return usageDao.findAll();
+        if (cachedUsages == null)
+            cachedUsages = usageDao.findAll();
+        return cachedUsages;
+    }
+
+    private REUsage getUsageById(Long id) {
+        REUsage result = null;
+        for (REUsage usage : findAllREUsages())
+            if (usage.getId() == id) {
+                result = usage;
+                break;
+            }
+        return result;
+    }
+
+    private REDestination getDestinationById(Long id) {
+        REDestination result = null;
+        for (REDestination destination : findAllREDestinations())
+            if (destination.getId() == id) {
+                result = destination;
+                break;
+            }
+        return result;
     }
 
     @Override

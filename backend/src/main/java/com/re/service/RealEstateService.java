@@ -10,7 +10,9 @@ public interface RealEstateService {
     List<RealEstate> getItemsFromRange(Long facilityId, String cadastralNumber, int startIndex, int endIndex);
     List<RealEstate> getItemsFromRange(int skipFirst, int numberOfItems);
 
-    long saveOrUpdate(RealEstate realEstate);
+    RealEstate getItem(Long facilityId);
+
+    long saveOrUpdate(RealEstate realEstate) throws org.springframework.dao.DataAccessException;
 
     int getNumberOfItems(String searchQuery);
 

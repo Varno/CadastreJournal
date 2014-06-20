@@ -10,8 +10,7 @@ import org.vaadin.peter.imagestrip.ImageStrip;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class MultiUpload extends MultiFileUpload implements Property.ValueChangeListener {
     private ImageStrip strip;
@@ -84,5 +83,9 @@ public class MultiUpload extends MultiFileUpload implements Property.ValueChange
 
     public List<File> getDocumentsList() {
         return imagesList;
+    }
+
+    public void setDocumentsList(List<File> files) {
+        imagesList = new ArrayList<File>(files);
     }
 }

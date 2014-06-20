@@ -1,6 +1,10 @@
 package com.re.dao.document;
 
 public interface REDocumentDaoConstants {
+    public static final String DOCUMENT_ID = "DOCUMENT_ID";
+    public static final String FILE_NAME = "FILE_NAME";
+    public static final String STORED_PATH  = "STORED_PATH";
+
     public static final String P_DOCUMENT_ID = "p_document_id";
     public static final String P_FACILITY_ID     = "p_facility_id";
     public static final String P_FILE_NAME     = "p_file_name";

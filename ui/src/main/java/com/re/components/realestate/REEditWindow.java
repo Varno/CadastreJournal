@@ -164,7 +164,13 @@ public class REEditWindow extends Window {
                                 }
 
                                 entity.setReDocumentList(reDocuments);
-                                realEstateService.saveOrUpdate(entity);
+                                try
+                                {
+                                    realEstateService.saveOrUpdate(entity);
+                                }
+                                catch (org.springframework.dao.DataAccessException e){
+                                    throw new FieldGroup.CommitException(e.getMessage(), e.getCause());
+                                }
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
@@ -194,7 +200,8 @@ public class REEditWindow extends Window {
     }
 
     public static Window Build(RealEstateService reService, RealEstate entity, CloseListener handler) {
-        REEditWindow result = new REEditWindow(entity, reService);
+        RealEstate targetEntity = reService.getItem(entity.getId());
+        REEditWindow result = new REEditWindow(targetEntity, reService);
         result.addCloseListener(handler);
         return result;
     }

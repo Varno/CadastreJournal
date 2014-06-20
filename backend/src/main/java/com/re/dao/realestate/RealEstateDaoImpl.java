@@ -24,7 +24,13 @@ public class RealEstateDaoImpl implements RealEstateDao {
     }
 
     @Override
-    public Long saveOrUpdate(RealEstate realEstate) {
+    public RealEstate getItem(Long facilityId) {
+        List<RealEstate> items = getItemsFromRange(facilityId, "", 0, 1);
+        return items.size() > 0 ? items.get(0) : null;
+    }
+
+    @Override
+    public Long saveOrUpdate(RealEstate realEstate) throws org.springframework.dao.DataAccessException {
         UpdateREStoredProcedure updateREStoredProcedure = new UpdateREStoredProcedure(jdbcTemplate);
         Map inputs = new HashMap();
         inputs.put(REDaoConstants.P_FACILITY_ID, realEstate.getId());
