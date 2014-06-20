@@ -71,12 +71,14 @@ public class RealEstateServiceImpl implements RealEstateService {
     }
 
     @Override
-    public void saveOrUpdate(RealEstate realEstate) {
+    public long saveOrUpdate(RealEstate realEstate) {
         Long id = realEstateDao.saveOrUpdate(realEstate);
+        realEstate.setId(id);
         for(REDocument reDocument: realEstate.getReDocumentList()){
             reDocument.setRealEstate(realEstate);
             reDocumentDao.saveOrUpdate(reDocument);
         }
+        return id;
     }
 
 

@@ -2,6 +2,7 @@ package com.re.entity;
 
 
 import java.util.Calendar;
+import java.util.List;
 
 public class RealEstate {
     private Long id;
@@ -14,6 +15,7 @@ public class RealEstate {
     private REDestination reDestination;
     private REUsage reUsage;
     private Calendar modifiedDate;
+    private List<REDocument> reDocumentList;
 
     public RealEstate() {
         this.cadastralNumber = "";
@@ -108,6 +110,15 @@ public class RealEstate {
 
     public void setModifiedDate(Calendar modifiedDate) {
         this.modifiedDate = modifiedDate;
+    }
+
+
+    public List<REDocument> getReDocumentList() {
+        return reDocumentList;
+    }
+
+    public void setReDocumentList(List<REDocument> reDocumentList) {
+        this.reDocumentList = reDocumentList;
     }
 
     @Override

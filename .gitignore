@@ -5,3 +5,4 @@ backend/target/
 ui/src/main/webapp/VAADIN/widgetsets/
 ui/target/
 ui/src/main/webapp/WEB-INF/images/
+ui/src/main/webapp/VAADIN/documents/

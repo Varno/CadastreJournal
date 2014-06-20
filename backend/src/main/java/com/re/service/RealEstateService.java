@@ -10,7 +10,7 @@ public interface RealEstateService {
     List<RealEstate> getItemsFromRange(Long facilityId, String cadastralNumber, int startIndex, int endIndex);
     List<RealEstate> getItemsFromRange(int skipFirst, int numberOfItems);
 
-    void saveOrUpdate(RealEstate realEstate);
+    long saveOrUpdate(RealEstate realEstate);
 
     int getNumberOfItems(String searchQuery);
 

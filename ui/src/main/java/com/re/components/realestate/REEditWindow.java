@@ -2,6 +2,7 @@ package com.re.components.realestate;
 
 
 import com.re.entity.REDestination;
+import com.re.entity.REDocument;
 import com.re.entity.REUsage;
 import com.re.entity.RealEstate;
 import com.re.service.RealEstateService;
@@ -10,16 +11,18 @@ import com.vaadin.data.Property;
 import com.vaadin.data.fieldgroup.BeanFieldGroup;
 import com.vaadin.data.fieldgroup.FieldGroup;
 import com.vaadin.data.util.BeanItemContainer;
-import com.vaadin.server.ClientConnector;
-import com.vaadin.server.FileResource;
-import com.vaadin.server.Resource;
-import com.vaadin.server.StreamResource;
+import com.vaadin.server.*;
 import com.vaadin.ui.*;
+import org.apache.commons.io.IOUtils;
 import org.vaadin.easyuploads.FileBuffer;
 import org.vaadin.easyuploads.MultiFileUpload;
 import org.vaadin.peter.imagestrip.ImageStrip;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 public class REEditWindow extends Window {
@@ -45,7 +48,6 @@ public class REEditWindow extends Window {
         squareField.setInputPrompt("площадь..");
         addressField.setInputPrompt("адрес..");
     }
-
 
 
     private void initLayout() {
@@ -103,7 +105,27 @@ public class REEditWindow extends Window {
                 try {
                     if (binder.isValid()) {
                         binder.commit();
-                        realEstateService.saveOrUdate(entity);
+                        try {
+                            List<File> documentsList = multiUploader.getDocumentsList();
+                            List<REDocument> reDocuments = new ArrayList<REDocument>();
+                            String basePath = VaadinService.getCurrent().getBaseDirectory().getPath();
+                            Path target = Paths.get(basePath + "/VAADIN/documents/");
+                            if (!Files.exists(target)) {
+                                Files.createDirectory(target);
+                            }
+                            for (File document : documentsList) {
+                                Files.move(document.toPath(), target.resolve(document.getName()));
+                                REDocument reDocument = new REDocument();
+                                reDocument.setStoredPath(target.toAbsolutePath().toString());
+                                reDocument.setFileName(document.getName());
+                                reDocuments.add(reDocument);
+                            }
+
+                            entity.setReDocumentList(reDocuments);
+                            realEstateService.saveOrUpdate(entity);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                         close();
                     }
                     Notification.show("Объект сохранен");
@@ -127,9 +149,9 @@ public class REEditWindow extends Window {
         setContent(form);
     }
 
-    public static Window Build(RealEstateService reService, RealEstate entity, CloseListener handler){
+    public static Window Build(RealEstateService reService, RealEstate entity, CloseListener handler) {
         REEditWindow result = new REEditWindow(entity, reService);
         result.addCloseListener(handler);
-        return  result;
+        return result;
     }
 }
