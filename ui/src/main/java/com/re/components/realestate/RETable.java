@@ -1,6 +1,7 @@
 package com.re.components.realestate;
 
 import com.re.entity.RealEstate;
+import com.re.service.REDocumentService;
 import com.re.service.REHistoryService;
 import com.re.service.RealEstateService;
 import com.vaadin.data.Property;
@@ -19,13 +20,16 @@ public class RETable extends Table {
     private BeanItemContainer<RealEstate> datasource;
     private REHistoryService reHistoryService;
     private RealEstateService realEstateService;
+    private REDocumentService reDocumentService;
     private RETableButtons reTableActions;
 
+
     public RETable(RealEstateService realEstateService, REHistoryService reHistoryService,
-                   Window.CloseListener editWindowCloseHandler) {
+                   Window.CloseListener editWindowCloseHandler, REDocumentService reDocumentService) {
         this.reHistoryService = reHistoryService;
         this.realEstateService = realEstateService;
-        this.reTableActions = new RETableButtons(realEstateService, reHistoryService, editWindowCloseHandler);
+        this.reDocumentService = reDocumentService;
+        this.reTableActions = new RETableButtons(realEstateService, reHistoryService, editWindowCloseHandler, reDocumentService);
         initTable();
     }
 

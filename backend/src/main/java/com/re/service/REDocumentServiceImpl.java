@@ -15,4 +15,9 @@ public class REDocumentServiceImpl implements REDocumentService {
     public Long saveOrUpdate(REDocument reDocument) {
         return reDocumentDao.saveOrUpdate(reDocument);
     }
+
+    @Override
+    public void delete(REDocument reDocument) {
+        System.out.print("deleted");
+    }
 }

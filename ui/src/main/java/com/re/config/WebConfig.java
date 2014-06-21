@@ -23,7 +23,7 @@ public class WebConfig extends ContextConfiguration {
     @Bean
     @UIScope
     public RETab reTab(){
-        return new RETab(toolBar(), realEstateService(), reHistoryService());
+        return new RETab(toolBar(), realEstateService(), reHistoryService(), reDocumentService());
     }
 
     @Bean

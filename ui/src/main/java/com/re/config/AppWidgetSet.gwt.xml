@@ -21,4 +21,8 @@
     <!-- <set-configuration-property name="devModeRedirectEnabled" value="true" /> -->
 
     <inherits name="org.vaadin.peter.imagestrip.ImageStripApplicationWidgetset" />
+
+    
+
+    <inherits name="org.vaadin.alump.gofullscreen.gwt.GoFullScreenWidgetSet" />
 </module>

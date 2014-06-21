@@ -1,5 +1,6 @@
 package com.re.components.util;
 
+import com.re.components.document.REDocumentGallery;
 import com.re.entity.REDocument;
 import com.vaadin.data.Property;
 import com.vaadin.server.FileResource;
@@ -14,7 +15,7 @@ import java.nio.file.Files;
 import java.util.*;
 
 public class MultiUpload extends MultiFileUpload implements Property.ValueChangeListener {
-    private ImageStrip reDocumentGallery;
+    private REDocumentGallery reDocumentGallery;
     private static final String TEMP_FILE_DIR = new File(System.getProperty("java.io.tmpdir")).getPath();
     private List<REDocument> reDocumentsList = new ArrayList<REDocument>();
 
@@ -65,13 +66,7 @@ public class MultiUpload extends MultiFileUpload implements Property.ValueChange
 
     private void initREDocumentGallery() {
         if (reDocumentGallery == null) {
-            reDocumentGallery = new ImageStrip();
-            reDocumentGallery.setWidth("100%");
-            reDocumentGallery.setAnimated(true);
-            reDocumentGallery.setSelectable(true);
-            reDocumentGallery.setImageBoxWidth(140);
-            reDocumentGallery.setImageBoxHeight(140);
-            reDocumentGallery.setMaxAllowed(6);
+            reDocumentGallery = new REDocumentGallery();
             addComponent(reDocumentGallery);
         }
     }
@@ -87,10 +82,8 @@ public class MultiUpload extends MultiFileUpload implements Property.ValueChange
 
     public void addREDocumentsToGallery(List<REDocument> list){
         setReDocumentsList(list);
-        for(REDocument reDocument: reDocumentsList){
-            FileResource resource = new FileResource(reDocument.getDocument());
-            reDocumentGallery.addImage(resource);
-        }
+        reDocumentGallery.addDocsToGallery(list);
+
     }
 
     public void setReDocumentsList(List<REDocument> reDocumentsList) {

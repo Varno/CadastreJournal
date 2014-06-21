@@ -1,6 +1,7 @@
 package com.re.components.realestate;
 
 import com.re.entity.RealEstate;
+import com.re.service.REDocumentService;
 import com.re.service.REHistoryService;
 import com.re.service.RealEstateService;
 import com.vaadin.data.Item;
@@ -11,13 +12,15 @@ import com.vaadin.ui.themes.Runo;
 public class RETableButtons implements Table.ColumnGenerator {
     private RealEstateService realEstateService;
     private REHistoryService reHistoryService;
+    private REDocumentService reDocumentService;
     private Window.CloseListener editWindowCloseHandler;
 
     public RETableButtons(RealEstateService realEstateService, REHistoryService reHistoryService,
-                          Window.CloseListener editWindowCloseHandler) {
+                          Window.CloseListener editWindowCloseHandler, REDocumentService reDocumentService) {
         this.realEstateService = realEstateService;
         this.reHistoryService = reHistoryService;
         this.editWindowCloseHandler = editWindowCloseHandler;
+        this.reDocumentService = reDocumentService;
     }
 
     @Override
@@ -43,7 +46,7 @@ public class RETableButtons implements Table.ColumnGenerator {
                 BeanItem<RealEstate> beanItem = (BeanItem<RealEstate>) item;
                 RealEstate realEstate = beanItem.getBean();
                 realEstate = realEstateService.getItem(realEstate.getId());
-                REItemCard reItemCard = new REItemCard("Карточка объекта", realEstate, reHistoryService);
+                REItemCard reItemCard = new REItemCard("Карточка объекта", realEstate, reHistoryService, reDocumentService);
                 UI.getCurrent().addWindow(reItemCard);
             }
         });

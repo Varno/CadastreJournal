@@ -9,7 +9,6 @@ import com.re.entity.REDestination;
 import com.re.entity.REDocument;
 import com.re.entity.REUsage;
 import com.re.entity.RealEstate;
-import org.springframework.beans.factory.annotation.Value;
 
 import java.io.File;
 import java.io.IOException;
@@ -78,7 +77,9 @@ public class RealEstateServiceImpl implements RealEstateService {
         for (REDocument doc : docs){
             doc.setRealEstate(result);
             File fileDocument = new File(doc.getStoredPath() + "/" + doc.getFileName());
-            doc.setDocument(fileDocument);
+            if(fileDocument.exists() && !fileDocument.isDirectory()){
+                doc.setDocument(fileDocument);
+            }
         }
         result.setReDocumentList(docs);
 
@@ -131,9 +132,11 @@ public class RealEstateServiceImpl implements RealEstateService {
             Files.createDirectory(target);
         }
         for (REDocument reDocument : entity.getReDocumentList()) {
-            reDocument.setRealEstate(entity);
-            reDocument.setStoredPath(target.toString());
-            Files.move(reDocument.getTempDocumentFile().toPath(), target.resolve(reDocument.getTempDocumentFile().getName()));
+            if(reDocument.getId() == null){
+                reDocument.setRealEstate(entity);
+                reDocument.setStoredPath(target.toString());
+                Files.move(reDocument.getTempDocumentFile().toPath(), target.resolve(reDocument.getTempDocumentFile().getName()));
+            }
             reDocumentDao.saveOrUpdate(reDocument);
         }
         return id;
