@@ -20,7 +20,7 @@ begin
   
   if (:old.DOCUMENT_ID is null) then
     
-    action := 'create document';
+    action := 'Создание документа';
     facility_id := :new.FACILITY_ID;
     modified_by := :new.MODIFIED_BY;
     modified_by_ip := :new.MODIFIED_BY_IP;
@@ -40,7 +40,7 @@ begin
     
   elsif (:new.DOCUMENT_ID is null) then
     
-    action := 'delete document';
+    action := 'Удаление документа';
     facility_id := :old.FACILITY_ID;
     modified_by := :old.MODIFIED_BY;
     modified_by_ip := :old.MODIFIED_BY_IP;
@@ -60,7 +60,7 @@ begin
 
   else
     
-    action := 'update document';
+    action := 'Обновление документа';
     facility_id := :new.FACILITY_ID;
     modified_by := :new.MODIFIED_BY;
     modified_by_ip := :new.MODIFIED_BY_IP;

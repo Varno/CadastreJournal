@@ -20,7 +20,7 @@ begin
   
   if (:old.FACILITY_ID is null) then
     
-    action := 'create facility';
+    action := 'Создание';
     facility_id := :new.FACILITY_ID;
     modified_by := :new.MODIFIED_BY;
     modified_by_ip := :new.MODIFIED_BY_IP;
@@ -49,7 +49,7 @@ begin
 
   elsif (:new.FACILITY_ID is null) then
     
-    action := 'delete facility';
+    action := 'Удаление';
     facility_id := :old.FACILITY_ID;
     modified_by := :old.MODIFIED_BY;
     modified_by_ip := :old.MODIFIED_BY_IP;
@@ -78,7 +78,7 @@ begin
 
   else
     
-    action := 'update facility';
+    action := 'Изменение';
     facility_id := :new.FACILITY_ID;
     modified_by := :new.MODIFIED_BY;
     modified_by_ip := :new.MODIFIED_BY_IP;

@@ -7,7 +7,7 @@ DECLARE
   l_mb  RRTEST.FACILITY_HISTORY.MODIFIED_BY%TYPE;
   l_mi  RRTEST.FACILITY_HISTORY.MODIFIED_BY_IP%TYPE;
   l_a  RRTEST.FACILITY_HISTORY.ACTION%TYPE;
-  l_d  RRTEST.FACILITY_HISTORY.DESCRIPTION%TYPE;
+  l_d  clob;--RRTEST.FACILITY_HISTORY.DESCRIPTION%TYPE;
   l_cnt number;
 BEGIN
 
@@ -23,8 +23,10 @@ BEGIN
     INTO  l_id, l_md, l_mb, l_mi, l_a, l_d; -- xmltype in output ignored 
     EXIT WHEN l_cursor%NOTFOUND;
     DBMS_OUTPUT.PUT_LINE(l_id || ', ' || l_md || ', ' || l_mb || ', ' || l_mi || ', ' || l_a );
-    DBMS_OUTPUT.PUT_LINE('xml: 
-' ||  l_d.getCLOBVal() );
+--    DBMS_OUTPUT.PUT_LINE('xml: 
+--' ||  l_d.getCLOBVal() );
+    DBMS_OUTPUT.PUT_LINE('txt: 
+' ||  l_d );
   END LOOP;
   CLOSE l_cursor;
   
