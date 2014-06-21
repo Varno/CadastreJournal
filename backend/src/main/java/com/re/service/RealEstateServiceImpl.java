@@ -125,6 +125,8 @@ public class RealEstateServiceImpl implements RealEstateService {
             id = realEstateDao.saveOrUpdate(entity);
             entity.setId(id);
         }
+        else
+            realEstateDao.saveOrUpdate(entity);
 
         Path target = Paths.get(CommonHelper.BASE_PATH +"/VAADIN/documents/" + entity.getId() + "/");
         if (!Files.exists(target)) {
