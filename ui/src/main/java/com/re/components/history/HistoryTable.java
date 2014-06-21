@@ -1,13 +1,12 @@
 package com.re.components.history;
 
-import com.re.components.CommonSettings;
+import com.re.components.util.CommonSettings;
 import com.re.entity.REHistory;
 import com.vaadin.data.Property;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.Runo;
 
-import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.Calendar;
 

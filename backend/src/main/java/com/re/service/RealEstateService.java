@@ -4,6 +4,7 @@ import com.re.entity.REDestination;
 import com.re.entity.REUsage;
 import com.re.entity.RealEstate;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface RealEstateService {
@@ -12,7 +13,7 @@ public interface RealEstateService {
 
     RealEstate getItem(Long facilityId);
 
-    long saveOrUpdate(RealEstate realEstate) throws org.springframework.dao.DataAccessException;
+    Long saveOrUpdate(RealEstate realEstate) throws org.springframework.dao.DataAccessException, IOException;
 
     int getNumberOfItems(String searchQuery);
 

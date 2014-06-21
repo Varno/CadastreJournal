@@ -1,5 +1,6 @@
 package com.re.service;
 
+import com.re.dao.CommonHelper;
 import com.re.dao.destination.DestinationDao;
 import com.re.dao.document.REDocumentDao;
 import com.re.dao.realestate.RealEstateDao;
@@ -8,7 +9,13 @@ import com.re.entity.REDestination;
 import com.re.entity.REDocument;
 import com.re.entity.REUsage;
 import com.re.entity.RealEstate;
+import org.springframework.beans.factory.annotation.Value;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -27,16 +34,16 @@ public class RealEstateServiceImpl implements RealEstateService {
         this.realEstateDao = realEstateDao;
         this.destinationDao = destinationDao;
         this.usageDao = usageDao;
-        this.reDocumentDao=reDocumentDao;
+        this.reDocumentDao = reDocumentDao;
     }
 
     @Override
     public List<RealEstate> getItemsFromRange(Long facilityId, String searchQuery, int skipFirst, int numberOfItems) {
         //stored procedure doesn't work with null cadastralNumber value
-        if(searchQuery == null){
+        if (searchQuery == null) {
             searchQuery = EMPTY_SEARCH;
         }
-        List<RealEstate> realEstatesList = realEstateDao.getItemsFromRange(facilityId,searchQuery, skipFirst, numberOfItems);
+        List<RealEstate> realEstatesList = realEstateDao.getItemsFromRange(facilityId, searchQuery, skipFirst, numberOfItems);
         setDestination(realEstatesList);
         setUsage(realEstatesList);
         return realEstatesList;
@@ -46,7 +53,7 @@ public class RealEstateServiceImpl implements RealEstateService {
     public List<RealEstate> getItemsFromRange(int skipFirst, int numberOfItems) {
 
         List<RealEstate> realEstatesList = realEstateDao.getItemsFromRange(null, EMPTY_SEARCH, skipFirst, numberOfItems);
-        if(realEstatesList == null){
+        if (realEstatesList == null) {
             realEstatesList = new ArrayList<RealEstate>();
         }
         setDestination(realEstatesList);
@@ -56,7 +63,7 @@ public class RealEstateServiceImpl implements RealEstateService {
 
     @Override
     public int getNumberOfItems(String searchQuery) {
-        if(searchQuery == null){
+        if (searchQuery == null) {
             searchQuery = EMPTY_SEARCH;
         }
         return realEstateDao.getNumberOfItems(searchQuery);
@@ -68,8 +75,11 @@ public class RealEstateServiceImpl implements RealEstateService {
         result.setReUsage(getUsageById(result.getUsageId()));
         result.setReDestination(getDestinationById(result.getDestinationId()));
         List<REDocument> docs = reDocumentDao.getDocuments(facilityId);
-        for (REDocument doc : docs)
+        for (REDocument doc : docs){
             doc.setRealEstate(result);
+            File fileDocument = new File(doc.getStoredPath() + "/" + doc.getFileName());
+            doc.setDocument(fileDocument);
+        }
         result.setReDocumentList(docs);
 
         return result;
@@ -108,27 +118,38 @@ public class RealEstateServiceImpl implements RealEstateService {
     }
 
     @Override
-    public long saveOrUpdate(RealEstate realEstate) {
-        Long id = realEstateDao.saveOrUpdate(realEstate);
-        realEstate.setId(id);
-        for(REDocument reDocument: realEstate.getReDocumentList()){
-            reDocument.setRealEstate(realEstate);
+    public Long saveOrUpdate(RealEstate entity) throws IOException {
+        Long id = null;
+
+        if (entity.getId() == null) {
+            id = realEstateDao.saveOrUpdate(entity);
+            entity.setId(id);
+        }
+
+        Path target = Paths.get(CommonHelper.BASE_PATH +"/VAADIN/documents/" + entity.getId() + "/");
+        if (!Files.exists(target)) {
+            Files.createDirectory(target);
+        }
+        for (REDocument reDocument : entity.getReDocumentList()) {
+            reDocument.setRealEstate(entity);
+            reDocument.setStoredPath(target.toString());
+            Files.move(reDocument.getTempDocumentFile().toPath(), target.resolve(reDocument.getTempDocumentFile().getName()));
             reDocumentDao.saveOrUpdate(reDocument);
         }
         return id;
     }
 
 
-    private List<RealEstate> setDestination(List<RealEstate> realEstateList){
+    private List<RealEstate> setDestination(List<RealEstate> realEstateList) {
         List<REDestination> reDestinationList = destinationDao.getAll();
         Map<Long, REDestination> destMap = new HashMap<Long, REDestination>();
-        for(REDestination reDestination: reDestinationList){
+        for (REDestination reDestination : reDestinationList) {
             destMap.put(reDestination.getId(), reDestination);
         }
 
-        for(RealEstate realEstate: realEstateList){
-            if(destMap.containsKey(realEstate.getDestinationId()))
-            realEstate.setReDestination(destMap.get(realEstate.getDestinationId()));
+        for (RealEstate realEstate : realEstateList) {
+            if (destMap.containsKey(realEstate.getDestinationId()))
+                realEstate.setReDestination(destMap.get(realEstate.getDestinationId()));
         }
         return realEstateList;
     }
@@ -136,12 +157,12 @@ public class RealEstateServiceImpl implements RealEstateService {
     private List<RealEstate> setUsage(List<RealEstate> realEstatesList) {
         List<REUsage> reUsagesList = usageDao.findAll();
         Map<Long, REUsage> destMap = new HashMap<Long, REUsage>();
-        for(REUsage reUsage: reUsagesList){
+        for (REUsage reUsage : reUsagesList) {
             destMap.put(reUsage.getId(), reUsage);
         }
 
-        for(RealEstate realEstate: realEstatesList){
-            if(destMap.containsKey(realEstate.getUsageId()))
+        for (RealEstate realEstate : realEstatesList) {
+            if (destMap.containsKey(realEstate.getUsageId()))
                 realEstate.setReUsage(destMap.get(realEstate.getUsageId()));
         }
         return realEstatesList;

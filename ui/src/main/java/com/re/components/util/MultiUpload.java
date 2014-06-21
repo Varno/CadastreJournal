@@ -1,5 +1,6 @@
-package com.re.util;
+package com.re.components.util;
 
+import com.re.entity.REDocument;
 import com.vaadin.data.Property;
 import com.vaadin.server.FileResource;
 import com.vaadin.ui.*;
@@ -13,14 +14,14 @@ import java.nio.file.Files;
 import java.util.*;
 
 public class MultiUpload extends MultiFileUpload implements Property.ValueChangeListener {
-    private ImageStrip strip;
+    private ImageStrip reDocumentGallery;
     private static final String TEMP_FILE_DIR = new File(System.getProperty("java.io.tmpdir")).getPath();
-    private List<File> imagesList = new ArrayList<File>();
+    private List<REDocument> reDocumentsList = new ArrayList<REDocument>();
 
     public MultiUpload() {
         setUploadButtonCaption("Загрузить Документ");
         setRootDirectory(TEMP_FILE_DIR);
-        initImageStrip();
+        initREDocumentGallery();
         setSizeFull();
     }
 
@@ -29,7 +30,7 @@ public class MultiUpload extends MultiFileUpload implements Property.ValueChange
     }
 
     @Override
-    protected void handleFile(final File file, String fileName,
+    protected void handleFile(final File tempFile, String fileName,
                               String mimeType, long length) {
         try {
             if (length > 10000000) {
@@ -37,7 +38,7 @@ public class MultiUpload extends MultiFileUpload implements Property.ValueChange
                 return;
             }
 
-            String explicitMime = Files.probeContentType(file.getAbsoluteFile().toPath());
+            String explicitMime = Files.probeContentType(tempFile.getAbsoluteFile().toPath());
 
             if (explicitMime == null || !explicitMime.contains("image")) {
                 Notification.show("Разрешена загрузка только изображений!");
@@ -47,32 +48,31 @@ public class MultiUpload extends MultiFileUpload implements Property.ValueChange
             e.printStackTrace();
             //fixme:log it
         }
-        FileResource resource = new FileResource(file);
-        strip.addImage(resource);
-        imagesList.add(file);
+        FileResource resource = new FileResource(tempFile);
+        reDocumentGallery.addImage(resource);
+        REDocument reDocument = new REDocument();
+        reDocument.setFileName(tempFile.getName());
+        reDocument.setTempDocumentFile(tempFile);
+        reDocumentsList.add(reDocument);
     }
 
     @Override
     protected FileBuffer createReceiver() {
         FileBuffer receiver = super.createReceiver();
-                /*
-                 * Make receiver not to delete files after they have been
-                 * handled by #handleFile().
-                 */
         receiver.setDeleteFiles(false);
         return receiver;
     }
 
-    private void initImageStrip() {
-        if (strip == null) {
-            strip = new ImageStrip();
-            strip.setWidth("100%");
-            strip.setAnimated(true);
-            strip.setSelectable(true);
-            strip.setImageBoxWidth(140);
-            strip.setImageBoxHeight(140);
-            strip.setMaxAllowed(6);
-            addComponent(strip);
+    private void initREDocumentGallery() {
+        if (reDocumentGallery == null) {
+            reDocumentGallery = new ImageStrip();
+            reDocumentGallery.setWidth("100%");
+            reDocumentGallery.setAnimated(true);
+            reDocumentGallery.setSelectable(true);
+            reDocumentGallery.setImageBoxWidth(140);
+            reDocumentGallery.setImageBoxHeight(140);
+            reDocumentGallery.setMaxAllowed(6);
+            addComponent(reDocumentGallery);
         }
     }
 
@@ -81,11 +81,19 @@ public class MultiUpload extends MultiFileUpload implements Property.ValueChange
         Notification.show("Value change event");
     }
 
-    public List<File> getDocumentsList() {
-        return imagesList;
+    public List<REDocument> getReDocumentsList() {
+        return reDocumentsList;
     }
 
-    public void setDocumentsList(List<File> files) {
-        imagesList = new ArrayList<File>(files);
+    public void addREDocumentsToGallery(List<REDocument> list){
+        setReDocumentsList(list);
+        for(REDocument reDocument: reDocumentsList){
+            FileResource resource = new FileResource(reDocument.getDocument());
+            reDocumentGallery.addImage(resource);
+        }
+    }
+
+    public void setReDocumentsList(List<REDocument> reDocumentsList) {
+        this.reDocumentsList = reDocumentsList;
     }
 }

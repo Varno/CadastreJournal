@@ -1,4 +1,4 @@
-package com.re.components;
+package com.re.components.util;
 
 import com.vaadin.ui.VerticalLayout;
 import java.text.SimpleDateFormat;

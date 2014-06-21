@@ -1,25 +1,18 @@
 package com.re.components.realestate;
 
 import com.re.entity.REDestination;
-import com.re.entity.REDocument;
 import com.re.entity.REUsage;
 import com.re.entity.RealEstate;
 import com.re.service.RealEstateService;
-import com.re.util.MultiUpload;
+import com.re.components.util.MultiUpload;
 import com.vaadin.data.fieldgroup.BeanFieldGroup;
 import com.vaadin.data.fieldgroup.FieldGroup;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.data.validator.DoubleRangeValidator;
 import com.vaadin.data.validator.NullValidator;
 import com.vaadin.data.validator.StringLengthValidator;
-import com.vaadin.server.*;
 import com.vaadin.ui.*;
-
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
+import java.io.IOException;
 import java.util.List;
 
 public class REEditWindow extends Window {
@@ -42,6 +35,18 @@ public class REEditWindow extends Window {
         center();
         setModal(true);
         initLayout();
+        initFormField();
+        initDocumentsGallery(entity);
+    }
+
+    private void initDocumentsGallery(RealEstate entity) {
+        if(entity.getId() != null && entity.getReDocumentList() != null && !entity.getReDocumentList().isEmpty()){
+            multiUploader.addREDocumentsToGallery(entity.getReDocumentList());
+        }
+
+    }
+
+    private void initFormField() {
         multiUploader.setCaption("Документы: ");
         cadastralNumberField.setInputPrompt("номер..");
         cadastralNumberField.addValidator(new StringLengthValidator("Кадастровый номер должен быть от 4 до 20 символов",
@@ -72,7 +77,7 @@ public class REEditWindow extends Window {
             public void addComponent(com.vaadin.ui.Component c) {
                 super.addComponent(c);
                 if (c instanceof AbstractField) {
-                    AbstractField af = (AbstractField)c;
+                    AbstractField af = (AbstractField) c;
                     af.setValidationVisible(false);
                     af.setImmediate(false);
                 }
@@ -144,40 +149,20 @@ public class REEditWindow extends Window {
             @Override
             public void buttonClick(Button.ClickEvent event) {
                 try {
-                        if (binder.isValid())
-                        {
-                            binder.commit();
-                            try {
-                                List<File> documentsList = multiUploader.getDocumentsList();
-                                List<REDocument> reDocuments = new ArrayList<REDocument>();
-                                String basePath = VaadinService.getCurrent().getBaseDirectory().getPath();
-                                Path target = Paths.get(basePath + "/VAADIN/documents/");
-                                if (!Files.exists(target)) {
-                                    Files.createDirectory(target);
-                                }
-                                for (File document : documentsList) {
-                                    Files.move(document.toPath(), target.resolve(document.getName()));
-                                    REDocument reDocument = new REDocument();
-                                    reDocument.setStoredPath(target.toAbsolutePath().toString());
-                                    reDocument.setFileName(document.getName());
-                                    reDocuments.add(reDocument);
-                                }
+                    if (binder.isValid()) {
+                        binder.commit();
+                        try {
+                            entity.setReDocumentList(multiUploader.getReDocumentsList());
+                            realEstateService.saveOrUpdate(entity);
+                        } catch (org.springframework.dao.DataAccessException e) {
+                            throw new FieldGroup.CommitException(e.getMessage(), e.getCause());
+                        } catch (IOException e) {
+                            throw new FieldGroup.CommitException("Не удалось сохранить документы");
+                        }
 
-                                entity.setReDocumentList(reDocuments);
-                                try
-                                {
-                                    realEstateService.saveOrUpdate(entity);
-                                }
-                                catch (org.springframework.dao.DataAccessException e){
-                                    throw new FieldGroup.CommitException(e.getMessage(), e.getCause());
-                                }
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                            close();
-                            Notification.show("Объект сохранен");
-                    }
-                    else
+                        close();
+                        Notification.show("Объект сохранен");
+                    } else
                         Notification.show("Невозможно сохранить некорректные изменения, нужно исправить некоректные значения в полях ввода и повторить сохранение еще раз.");
                 } catch (FieldGroup.CommitException e) {
                     Notification.show("Ошибка сохранения. Подробнее: " + e.getMessage());
