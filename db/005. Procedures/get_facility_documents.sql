@@ -1,3 +1,7 @@
+-- =============================================
+-- v.1.0: Created by Pavel Kuznetsov 20/06/2014
+-- return documents for facility
+-- =============================================
 create or replace 
 procedure rrtest.get_facility_documents
 (

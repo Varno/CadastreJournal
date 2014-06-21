@@ -1,3 +1,9 @@
+-- =============================================
+-- v.1.0: Created by Pavel Kuznetsov 20/06/2014
+-- return properties of facility
+-- when id is not null -> return by id
+-- else used param p_search_string 
+-- =============================================
 create or replace 
 procedure rrtest.get_facilities
 (

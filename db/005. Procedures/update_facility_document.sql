@@ -1,3 +1,7 @@
+-- =============================================
+-- v.1.0: Created by Pavel Kuznetsov 20/06/2014
+-- insert/update facility doc
+-- =============================================
 create or replace 
 procedure rrtest.update_facility_document
 (

@@ -1,3 +1,7 @@
+-- =============================================
+-- v.1.0: Created by Pavel Kuznetsov 20/06/2014
+-- after all oparations with facilities doc write to log
+-- =============================================
 create or replace trigger rrtest.add_facility_document_history
 after insert or update or delete on rrtest.facility_documents
 for each row

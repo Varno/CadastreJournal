@@ -1,3 +1,7 @@
+-- =============================================
+-- v.1.0: Created by Pavel Kuznetsov 20/06/2014
+-- delete facility doc
+-- =============================================
 create or replace 
 procedure rrtest.delete_facility_document
 (
