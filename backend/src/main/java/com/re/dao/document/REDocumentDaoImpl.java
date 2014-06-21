@@ -43,4 +43,14 @@ public class REDocumentDaoImpl implements REDocumentDao{
         result = (List) data.get(REDaoConstants.P_CURSOR);
         return result;
     }
+
+    @Override
+    public void deleteDocument(REDocument reDocument) {
+        DeleteREDocumentStoredProcedure  proc = new DeleteREDocumentStoredProcedure(jdbcTemplate);
+        Map inputs = new HashMap();
+        inputs.put(REDocumentDaoConstants.P_DOCUMENT_ID, reDocument.getId());
+        inputs.put(REDocumentDaoConstants.P_USER_NAME, "TestUser");
+        inputs.put(REDocumentDaoConstants.P_USER_IP, "127.0.0.1");
+        proc.execute(inputs);
+    }
 }

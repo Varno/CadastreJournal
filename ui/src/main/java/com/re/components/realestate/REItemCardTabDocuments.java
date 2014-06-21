@@ -8,7 +8,10 @@ import com.re.service.REDocumentServiceImpl;
 import com.vaadin.event.MouseEvents;
 import com.vaadin.server.FileResource;
 import com.vaadin.ui.*;
+import com.vaadin.ui.themes.Reindeer;
 import com.vaadin.ui.themes.Runo;
+
+import java.io.IOException;
 
 public class REItemCardTabDocuments extends HorizontalLayout {
     private RealEstate realEstate;
@@ -24,14 +27,19 @@ public class REItemCardTabDocuments extends HorizontalLayout {
 
     private void showImages() {
         for(final REDocument reDocument: realEstate.getReDocumentList()){
-            CssLayout box = new CssLayout();
-            final Image image = new Image(reDocument.getFileName(), new FileResource(reDocument.getDocument()));
+            final VerticalLayout box = new VerticalLayout();
+            setSpacing(true);
+            setMargin(true);
+            final Image image = new Image();
+            image.setSource(new FileResource(reDocument.getDocument()));
             image.setHeight("250px");
             image.setWidth("250px");
             image.addClickListener(new MouseEvents.ClickListener() {
                 @Override
                 public void click(MouseEvents.ClickEvent event) {
-                    FullImageWindow fullImageWindow = new FullImageWindow(image);
+                    Image newImage = new Image();
+                    newImage.setSource(image.getSource());
+                    FullImageWindow fullImageWindow = new FullImageWindow(newImage);
                     UI.getCurrent().addWindow(fullImageWindow);
                 }
             });
@@ -41,9 +49,17 @@ public class REItemCardTabDocuments extends HorizontalLayout {
             deleteButton.addClickListener(new Button.ClickListener() {
                 @Override
                 public void buttonClick(Button.ClickEvent event) {
-                    reDocumentService.delete(reDocument);
+                    try {
+                        reDocumentService.delete(reDocument);
+                        removeComponent(box);
+                        Notification.show("Документ удален успешно");
+                    } catch (IOException e) {
+                        Notification.show("Не удалось удалить документ");
+                    }
                 }
             });
+            Label name = new Label("Название: " + reDocument.getFileName());
+            box.addComponent(name);
             box.addComponent(deleteButton);
             addComponent(box);
             setComponentAlignment(box, Alignment.MIDDLE_LEFT);

@@ -51,19 +51,13 @@ public class RETab extends VerticalLayout {
             @Override
             public void valueChange(Property.ValueChangeEvent event) {
                 String value = (String) event.getProperty().getValue();
-                realEstateTable.getBeanItemContainer().removeAllItems();
-                int numberOfItems = reService.getNumberOfItems(null);
-                List<RealEstate> reHistoryList = reService.getItemsFromRange(null, value, 0, numberOfItems);
-                realEstateTable.getBeanItemContainer().addAll(reHistoryList);
+                RETable.setSearchQuery(value);
+                realEstateTable.getLazyLoadContainer().refresh();
             }
         });
-        refresh();
     }
 
     private void refresh() {
-        realEstateTable.getBeanItemContainer().removeAllItems();
-        int numberOfItems = reService.getNumberOfItems(null);
-        List<RealEstate> reHistoryList = reService.getItemsFromRange(0, numberOfItems);
-        realEstateTable.getBeanItemContainer().addAll(reHistoryList);
+        realEstateTable.getLazyLoadContainer().refresh();
     }
 }

@@ -8,4 +8,6 @@ public interface REDocumentDao {
     Long saveOrUpdate(REDocument reDocument);
 
     List<REDocument> getDocuments(long reId);
+
+    void deleteDocument(REDocument reDocument);
 }

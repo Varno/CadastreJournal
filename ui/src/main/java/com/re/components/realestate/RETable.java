@@ -1,27 +1,26 @@
 package com.re.components.realestate;
 
-import com.re.entity.RealEstate;
 import com.re.service.REDocumentService;
 import com.re.service.REHistoryService;
 import com.re.service.RealEstateService;
+import com.re.util.REBeanQuery;
 import com.vaadin.data.Property;
-import com.vaadin.data.util.BeanItemContainer;
-import com.vaadin.event.Action;
 import com.vaadin.ui.Table;
 import com.vaadin.ui.Window;
 import com.vaadin.ui.themes.Runo;
+import org.vaadin.addons.lazyquerycontainer.*;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
+import java.util.*;
 
 public class RETable extends Table {
-    private BeanItemContainer<RealEstate> datasource;
+    /**кастыль*/
+    public static String searchQuery = null;
     private REHistoryService reHistoryService;
     private RealEstateService realEstateService;
     private REDocumentService reDocumentService;
     private RETableButtons reTableActions;
+    private LazyQueryContainer lazyLoadContainer;
 
 
     public RETable(RealEstateService realEstateService, REHistoryService reHistoryService,
@@ -34,7 +33,7 @@ public class RETable extends Table {
     }
 
     private void initTable() {
-        setContainerDataSource(getBeanItemContainer());
+        setContainerDataSource(getLazyLoadContainer());
         setWidth("80%");
         setHeight("100%");
         setColumnHeaderMode(ColumnHeaderMode.HIDDEN);
@@ -52,7 +51,7 @@ public class RETable extends Table {
         setColumnExpandRatio("number", 3);
         setColumnExpandRatio("square", 1);
         setColumnExpandRatio("desc", 14);
-        setPageLength(10);
+        setPageLength(6);
     }
 
      @Override
@@ -67,10 +66,26 @@ public class RETable extends Table {
         return super.formatPropertyValue(rowId, colId, property);
     }
 
-    public BeanItemContainer<RealEstate> getBeanItemContainer() {
-        if (datasource == null) {
-            datasource = new BeanItemContainer<RealEstate>(RealEstate.class);
+    public LazyQueryContainer getLazyLoadContainer() {
+        if(lazyLoadContainer == null){
+            BeanQueryFactory<REBeanQuery> beanQueryFactory = new BeanQueryFactory<REBeanQuery>(REBeanQuery.class);
+            Map<String, Object> queryConfiguration = new HashMap<String, Object>();
+            queryConfiguration.put("realEstateService", realEstateService);
+            beanQueryFactory.setQueryConfiguration(queryConfiguration);
+            QueryDefinition queryDefinition = new LazyQueryDefinition(false, 50, null);
+            LazyQueryView lazyQueryView = new LazyQueryView(queryDefinition, beanQueryFactory);
+
+            lazyLoadContainer = new LazyQueryContainer(lazyQueryView);
         }
-        return datasource;
+
+        return lazyLoadContainer;
+    }
+
+    public static String getSearchQuery() {
+        return searchQuery;
+    }
+
+    public static void setSearchQuery(String searchQuery) {
+        RETable.searchQuery = searchQuery;
     }
 }

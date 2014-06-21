@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.List;
 
 public interface RealEstateService {
-    List<RealEstate> getItemsFromRange(Long facilityId, String cadastralNumber, int startIndex, int endIndex);
+    List<RealEstate> getItemsFromRange(Long facilityId, String searchQuery, int startIndex, int endIndex);
     List<RealEstate> getItemsFromRange(int skipFirst, int numberOfItems);
 
     RealEstate getItem(Long facilityId);

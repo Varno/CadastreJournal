@@ -4,6 +4,9 @@ package com.re.service;
 import com.re.dao.document.REDocumentDao;
 import com.re.entity.REDocument;
 
+import java.io.IOException;
+import java.nio.file.Files;
+
 public class REDocumentServiceImpl implements REDocumentService {
     private REDocumentDao reDocumentDao;
 
@@ -17,7 +20,8 @@ public class REDocumentServiceImpl implements REDocumentService {
     }
 
     @Override
-    public void delete(REDocument reDocument) {
-        System.out.print("deleted");
+    public void delete(REDocument reDocument) throws IOException {
+        Files.delete(reDocument.getDocument().toPath());
+        reDocumentDao.deleteDocument(reDocument);
     }
 }

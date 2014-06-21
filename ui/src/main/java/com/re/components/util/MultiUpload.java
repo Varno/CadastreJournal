@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.*;
 
-public class MultiUpload extends MultiFileUpload implements Property.ValueChangeListener {
+public class MultiUpload extends MultiFileUpload{
     private REDocumentGallery reDocumentGallery;
     private static final String TEMP_FILE_DIR = new File(System.getProperty("java.io.tmpdir")).getPath();
     private List<REDocument> reDocumentsList = new ArrayList<REDocument>();
@@ -69,11 +69,6 @@ public class MultiUpload extends MultiFileUpload implements Property.ValueChange
             reDocumentGallery = new REDocumentGallery();
             addComponent(reDocumentGallery);
         }
-    }
-
-    @Override
-    public void valueChange(Property.ValueChangeEvent event) {
-        Notification.show("Value change event");
     }
 
     public List<REDocument> getReDocumentsList() {
