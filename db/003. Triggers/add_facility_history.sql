@@ -53,22 +53,22 @@ begin
     select
         XMLElement("Field", XMLForest('CADASTRAL_NUMBER' as Name
                       , :old.CADASTRAL_NUMBER as Old
-                      , 'null' as New)) || 
+                      , :old.CADASTRAL_NUMBER as New)) || 
         XMLElement("Field", XMLForest('SQUARE' as Name
                       , :old.SQUARE as Old
-                      , 'null' as New)) ||
+                      , :old.SQUARE as New)) ||
         XMLElement("Field", XMLForest('DESTINATION_ID' as Name
                       , :old.DESTINATION_ID as Old
-                      , 'null' as New)) ||
+                      , :old.DESTINATION_ID as New)) ||
         XMLElement("Field", XMLForest('AREA_DESCRIPTION' as Name
                       , :old.AREA_DESCRIPTION as Old
-                      , 'null' as New)) ||
+                      , :old.AREA_DESCRIPTION as New)) ||
         XMLElement("Field", XMLForest('USAGE_ID' as Name
                       , :old.USAGE_ID as Old
-                      , 'null' as New)) ||
+                      , :old.USAGE_ID as New)) ||
         XMLElement("Field", XMLForest('ADDRESS' as Name
                       , :old.ADDRESS as Old
-                      , 'null' as New)) x
+                      , :old.ADDRESS as New)) x
     into changes    
     from dual;
 

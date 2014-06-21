@@ -44,13 +44,13 @@ begin
     select
         XMLElement("Field", XMLForest('DOCUMENT_ID' as Name
                       , :old.DOCUMENT_ID as Old
-                      , 'null' as New)) || 
+                      , :old.DOCUMENT_ID as New)) || 
         XMLElement("Field", XMLForest('FILE_NAME' as Name
                       , :old.FILE_NAME as Old
-                      , 'null' as New)) ||
+                      , :old.FILE_NAME as New)) ||
         XMLElement("Field", XMLForest('STORED_PATH' as Name
                       , :old.STORED_PATH as Old
-                      , 'null' as New)) x
+                      , :old.FILE_NAME as New)) x
     into changes    
     from dual;
 
