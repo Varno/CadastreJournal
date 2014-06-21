@@ -623,8 +623,7 @@ end;
 -- v.1.0: Created by Pavel Kuznetsov 20/06/2014
 -- return history for facility (with docs history) or for all
 -- =============================================
-create or replace 
-procedure rrtest.get_facility_history
+create or replace procedure                                    get_facility_history
 (
   p_facility_id in number
   , p_skip in number
@@ -739,6 +738,7 @@ begin
               columns field_name varchar(20) path 'NAME',
                       old_value varchar(4000) path 'OLD',
                       new_value varchar(4000) path 'NEW') x
+    where x.field_name <> 'AREA_DESCRIPTION'
     ) r
   group by r.FACILITY_HISTORY_ID, r.record_order
   order by r.record_order ;
