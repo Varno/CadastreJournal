@@ -1,6 +1,6 @@
 package com.re.components.realestate;
 
-import com.re.components.CommonSettings;
+import com.re.components.util.CommonSettings;
 import com.re.entity.RealEstate;
 import com.vaadin.data.Item;
 import com.vaadin.data.util.BeanItem;
@@ -8,9 +8,6 @@ import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Table;
 import com.vaadin.ui.VerticalLayout;
-
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 
 public class RETableDescription implements Table.ColumnGenerator {
     public static final String FACILITY_ID = "FACILITY_ID";

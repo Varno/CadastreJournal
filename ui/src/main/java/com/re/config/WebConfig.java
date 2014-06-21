@@ -4,7 +4,6 @@ import com.re.ContextConfiguration;
 import com.re.components.history.HistoryTab;
 import com.re.components.history.HistoryTable;
 import com.re.components.realestate.RETab;
-import com.re.components.realestate.RETable;
 import com.re.components.realestate.ToolBar;
 import com.re.ui.RootUI;
 import com.re.views.RealEstateView;
@@ -19,12 +18,6 @@ public class WebConfig extends ContextConfiguration {
     public RequestContextListener requestContextListener() {
 
         return new RequestContextListener();
-    }
-
-    @Bean
-    @UIScope
-    public RealEstateView realEstateView(){
-       return new RealEstateView(historyTab(), reTab());
     }
 
     @Bean
@@ -49,6 +42,12 @@ public class WebConfig extends ContextConfiguration {
     @UIScope
     public ToolBar toolBar(){
         return new ToolBar();
+    }
+
+    @Bean
+    @UIScope
+    public RealEstateView realEstateView(){
+        return new RealEstateView(historyTab(), reTab());
     }
 
     @Bean

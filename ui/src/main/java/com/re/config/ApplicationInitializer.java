@@ -5,7 +5,6 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.web.SpringBootServletInitializer;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
 import org.vaadin.spring.boot.VaadinAutoConfiguration;
 import org.vaadin.spring.config.VaadinConfiguration;
 @EnableAutoConfiguration

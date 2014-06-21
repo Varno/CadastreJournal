@@ -12,7 +12,6 @@ import com.re.dao.usage.UsageDao;
 import com.re.dao.usage.UsageDaoImpl;
 import com.re.service.*;
 import org.apache.tomcat.dbcp.dbcp.BasicDataSource;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -69,7 +68,6 @@ public class ContextConfiguration {
     }
 
     @Bean
-    @ConfigurationProperties(prefix="datasource.mine")
     public DataSource dataSource() {
         /**
          * Oracle XE don't want work with RU-Locale:(
