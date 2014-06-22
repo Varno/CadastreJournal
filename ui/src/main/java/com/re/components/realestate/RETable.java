@@ -4,6 +4,7 @@ import com.re.service.REDocumentService;
 import com.re.service.REHistoryService;
 import com.re.service.RealEstateService;
 import com.re.util.REBeanQuery;
+import com.vaadin.data.Item;
 import com.vaadin.data.Property;
 import com.vaadin.ui.Table;
 import com.vaadin.ui.Window;
@@ -51,7 +52,8 @@ public class RETable extends Table {
         setColumnExpandRatio("number", 3);
         setColumnExpandRatio("square", 1);
         setColumnExpandRatio("desc", 14);
-        setPageLength(6);
+        setPageLength(7);
+        setCacheRate(1);
     }
 
      @Override
@@ -73,8 +75,8 @@ public class RETable extends Table {
             queryConfiguration.put("realEstateService", realEstateService);
             beanQueryFactory.setQueryConfiguration(queryConfiguration);
             QueryDefinition queryDefinition = new LazyQueryDefinition(false, 50, null);
+            queryDefinition.setDefaultSortPropertyIds(null);
             LazyQueryView lazyQueryView = new LazyQueryView(queryDefinition, beanQueryFactory);
-
             lazyLoadContainer = new LazyQueryContainer(lazyQueryView);
         }
 

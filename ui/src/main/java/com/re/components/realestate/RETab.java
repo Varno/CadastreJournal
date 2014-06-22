@@ -1,17 +1,14 @@
 package com.re.components.realestate;
 
 
-import com.re.entity.REHistory;
 import com.re.entity.RealEstate;
 import com.re.service.REDocumentService;
 import com.re.service.REHistoryService;
-import com.re.service.REHistoryServiceImpl;
 import com.re.service.RealEstateService;
 import com.vaadin.data.Property;
 import com.vaadin.ui.*;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Window;
-import java.util.List;
 
 public class RETab extends VerticalLayout {
     private RETable realEstateTable;

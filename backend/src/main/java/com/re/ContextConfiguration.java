@@ -12,8 +12,11 @@ import com.re.dao.usage.UsageDao;
 import com.re.dao.usage.UsageDaoImpl;
 import com.re.service.*;
 import org.apache.tomcat.dbcp.dbcp.BasicDataSource;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
@@ -22,6 +25,10 @@ import java.util.Locale;
 
 @Configuration
 public class ContextConfiguration {
+
+    @Autowired
+    public Environment environment;
+
     @Bean
     public RealEstateDao realEstateDao() {
         return new RealEstateDaoImpl(jdbcTemplate());
@@ -75,10 +82,10 @@ public class ContextConfiguration {
         //fixme: resolve problem with default spring boot datasource
         Locale.setDefault(Locale.ENGLISH);
         final BasicDataSource ds = new BasicDataSource();
-        ds.setDriverClassName("oracle.jdbc.OracleDriver");
-        ds.setUrl("jdbc:oracle:thin:@//localhost:1521/xe");
-        ds.setUsername("RRTEST");
-        ds.setPassword("1111");
+        ds.setDriverClassName(environment.getProperty("spring.datasource.driverClassName"));
+        ds.setUrl(environment.getProperty("spring.datasource.url"));
+        ds.setUsername(environment.getProperty("spring.datasource.username"));
+        ds.setPassword(environment.getProperty("spring.datasource.password"));
 
         return ds;
     }
