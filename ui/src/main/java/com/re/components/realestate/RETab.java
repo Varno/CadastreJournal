@@ -25,7 +25,7 @@ public class RETab extends VerticalLayout {
         }
     };
 
-    public RETab(ToolBar toolBar, RealEstateService _reService, REHistoryService _histService, REDocumentService reDocumentService) {
+    public RETab(ToolBar toolBar, RealEstateService _reService, REHistoryService _histService, final REDocumentService reDocumentService) {
         this.reService = _reService;
         this.reDocumentService = reDocumentService;
         this.realEstateTable = new RETable(reService, _histService, editWindowCloseHandler, reDocumentService);
@@ -33,7 +33,7 @@ public class RETab extends VerticalLayout {
         this.toolBar.getCreateREButton().addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent clickEvent) {
-                Window editWindow = REEditWindow.Build(reService, new RealEstate(), editWindowCloseHandler);
+                Window editWindow = REEditWindow.Build(reService, new RealEstate(), reDocumentService, editWindowCloseHandler);
                 UI.getCurrent().addWindow(editWindow);
             }
         });
@@ -53,6 +53,7 @@ public class RETab extends VerticalLayout {
                 String value = (String) event.getProperty().getValue();
                 RETable.setSearchQuery(value);
                 realEstateTable.getLazyLoadContainer().refresh();
+                RETable.setSearchQuery(null);
             }
         });
     }

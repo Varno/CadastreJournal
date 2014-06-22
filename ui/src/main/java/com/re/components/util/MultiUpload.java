@@ -1,29 +1,30 @@
 package com.re.components.util;
 
-import com.re.components.document.REDocumentGallery;
+import com.re.components.document.LoadedDocumentRow;
 import com.re.entity.REDocument;
-import com.vaadin.data.Property;
+import com.re.service.REDocumentService;
 import com.vaadin.server.FileResource;
 import com.vaadin.ui.*;
 import org.vaadin.easyuploads.FileBuffer;
 import org.vaadin.easyuploads.MultiFileUpload;
-import org.vaadin.peter.imagestrip.ImageStrip;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.*;
 
-public class MultiUpload extends MultiFileUpload{
-    private REDocumentGallery reDocumentGallery;
+public class MultiUpload extends MultiFileUpload {
     private static final String TEMP_FILE_DIR = new File(System.getProperty("java.io.tmpdir")).getPath();
     private List<REDocument> reDocumentsList = new ArrayList<REDocument>();
+    private VerticalLayout loadedDocumentsLayout = new VerticalLayout();
+    private REDocumentService reDocumentService;
 
-    public MultiUpload() {
+    public MultiUpload(REDocumentService reDocumentService) {
+        this.reDocumentService = reDocumentService;
         setUploadButtonCaption("Загрузить Документ");
         setRootDirectory(TEMP_FILE_DIR);
-        initREDocumentGallery();
         setSizeFull();
+        addComponent(loadedDocumentsLayout);
     }
 
     protected boolean supportsFileDrops() {
@@ -49,12 +50,11 @@ public class MultiUpload extends MultiFileUpload{
             e.printStackTrace();
             //fixme:log it
         }
-        FileResource resource = new FileResource(tempFile);
-        reDocumentGallery.addImage(resource);
         REDocument reDocument = new REDocument();
         reDocument.setFileName(tempFile.getName());
         reDocument.setTempDocumentFile(tempFile);
         reDocumentsList.add(reDocument);
+        addDocumentToDocementLayout(reDocument);
     }
 
     @Override
@@ -64,21 +64,35 @@ public class MultiUpload extends MultiFileUpload{
         return receiver;
     }
 
-    private void initREDocumentGallery() {
-        if (reDocumentGallery == null) {
-            reDocumentGallery = new REDocumentGallery();
-            addComponent(reDocumentGallery);
-        }
-    }
-
     public List<REDocument> getReDocumentsList() {
         return reDocumentsList;
     }
 
-    public void addREDocumentsToGallery(List<REDocument> list){
+    public void addREDocumentsToForm(List<REDocument> list) {
         setReDocumentsList(list);
-        reDocumentGallery.addDocsToGallery(list);
+        for (final REDocument reDocument : list) {
+            addDocumentToDocementLayout(reDocument);
+        }
 
+    }
+
+    private void addDocumentToDocementLayout(final REDocument reDocument) {
+        FileResource resource = new FileResource(reDocument.getDocument());
+        final LoadedDocumentRow newRow = new LoadedDocumentRow(reDocument.getFileName(), resource);
+
+        loadedDocumentsLayout.addComponent(newRow);
+        newRow.getDeleteButton().addClickListener(new Button.ClickListener() {
+            @Override
+            public void buttonClick(Button.ClickEvent event) {
+                try {
+                    loadedDocumentsLayout.removeComponent(newRow);
+                    getReDocumentsList().remove(reDocument);
+                    reDocumentService.delete(reDocument);
+                } catch (IOException e) {
+                    Notification.show("Не удалось удалить объект");
+                }
+            }
+        });
     }
 
     public void setReDocumentsList(List<REDocument> reDocumentsList) {
