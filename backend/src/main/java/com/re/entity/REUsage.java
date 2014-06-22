@@ -2,6 +2,7 @@ package com.re.entity;
 
 import java.io.Serializable;
 
+// Тип сущности - справочник разрешенного использования
 public class REUsage implements Serializable {
     private Long id;
     private String description;

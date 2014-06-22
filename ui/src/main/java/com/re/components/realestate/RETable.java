@@ -14,20 +14,15 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class RETable extends Table {
-    /**кастыль*/
     public static String searchQuery = null;
-    private REHistoryService reHistoryService;
     private RealEstateService realEstateService;
-    private REDocumentService reDocumentService;
     private RETableButtons reTableActions;
     private LazyQueryContainer lazyLoadContainer;
 
 
     public RETable(RealEstateService realEstateService, REHistoryService reHistoryService,
                    Window.CloseListener editWindowCloseHandler, REDocumentService reDocumentService) {
-        this.reHistoryService = reHistoryService;
         this.realEstateService = realEstateService;
-        this.reDocumentService = reDocumentService;
         this.reTableActions = new RETableButtons(realEstateService, reHistoryService, editWindowCloseHandler, reDocumentService);
         initTable();
     }

@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+// Репозитарий объектов недвижимости
 public class RealEstateDaoImpl implements RealEstateDao {
     protected JdbcTemplate jdbcTemplate;
 
