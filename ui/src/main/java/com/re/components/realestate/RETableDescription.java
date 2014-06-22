@@ -1,6 +1,7 @@
 package com.re.components.realestate;
 
 import com.re.components.util.CommonSettings;
+import com.re.entity.REDestination;
 import com.re.entity.RealEstate;
 import com.vaadin.data.Item;
 import com.vaadin.data.util.BeanItem;
@@ -26,15 +27,20 @@ public class RETableDescription implements Table.ColumnGenerator {
 
         HorizontalLayout hl = new HorizontalLayout();
         hl.setSpacing(true);
-        Label destination = new Label("Назначение: " + realEstate.getReDestination().getDescription());
-        hl.addComponent(destination);
+
+        if (realEstate.getReDestination() != null) {
+            Label destination = new Label("Назначение: " + realEstate.getReDestination().getDescription());
+            hl.addComponent(destination);
+        }
         if(realEstate.getReUsage() != null){
             Label usage = new Label("Разрешенное использование: " + realEstate.getReUsage().getDescription());
             hl.addComponent(usage);
         }
-        Label modifiedDate = new Label("Время последнего изменения: "
-                + CommonSettings.DATE_FORMAT.format(realEstate.getModifiedDate().getTime()));
-        hl.addComponent(modifiedDate);
+        if (realEstate.getModifiedDate() != null) {
+            Label modifiedDate = new Label("Время последнего изменения: "
+                    + CommonSettings.DATE_FORMAT.format(realEstate.getModifiedDate().getTime()));
+            hl.addComponent(modifiedDate);
+        }
         vl.addComponent(hl);
 
         return vl;
