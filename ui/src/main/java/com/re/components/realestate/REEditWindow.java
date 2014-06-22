@@ -3,6 +3,7 @@ package com.re.components.realestate;
 import com.re.entity.REDestination;
 import com.re.entity.REUsage;
 import com.re.entity.RealEstate;
+import com.re.service.REDocumentService;
 import com.re.service.RealEstateService;
 import com.re.components.util.MultiUpload;
 import com.vaadin.data.fieldgroup.BeanFieldGroup;
@@ -19,6 +20,7 @@ public class REEditWindow extends Window {
     private static final String SQUARE_VALID_ERR_MSG =
             "Не допустимое значение. Допускается только положительное целое или вещественное число";
     private RealEstateService realEstateService;
+    private REDocumentService reDocumentService;
     private RealEstate entity;
     private TextField cadastralNumberField = new TextField("Кадастровый №");
     private TextField squareField = new TextField();
@@ -26,22 +28,23 @@ public class REEditWindow extends Window {
     private TextField addressField = new TextField("Адрес");
     private ComboBox destinationCombobox = new ComboBox("Назначение");
     private ComboBox usageCombobox = new ComboBox("Разрешенное использование");
-    private MultiUpload multiUploader = new MultiUpload();
+    private MultiUpload multiUploader;
 
-    public REEditWindow(RealEstate entity, RealEstateService realEstateService) {
+    public REEditWindow(RealEstate entity, RealEstateService realEstateService, REDocumentService reDocumentService) {
         super(entity.getId() == null ? "Создать объект недвижимости" : "Изменить объект недвижимости");
         this.entity = entity;
         this.realEstateService = realEstateService;
+        multiUploader = new MultiUpload(reDocumentService);
         center();
         setModal(true);
         initLayout();
         initFormField();
-        initDocumentsGallery(entity);
+        initDocumentsInForm(entity);
     }
 
-    private void initDocumentsGallery(RealEstate entity) {
+    private void initDocumentsInForm(RealEstate entity) {
         if(entity.getId() != null && entity.getReDocumentList() != null && !entity.getReDocumentList().isEmpty()){
-            multiUploader.addREDocumentsToGallery(entity.getReDocumentList());
+            multiUploader.addREDocumentsToForm(entity.getReDocumentList());
         }
 
     }
@@ -184,10 +187,10 @@ public class REEditWindow extends Window {
         setContent(form);
     }
 
-    public static Window Build(RealEstateService reService, RealEstate entity, CloseListener handler) {
+    public static Window Build(RealEstateService reService, RealEstate entity, REDocumentService reDocumentService, CloseListener handler) {
         if (entity.getId() != null)
             entity = reService.getItem(entity.getId());
-        REEditWindow result = new REEditWindow(entity, reService);
+        REEditWindow result = new REEditWindow(entity, reService, reDocumentService);
         result.addCloseListener(handler);
         return result;
     }

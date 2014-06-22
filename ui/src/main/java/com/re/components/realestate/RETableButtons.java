@@ -25,7 +25,7 @@ public class RETableButtons implements Table.ColumnGenerator {
 
     @Override
     public Object generateCell(final Table source, final Object itemId, Object columnId) {
-        VerticalLayout vl = new VerticalLayout();
+        CssLayout vl = new CssLayout();
         Button edit = new Button("Редактировать");
         edit.setStyleName(Runo.BUTTON_LINK);
         edit.addClickListener(new Button.ClickListener() {
@@ -34,7 +34,7 @@ public class RETableButtons implements Table.ColumnGenerator {
                 Item item = source.getItem(itemId);
                 BeanItem<RealEstate> beanItem = (BeanItem<RealEstate>) item;
                 RealEstate realEstate = beanItem.getBean();
-                Window editWindow = REEditWindow.Build(realEstateService, realEstate, editWindowCloseHandler);
+                Window editWindow = REEditWindow.Build(realEstateService, realEstate, reDocumentService, editWindowCloseHandler);
                 UI.getCurrent().addWindow(editWindow);
             }
         });
@@ -51,11 +51,11 @@ public class RETableButtons implements Table.ColumnGenerator {
             }
         });
         show.setStyleName(Runo.BUTTON_LINK);
-        vl.setSpacing(true);
+        //vl.setSpacing(true);
         vl.addComponent(show);
         vl.addComponent(edit);
-        vl.setComponentAlignment(show, Alignment.MIDDLE_CENTER);
-        vl.setComponentAlignment(edit, Alignment.MIDDLE_CENTER);
+        //vl.setComponentAlignment(show, Alignment.MIDDLE_CENTER);
+        //vl.setComponentAlignment(edit, Alignment.MIDDLE_CENTER);
         return vl;
     }
 }

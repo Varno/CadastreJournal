@@ -1,6 +1,7 @@
 package com.re.components.realestate;
 
 
+import com.vaadin.server.Resource;
 import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.Image;
 import com.vaadin.ui.Window;
