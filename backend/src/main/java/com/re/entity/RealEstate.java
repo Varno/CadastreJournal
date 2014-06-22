@@ -3,6 +3,7 @@ package com.re.entity;
 import java.util.Calendar;
 import java.util.List;
 
+// Тип сущности - объект недвижимости
 public class RealEstate {
     private Long id;
     private String cadastralNumber;

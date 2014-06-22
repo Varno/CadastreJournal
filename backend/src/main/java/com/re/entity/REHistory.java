@@ -3,6 +3,7 @@ package com.re.entity;
 import java.io.Serializable;
 import java.util.Calendar;
 
+// Тип сущности - история изменения объекта недвижимости
 public class REHistory implements Serializable {
     public static final String FIELD_ID = "id";
     public static final String FIELD_MODIFIED_DATE = "modifiedDate";

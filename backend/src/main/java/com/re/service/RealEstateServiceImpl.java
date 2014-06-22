@@ -21,15 +21,18 @@ import java.util.List;
 import java.util.Map;
 
 public class RealEstateServiceImpl implements RealEstateService {
-
+    // Кэширование справочников
     private static List<REUsage> cachedUsages;
+    private static List<REDestination> cachedDestinations;
+
     private RealEstateDao realEstateDao;
     private DestinationDao destinationDao;
     private UsageDao usageDao;
     private REDocumentDao reDocumentDao;
     private final String EMPTY_SEARCH = "";
 
-    public RealEstateServiceImpl(RealEstateDao realEstateDao, DestinationDao destinationDao, UsageDao usageDao, REDocumentDao reDocumentDao) {
+    public RealEstateServiceImpl(RealEstateDao realEstateDao, DestinationDao destinationDao, UsageDao usageDao,
+                                 REDocumentDao reDocumentDao) {
         this.realEstateDao = realEstateDao;
         this.destinationDao = destinationDao;
         this.usageDao = usageDao;
@@ -38,7 +41,6 @@ public class RealEstateServiceImpl implements RealEstateService {
 
     @Override
     public List<RealEstate> getItemsFromRange(Long facilityId, String searchQuery, int skipFirst, int numberOfItems) {
-        //stored procedure doesn't work with null cadastralNumber value
         if (searchQuery == null) {
             searchQuery = EMPTY_SEARCH;
         }
@@ -88,7 +90,9 @@ public class RealEstateServiceImpl implements RealEstateService {
 
     @Override
     public List<REDestination> findAllREDestinations() {
-        return destinationDao.getAll();
+        if (cachedDestinations == null)
+            cachedDestinations = destinationDao.getAll();
+        return cachedDestinations;
     }
 
     @Override

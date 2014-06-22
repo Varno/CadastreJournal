@@ -4,6 +4,7 @@ import com.re.entity.RealEstate;
 
 import java.util.List;
 
+// Репозитарий объектов недвижимости
 public interface RealEstateDao {
     List<RealEstate> getItemsFromRange(Long facilityId, String searchQuery, int startIndex, int endIndex);
 

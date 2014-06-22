@@ -76,10 +76,6 @@ public class ContextConfiguration {
 
     @Bean
     public DataSource dataSource() {
-        /**
-         * Oracle XE don't want work with RU-Locale:(
-         */
-        //fixme: resolve problem with default spring boot datasource
         Locale.setDefault(Locale.ENGLISH);
         final BasicDataSource ds = new BasicDataSource();
         ds.setDriverClassName(environment.getProperty("spring.datasource.driverClassName"));

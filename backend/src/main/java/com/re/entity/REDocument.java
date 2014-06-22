@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.Serializable;
 import java.util.Calendar;
 
+// Тип дочерней (связанной) сущности - документ объекта недвижисти
 public class REDocument implements Serializable {
     private Long id;
     private Long realEstateId;

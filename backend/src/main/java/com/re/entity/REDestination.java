@@ -2,6 +2,7 @@ package com.re.entity;
 
 import java.io.Serializable;
 
+// Тип сущности - справочник назначений
 public class REDestination implements Serializable {
     private Long id;
     private String description;
