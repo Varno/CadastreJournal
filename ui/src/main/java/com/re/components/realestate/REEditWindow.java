@@ -157,7 +157,12 @@ public class REEditWindow extends Window {
                         try {
                             entity.setReDocumentList(multiUploader.getReDocumentsList());
                             realEstateService.saveOrUpdate(entity);
-                        } catch (org.springframework.dao.DataAccessException e) {
+                        }
+                        catch (org.springframework.dao.DuplicateKeyException e) {
+                            throw new FieldGroup.CommitException(
+                                    String.format("Объект недвижимости с кадастровым номером %s уже существует. Измените кадастровый номер и повторите сохранение", entity.getCadastralNumber()));
+                        }
+                        catch (org.springframework.dao.DataAccessException e) {
                             throw new FieldGroup.CommitException(e.getMessage(), e.getCause());
                         } catch (IOException e) {
                             throw new FieldGroup.CommitException("Не удалось сохранить документы");
@@ -169,7 +174,6 @@ public class REEditWindow extends Window {
                         Notification.show("Невозможно сохранить некорректные изменения, нужно исправить некоректные значения в полях ввода и повторить сохранение еще раз.");
                 } catch (FieldGroup.CommitException e) {
                     Notification.show("Ошибка сохранения. Подробнее: " + e.getMessage());
-                    close();
                 }
             }
         }));
