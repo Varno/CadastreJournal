@@ -548,6 +548,10 @@ begin
 
     end if;
 
+    if (p_rowcount > 1000) then
+      p_rowcount := 1000;
+    end if;
+
     open p_cursor for
     select 
       f.FACILITY_ID
