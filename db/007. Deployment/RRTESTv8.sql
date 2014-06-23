@@ -493,30 +493,27 @@ begin
       select rrtest.r_page(p.FACILITY_ID, p.rnk)
       bulk collect into temp_page
       from 
-         (select 
+        (select
+          x.FACILITY_ID
+          , row_number() over (order by x.CADASTRAL_NUMBER asc) as rnk
+        from 
+          (select 
             FACILITY_ID
-            , row_number() over (order by CADASTRAL_NUMBER asc) as rnk
+            , CADASTRAL_NUMBER
           from RRTEST.FACILITIES
           where CADASTRAL_NUMBER like l_search_string escape '|'
             and rownum < 1000
-          ) p
+          union 
+          select 
+            FACILITY_ID
+            , CADASTRAL_NUMBER
+          from RRTEST.FACILITIES
+          where contains(SEARCH_KEY, p_search_string) > 0 
+            and rownum < 1000
+          order by CADASTRAL_NUMBER
+          ) x
+        ) p
       where p.rnk > p_skip and p.rnk <= l_take;
-      
-      if (temp_page.count = 0) then
-
-        select rrtest.r_page(p.FACILITY_ID, p.rnk)
-        bulk collect into temp_page
-        from 
-            (select 
-              FACILITY_ID
-              , row_number() over (order by CADASTRAL_NUMBER asc) as rnk
-            from RRTEST.FACILITIES
-            where contains(SEARCH_KEY, p_search_string) > 0 
-              and rownum < 1000
-            ) p
-        where p.rnk > p_skip and p.rnk <= l_take;
-      
-      end if;
 
       select count(*) into p_rowcount
       from
