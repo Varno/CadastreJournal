@@ -2,6 +2,7 @@ package com.re.components.util;
 
 import com.re.components.document.LoadedDocumentRow;
 import com.re.entity.REDocument;
+import com.re.entity.RealEstate;
 import com.re.service.REDocumentService;
 import com.vaadin.server.FileResource;
 import com.vaadin.ui.*;
@@ -77,8 +78,10 @@ public class MultiUpload extends MultiFileUpload {
     }
 
     private void addDocumentToDocementLayout(final REDocument reDocument) {
-        FileResource resource = new FileResource(reDocument.getDocument());
-        final LoadedDocumentRow newRow = new LoadedDocumentRow(reDocument.getFileName(), resource);
+        RealEstate rEstate = reDocument.getRealEstate();
+        final boolean isREstateExists = rEstate != null;
+        FileResource resource =  new FileResource(reDocument.getDocument());
+        final LoadedDocumentRow newRow = new LoadedDocumentRow(reDocument.getFileName(), resource, isREstateExists);
 
         loadedDocumentsLayout.addComponent(newRow);
         newRow.getDeleteButton().addClickListener(new Button.ClickListener() {
@@ -87,7 +90,8 @@ public class MultiUpload extends MultiFileUpload {
                 try {
                     loadedDocumentsLayout.removeComponent(newRow);
                     getReDocumentsList().remove(reDocument);
-                    reDocumentService.delete(reDocument);
+                    if (reDocument.getId() != null)
+                        reDocumentService.delete(reDocument);
                 } catch (IOException e) {
                     Notification.show("Не удалось удалить объект");
                 }
