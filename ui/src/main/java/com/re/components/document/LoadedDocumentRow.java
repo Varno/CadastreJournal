@@ -11,7 +11,7 @@ public class LoadedDocumentRow extends HorizontalLayout {
     private Button showButton = new Button("Просмотр");
     private Button deleteButton = new Button("Удалить");
 
-    public LoadedDocumentRow(String name, FileResource documentResource) {
+    public LoadedDocumentRow(String name, FileResource documentResource, boolean isAllowPreview) {
         this.name = name;
         this.documentResource = documentResource;
         setSpacing(true);
@@ -20,20 +20,21 @@ public class LoadedDocumentRow extends HorizontalLayout {
         Label nameLabel = new Label(name);
         nameLabel.setStyleName("h3");
         addComponent(nameLabel);
+        setExpandRatio(nameLabel, 4);
 
-        if (this.documentResource != null) {
+        deleteButton.setStyleName(Runo.BUTTON_LINK);
+        addComponent(deleteButton);
+        setExpandRatio(deleteButton, 1);
+
+        if (isAllowPreview) {
             showButton.setStyleName(Runo.BUTTON_LINK);
-            deleteButton.setStyleName(Runo.BUTTON_LINK);
             addComponent(showButton);
-            addComponent(deleteButton);
-            setExpandRatio(nameLabel, 4);
             setExpandRatio(showButton, 1);
-            setExpandRatio(deleteButton, 1);
-            initButtonListeners();
+            initShowButtonListeners();
         }
     }
 
-    private void initButtonListeners() {
+    private void initShowButtonListeners() {
         showButton.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent event) {
@@ -45,7 +46,6 @@ public class LoadedDocumentRow extends HorizontalLayout {
                 } else {
                     Notification.show("Ошибка. Файл не найден");
                 }
-
             }
         });
     }
