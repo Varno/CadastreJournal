@@ -66,7 +66,7 @@ begin
             FACILITY_ID
             , CADASTRAL_NUMBER
           from RRTEST.FACILITIES
-          where contains(SEARCH_KEY, p_search_string) > 0 
+          where contains(SEARCH_KEY, '{'||p_search_string||'}') > 0 
             and rownum < 1000
           order by CADASTRAL_NUMBER
           ) x
@@ -82,7 +82,7 @@ begin
         union
         select rowid
         from RRTEST.FACILITIES
-        where contains(SEARCH_KEY, p_search_string) > 0
+        where contains(SEARCH_KEY, '{'||p_search_string||'}') > 0
       );
 
     else
