@@ -20,15 +20,17 @@ public class LoadedDocumentRow extends HorizontalLayout {
         Label nameLabel = new Label(name);
         nameLabel.setStyleName("h3");
         addComponent(nameLabel);
-        showButton.setStyleName(Runo.BUTTON_LINK);
-        deleteButton.setStyleName(Runo.BUTTON_LINK);
-        addComponent(showButton);
-        addComponent(deleteButton);
-        setExpandRatio(nameLabel, 4);
-        setExpandRatio(showButton, 1);
-        setExpandRatio(deleteButton, 1);
-        initButtonListeners();
 
+        if (this.documentResource != null) {
+            showButton.setStyleName(Runo.BUTTON_LINK);
+            deleteButton.setStyleName(Runo.BUTTON_LINK);
+            addComponent(showButton);
+            addComponent(deleteButton);
+            setExpandRatio(nameLabel, 4);
+            setExpandRatio(showButton, 1);
+            setExpandRatio(deleteButton, 1);
+            initButtonListeners();
+        }
     }
 
     private void initButtonListeners() {

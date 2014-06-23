@@ -2,6 +2,7 @@ package com.re.components.util;
 
 import com.re.components.document.LoadedDocumentRow;
 import com.re.entity.REDocument;
+import com.re.entity.RealEstate;
 import com.re.service.REDocumentService;
 import com.vaadin.server.FileResource;
 import com.vaadin.ui.*;
@@ -77,7 +78,8 @@ public class MultiUpload extends MultiFileUpload {
     }
 
     private void addDocumentToDocementLayout(final REDocument reDocument) {
-        FileResource resource = new FileResource(reDocument.getDocument());
+        RealEstate rEstate = reDocument.getRealEstate();
+        FileResource resource = rEstate != null ? new FileResource(reDocument.getDocument()): null;
         final LoadedDocumentRow newRow = new LoadedDocumentRow(reDocument.getFileName(), resource);
 
         loadedDocumentsLayout.addComponent(newRow);
