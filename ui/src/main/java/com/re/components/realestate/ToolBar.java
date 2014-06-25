@@ -1,21 +1,24 @@
 package com.re.components.realestate;
 
-import com.re.components.realestate.REEditWindow;
-import com.re.entity.RealEstate;
-import com.re.service.RealEstateService;
+import com.re.config.auth.LogoutListener;
 import com.vaadin.ui.*;
 
 
 public class ToolBar extends HorizontalLayout {
     private Button createREButton;
     private TextField searchField;
+    private Button logoutButton;
+
 
     public ToolBar() {
         initButton();
         initSearch();
+
         setSpacing(true);
         setMargin(true);
         setWidth("50%");
+        addComponent(logoutButton);
+        setComponentAlignment(logoutButton, Alignment.BOTTOM_LEFT);
         addComponent(createREButton);
         HorizontalLayout hl = new HorizontalLayout();
         hl.setSpacing(true);
@@ -37,6 +40,11 @@ public class ToolBar extends HorizontalLayout {
     private void initButton() {
         if(createREButton == null){
             createREButton = new Button("Добавить");
+        }
+
+        if(logoutButton == null) {
+            logoutButton = new Button("Выход");
+            logoutButton.addClickListener( new LogoutListener());
         }
     }
 

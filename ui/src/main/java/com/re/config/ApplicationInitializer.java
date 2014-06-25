@@ -17,6 +17,7 @@ public class ApplicationInitializer extends SpringBootServletInitializer {
         return application.showBanner(false)
                 .sources(ContextConfiguration.class)
                 .sources(VaadinAutoConfiguration.class, VaadinConfiguration.class)
-                .sources(WebConfig.class);
+                .sources(WebConfig.class)
+                .sources(SecurityConfig.class);
     }
 }
