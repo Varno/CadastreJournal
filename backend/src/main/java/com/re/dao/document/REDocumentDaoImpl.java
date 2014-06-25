@@ -5,6 +5,8 @@ import com.re.dao.realestate.GetREStoredProcedure;
 import com.re.dao.realestate.REDaoConstants;
 import com.re.entity.REDocument;
 import com.re.entity.RealEstate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.math.BigDecimal;

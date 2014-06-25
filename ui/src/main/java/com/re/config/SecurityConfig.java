@@ -1,15 +1,16 @@
 package com.re.config;
 
+import com.re.auth.UserService;
 import com.re.components.login.LoginForm;
 import com.re.config.auth.AuthManager;
 import com.re.config.auth.LoginFormListener;
-import com.re.config.auth.UserService;
 import com.re.views.LoginView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration;
+import org.springframework.security.web.context.SecurityContextPersistenceFilter;
 import org.vaadin.spring.UIScope;
 
 @EnableGlobalMethodSecurity
@@ -44,5 +45,8 @@ public class SecurityConfig extends GlobalMethodSecurityConfiguration {
         return new LoginForm(loginFormListener());
     }
 
-
+    @Bean
+    public SecurityContextPersistenceFilter securityContextPersistenceFilter(){
+        return new SecurityContextPersistenceFilter();
+    }
 }

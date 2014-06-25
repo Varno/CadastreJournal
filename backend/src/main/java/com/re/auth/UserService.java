@@ -1,8 +1,10 @@
-package com.re.config.auth;
+package com.re.auth;
 
 import org.springframework.core.env.Environment;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -30,5 +32,12 @@ public class UserService implements UserDetailsService {
         }
 
         return null;
+    }
+
+    public String getCurrentUserName() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null)
+            return auth.getName();
+        return "Anonymous";
     }
 }

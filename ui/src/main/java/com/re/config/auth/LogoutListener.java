@@ -10,7 +10,6 @@ public class LogoutListener implements Button.ClickListener {
     @Override
     public void buttonClick(Button.ClickEvent clickEvent) {
         SecurityContextHolder.clearContext();
-        UI.getCurrent().getSession().close();
         Navigator navigator = UI.getCurrent().getNavigator();
         navigator.navigateTo(LoginView.NAME);
     }
