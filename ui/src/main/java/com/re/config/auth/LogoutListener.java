@@ -14,7 +14,6 @@ public class LogoutListener implements Button.ClickListener {
 
     public static void logout() {
         SecurityContextHolder.clearContext();
-        Navigator navigator = UI.getCurrent().getNavigator();
-        navigator.navigateTo(LoginView.NAME);
+        UI.getCurrent().getPage().reload();
     }
 }

@@ -52,7 +52,7 @@ public class ContextConfiguration {
 
     @Bean
     public REDocumentDao reDocumentDao() {
-        return new REDocumentDaoImpl(jdbcTemplate());
+        return new REDocumentDaoImpl(userService(), jdbcTemplate());
     }
 
     @Bean

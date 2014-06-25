@@ -1,6 +1,7 @@
 package com.re.dao.document;
 
 
+import com.re.auth.UserService;
 import com.re.dao.realestate.GetREStoredProcedure;
 import com.re.dao.realestate.REDaoConstants;
 import com.re.entity.REDocument;
@@ -16,20 +17,23 @@ import java.util.Map;
 
 public class REDocumentDaoImpl implements REDocumentDao{
     protected JdbcTemplate jdbcTemplate;
+    private UserService userService;
 
-    public REDocumentDaoImpl(JdbcTemplate jdbcTemplate) {
+    public REDocumentDaoImpl(UserService userService, JdbcTemplate jdbcTemplate) {
+        this.userService = userService;
         this.jdbcTemplate = jdbcTemplate;
     }
 
     @Override
     public Long saveOrUpdate(REDocument reDocument) {
+        String currentUserName = userService.getCurrentUserName();
         UpdateREDocumentsStoredProcedure updateREDocumentsStoredProcedure = new UpdateREDocumentsStoredProcedure(jdbcTemplate);
         Map inputs = new HashMap();
         inputs.put(REDocumentDaoConstants.P_DOCUMENT_ID, reDocument.getId());
         inputs.put(REDocumentDaoConstants.P_FACILITY_ID, reDocument.getRealEstate().getId());
         inputs.put(REDocumentDaoConstants.P_FILE_NAME, reDocument.getFileName());
         inputs.put(REDocumentDaoConstants.P_STORED_PATH, reDocument.getStoredPath());
-        inputs.put(REDocumentDaoConstants.P_USER_NAME, "TestUser");
+        inputs.put(REDocumentDaoConstants.P_USER_NAME, currentUserName);
         inputs.put(REDocumentDaoConstants.P_USER_IP, "127.0.0.1");
         Map result = updateREDocumentsStoredProcedure.execute(inputs);
         BigDecimal count = (BigDecimal)result.get(REDocumentDaoConstants.P_INSERTED_ID);
@@ -48,10 +52,11 @@ public class REDocumentDaoImpl implements REDocumentDao{
 
     @Override
     public void deleteDocument(REDocument reDocument) {
+        String currentUserName = userService.getCurrentUserName();
         DeleteREDocumentStoredProcedure  proc = new DeleteREDocumentStoredProcedure(jdbcTemplate);
         Map inputs = new HashMap();
         inputs.put(REDocumentDaoConstants.P_DOCUMENT_ID, reDocument.getId());
-        inputs.put(REDocumentDaoConstants.P_USER_NAME, "TestUser");
+        inputs.put(REDocumentDaoConstants.P_USER_NAME, currentUserName);
         inputs.put(REDocumentDaoConstants.P_USER_IP, "127.0.0.1");
         proc.execute(inputs);
     }
