@@ -1,7 +1,11 @@
 package com.re.components.login;
 
 import com.re.config.auth.LoginFormListener;
+import com.vaadin.event.ShortcutAction;
+import com.vaadin.event.ShortcutListener;
 import com.vaadin.ui.*;
+
+import javax.swing.*;
 
 public class LoginForm extends VerticalLayout {
     private TextField nameField = new TextField("Логин: ");
@@ -22,6 +26,7 @@ public class LoginForm extends VerticalLayout {
         addComponent(loginlayout);
         setComponentAlignment(loginlayout, Alignment.TOP_CENTER);
         btnLogin.addClickListener(loginFormListener);
+        btnLogin.setClickShortcut(ShortcutAction.KeyCode.ENTER);
     }
 
     public TextField getTxtLogin() {
