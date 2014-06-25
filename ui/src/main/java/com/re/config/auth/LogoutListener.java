@@ -9,6 +9,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 public class LogoutListener implements Button.ClickListener {
     @Override
     public void buttonClick(Button.ClickEvent clickEvent) {
+        logout();
+    }
+
+    public static void logout() {
         SecurityContextHolder.clearContext();
         Navigator navigator = UI.getCurrent().getNavigator();
         navigator.navigateTo(LoginView.NAME);

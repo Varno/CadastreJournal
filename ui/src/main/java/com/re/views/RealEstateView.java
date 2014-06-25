@@ -2,6 +2,7 @@ package com.re.views;
 
 import com.re.components.history.HistoryTab;
 import com.re.components.realestate.RETab;
+import com.re.config.auth.LogoutListener;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
@@ -27,15 +28,25 @@ public class RealEstateView extends VerticalLayout implements View {
     private void initTabSheet() {
         if (tabSheet == null) {
             tabSheet = new TabSheet();
+            reTab.setSizeFull();
             tabSheet.addTab(reTab).setCaption("Объекты недвижимости");
             tabSheet.addTab(historyTab).setCaption("История изменений");
+            TabSheet.Tab closeTab = tabSheet.addTab(new CssLayout());
+            closeTab.setCaption("Выход");
             tabSheet.addSelectedTabChangeListener(new TabSheet.SelectedTabChangeListener() {
                 @Override
                 public void selectedTabChange(TabSheet.SelectedTabChangeEvent selectedTabChangeEvent) {
                     Component selectedTab = selectedTabChangeEvent.getTabSheet().getSelectedTab();
+                    RETab reTab = (selectedTab instanceof RETab) ? (RETab) selectedTab : null;
                     HistoryTab historyTab = (selectedTab instanceof HistoryTab) ? (HistoryTab) selectedTab : null;
-                    if (historyTab != null) {
+                    if (reTab != null) {
+                        reTab.refresh();
+                    }
+                    else if (historyTab != null) {
                         historyTab.refresh();
+                    }
+                    else {
+                        LogoutListener.logout();
                     }
                 }
             });

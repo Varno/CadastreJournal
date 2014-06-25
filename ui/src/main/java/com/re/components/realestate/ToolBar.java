@@ -7,8 +7,6 @@ import com.vaadin.ui.*;
 public class ToolBar extends HorizontalLayout {
     private Button createREButton;
     private TextField searchField;
-    private Button logoutButton;
-
 
     public ToolBar() {
         initButton();
@@ -17,8 +15,6 @@ public class ToolBar extends HorizontalLayout {
         setSpacing(true);
         setMargin(true);
         setWidth("50%");
-        addComponent(logoutButton);
-        setComponentAlignment(logoutButton, Alignment.BOTTOM_LEFT);
         addComponent(createREButton);
         HorizontalLayout hl = new HorizontalLayout();
         hl.setSpacing(true);
@@ -40,11 +36,6 @@ public class ToolBar extends HorizontalLayout {
     private void initButton() {
         if(createREButton == null){
             createREButton = new Button("Добавить");
-        }
-
-        if(logoutButton == null) {
-            logoutButton = new Button("Выход");
-            logoutButton.addClickListener( new LogoutListener());
         }
     }
 

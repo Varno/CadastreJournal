@@ -12,7 +12,6 @@ public class RETableSquare implements Table.ColumnGenerator {
     @Override
     public Object generateCell(Table source, Object itemId, Object columnId) {
         CssLayout vl = new CssLayout();
-        //vl.setSpacing(true);
         Item item = source.getItem(itemId);
         BeanItem<RealEstate> beanItem = (BeanItem<RealEstate>) item;
         RealEstate realEstate = beanItem.getBean();
