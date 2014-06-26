@@ -7,12 +7,19 @@ import com.re.components.realestate.RETab;
 import com.re.components.realestate.ToolBar;
 import com.re.ui.RootUI;
 import com.re.views.RealEstateView;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.context.request.RequestContextListener;
 import org.vaadin.spring.UIScope;
+import org.vaadin.spring.navigator.SpringViewProvider;
 
 public class WebConfig extends ContextConfiguration {
+
+    @Autowired
+    public ApplicationContext applicationContext;
+
     @Bean
     @ConditionalOnMissingBean(RequestContextListener.class)
     public RequestContextListener requestContextListener() {
@@ -21,6 +28,10 @@ public class WebConfig extends ContextConfiguration {
     }
 
     @Bean
+    public SpringViewProvider springViewProvider(){
+        return new SpringViewProvider(applicationContext);
+    }
+
     @UIScope
     public RETab reTab(){
         return new RETab(toolBar(), realEstateService(), reHistoryService(), reDocumentService());
@@ -53,6 +64,6 @@ public class WebConfig extends ContextConfiguration {
     @Bean
     @UIScope
     public RootUI rootUI() {
-        return new RootUI(realEstateView());
+        return new RootUI();
     }
 }

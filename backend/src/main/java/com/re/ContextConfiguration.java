@@ -1,5 +1,6 @@
 package com.re;
 
+import com.re.auth.UserService;
 import com.re.dao.destination.DestinationDao;
 import com.re.dao.destination.DestinationDaoImpl;
 import com.re.dao.document.REDocumentDao;
@@ -30,8 +31,8 @@ public class ContextConfiguration {
     public Environment environment;
 
     @Bean
-    public RealEstateDao realEstateDao() {
-        return new RealEstateDaoImpl(jdbcTemplate());
+    public RealEstateDao realEstateDao(UserService userService) {
+        return new RealEstateDaoImpl(userService, jdbcTemplate());
     }
 
     @Bean
@@ -51,7 +52,7 @@ public class ContextConfiguration {
 
     @Bean
     public REDocumentDao reDocumentDao() {
-        return new REDocumentDaoImpl(jdbcTemplate());
+        return new REDocumentDaoImpl(userService(), jdbcTemplate());
     }
 
     @Bean
@@ -61,7 +62,7 @@ public class ContextConfiguration {
 
     @Bean
     public RealEstateService realEstateService() {
-        return new RealEstateServiceImpl(realEstateDao(), destinationDao(), usageDao(), reDocumentDao());
+        return new RealEstateServiceImpl(realEstateDao(userService()), destinationDao(), usageDao(), reDocumentDao());
     }
 
     @Bean
@@ -72,6 +73,11 @@ public class ContextConfiguration {
     @Bean
     public JdbcTemplate jdbcTemplate() {
         return new JdbcTemplate(dataSource());
+    }
+
+    @Bean
+    public UserService userService(){
+        return new UserService(environment);
     }
 
     @Bean

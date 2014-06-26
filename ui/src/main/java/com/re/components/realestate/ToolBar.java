@@ -1,8 +1,6 @@
 package com.re.components.realestate;
 
-import com.re.components.realestate.REEditWindow;
-import com.re.entity.RealEstate;
-import com.re.service.RealEstateService;
+import com.re.config.auth.LogoutListener;
 import com.vaadin.ui.*;
 
 
@@ -13,6 +11,7 @@ public class ToolBar extends HorizontalLayout {
     public ToolBar() {
         initButton();
         initSearch();
+
         setSpacing(true);
         setMargin(true);
         setWidth("50%");

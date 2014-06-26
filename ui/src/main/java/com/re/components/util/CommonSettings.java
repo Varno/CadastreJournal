@@ -5,5 +5,5 @@ import java.text.SimpleDateFormat;
 
 public class CommonSettings extends VerticalLayout {
 
-    public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd.MM.yyyy hh:mm:ss");
+    public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
 }

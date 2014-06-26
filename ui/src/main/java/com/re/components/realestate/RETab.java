@@ -55,7 +55,7 @@ public class RETab extends VerticalLayout {
         });
     }
 
-    private void refresh() {
+    public void refresh() {
         realEstateTable.getLazyLoadContainer().refresh();
     }
 }
