@@ -40,4 +40,11 @@ public class UserService implements UserDetailsService {
             return auth.getName();
         return "Anonymous";
     }
+
+    public String getUserIpAddress() {
+        CustomAuthenticationImpl auth = (CustomAuthenticationImpl)SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null)
+            return auth.getUserIpAddress();
+        return "Unknown";
+    }
 }

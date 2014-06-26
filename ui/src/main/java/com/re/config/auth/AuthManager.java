@@ -1,5 +1,6 @@
 package com.re.config.auth;
 
+import com.re.auth.CustomAuthenticationImpl;
 import com.re.auth.UserService;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -25,14 +26,19 @@ public class AuthManager implements AuthenticationManager {
     }
 
     @Override
-    public Authentication authenticate(Authentication auth) throws AuthenticationException {
-        String username = (String) auth.getPrincipal();
-        String password = (String) auth.getCredentials();
-        UserDetails user = userService.loadUserByUsername(username);
+    public Authentication authenticate(Authentication srcAuth) throws AuthenticationException {
+        CustomAuthenticationImpl auth = (CustomAuthenticationImpl)srcAuth;
+        if (auth != null) {
+            String username = (String) auth.getPrincipal();
+            String password = (String) auth.getCredentials();
+            String ipAddress = (String) auth.getUserIpAddress();
+            UserDetails user = userService.loadUserByUsername(username);
 
-        if (user != null && user.getPassword().equals(password)) {
-            Collection<? extends GrantedAuthority> authorities = user.getAuthorities();
-            return new UsernamePasswordAuthenticationToken(username, password, authorities);
+            if (user != null && user.getPassword().equals(password)) {
+                Collection<? extends GrantedAuthority> authorities = user.getAuthorities();
+                auth = new CustomAuthenticationImpl(username, password, ipAddress, authorities);
+                return auth;
+            }
         }
 
         throw new BadCredentialsException("Указаны неверные логин/пароль");

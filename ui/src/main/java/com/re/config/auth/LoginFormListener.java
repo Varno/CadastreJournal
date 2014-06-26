@@ -1,5 +1,6 @@
 package com.re.config.auth;
 
+import com.re.auth.CustomAuthenticationImpl;
 import com.re.components.login.LoginForm;
 import com.re.ui.RootUI;
 import com.re.views.RealEstateView;
@@ -29,9 +30,10 @@ public class LoginFormListener implements Button.ClickListener {
             LoginForm parent = (com.re.components.login.LoginForm)source.getParent().getParent();
             String username = parent.getTxtLogin().getValue();
             String password = parent.getTxtPassword().getValue();
+            String ip = UI.getCurrent().getPage().getWebBrowser().getAddress();
 
-            UsernamePasswordAuthenticationToken request = new
-                    UsernamePasswordAuthenticationToken(username, password);
+            CustomAuthenticationImpl request = new
+                    CustomAuthenticationImpl(username, password, ip);
             Authentication result = authManager.authenticate(request);
             SecurityContext securityContext = SecurityContextHolder.getContext();
             securityContext.setAuthentication(result);

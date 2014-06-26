@@ -38,6 +38,7 @@ public class RealEstateDaoImpl implements RealEstateDao {
     @Override
     public Long saveOrUpdate(RealEstate realEstate) throws org.springframework.dao.DataAccessException {
         String currentUserName = userService.getCurrentUserName();
+        String ip = userService.getUserIpAddress();
         UpdateREStoredProcedure updateREStoredProcedure = new UpdateREStoredProcedure(jdbcTemplate);
         Map inputs = new HashMap();
         inputs.put(REDaoConstants.P_FACILITY_ID, realEstate.getId());
@@ -47,7 +48,7 @@ public class RealEstateDaoImpl implements RealEstateDao {
         inputs.put(REDaoConstants.P_AREA_DESCRIPTION, realEstate.getAreaDescription());
         inputs.put(REDaoConstants.P_USAGE_ID, realEstate.getUsageId());
         inputs.put(REDaoConstants.P_ADDRESS, realEstate.getAddress());
-        inputs.put(REDaoConstants.P_USER_IP, "127.0.0.1");
+        inputs.put(REDaoConstants.P_USER_IP, ip);
         inputs.put(REDaoConstants.P_USER_NAME, currentUserName);
         Map result = updateREStoredProcedure.execute(inputs);
         BigDecimal count = (BigDecimal)result.get(REDaoConstants.P_INSERTED_ID);

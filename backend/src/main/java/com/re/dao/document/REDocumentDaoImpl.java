@@ -27,6 +27,7 @@ public class REDocumentDaoImpl implements REDocumentDao{
     @Override
     public Long saveOrUpdate(REDocument reDocument) {
         String currentUserName = userService.getCurrentUserName();
+        String ip = userService.getUserIpAddress();
         UpdateREDocumentsStoredProcedure updateREDocumentsStoredProcedure = new UpdateREDocumentsStoredProcedure(jdbcTemplate);
         Map inputs = new HashMap();
         inputs.put(REDocumentDaoConstants.P_DOCUMENT_ID, reDocument.getId());
@@ -34,7 +35,7 @@ public class REDocumentDaoImpl implements REDocumentDao{
         inputs.put(REDocumentDaoConstants.P_FILE_NAME, reDocument.getFileName());
         inputs.put(REDocumentDaoConstants.P_STORED_PATH, reDocument.getStoredPath());
         inputs.put(REDocumentDaoConstants.P_USER_NAME, currentUserName);
-        inputs.put(REDocumentDaoConstants.P_USER_IP, "127.0.0.1");
+        inputs.put(REDocumentDaoConstants.P_USER_IP, ip);
         Map result = updateREDocumentsStoredProcedure.execute(inputs);
         BigDecimal count = (BigDecimal)result.get(REDocumentDaoConstants.P_INSERTED_ID);
         return count.longValue();
@@ -53,11 +54,12 @@ public class REDocumentDaoImpl implements REDocumentDao{
     @Override
     public void deleteDocument(REDocument reDocument) {
         String currentUserName = userService.getCurrentUserName();
+        String ip = userService.getUserIpAddress();
         DeleteREDocumentStoredProcedure  proc = new DeleteREDocumentStoredProcedure(jdbcTemplate);
         Map inputs = new HashMap();
         inputs.put(REDocumentDaoConstants.P_DOCUMENT_ID, reDocument.getId());
         inputs.put(REDocumentDaoConstants.P_USER_NAME, currentUserName);
-        inputs.put(REDocumentDaoConstants.P_USER_IP, "127.0.0.1");
+        inputs.put(REDocumentDaoConstants.P_USER_IP, ip);
         proc.execute(inputs);
     }
 }
