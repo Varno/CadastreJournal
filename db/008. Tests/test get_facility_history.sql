@@ -3,6 +3,7 @@ SET SERVEROUTPUT ON SIZE 1000000;
 DECLARE
   l_cursor  SYS_REFCURSOR;
   l_id   RRTEST.FACILITY_HISTORY.FACILITY_HISTORY_ID%TYPE;
+  l_cn  RRTEST.FACILITIES.CADASTRAL_NUMBER%TYPE;
   l_md  RRTEST.FACILITY_HISTORY.MODIFIED_DATE%TYPE;
   l_mb  RRTEST.FACILITY_HISTORY.MODIFIED_BY%TYPE;
   l_mi  RRTEST.FACILITY_HISTORY.MODIFIED_BY_IP%TYPE;
@@ -20,9 +21,9 @@ BEGIN
             
   LOOP 
     FETCH l_cursor 
-    INTO  l_id, l_md, l_mb, l_mi, l_a, l_d; -- xmltype in output ignored 
+    INTO  l_id, l_cn, l_md, l_mb, l_mi, l_a, l_d; -- xmltype in output ignored 
     EXIT WHEN l_cursor%NOTFOUND;
-    DBMS_OUTPUT.PUT_LINE(l_id || ', ' || l_md || ', ' || l_mb || ', ' || l_mi || ', ' || l_a );
+    DBMS_OUTPUT.PUT_LINE(l_id || ', ' || l_cn || ', ' || l_md || ', ' || l_mb || ', ' || l_mi || ', ' || l_a );
 --    DBMS_OUTPUT.PUT_LINE('xml: 
 --' ||  l_d.getCLOBVal() );
     DBMS_OUTPUT.PUT_LINE('txt: 

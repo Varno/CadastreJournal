@@ -55,6 +55,10 @@ begin
   open p_cursor for
   select 
     r.FACILITY_HISTORY_ID
+    , max(case 
+        when p_facility_id is not null then null 
+        else (select f.CADASTRAL_NUMBER from RRTEST.FACILITIES f where f.FACILITY_ID = r.FACILITY_ID) 
+      end)
     , max(r.MODIFIED_DATE)
     , max(r.MODIFIED_BY)
     , max(r.MODIFIED_BY_IP)
@@ -68,6 +72,7 @@ begin
       , p.MODIFIED_BY
       , p.MODIFIED_BY_IP
       , p.ACTION
+      , p.FACILITY_ID
       , p.record_order 
       , case x.field_name
             when 'CADASTRAL_NUMBER' then 'Кадастровый №'
@@ -84,6 +89,7 @@ begin
         || nvl(case x.field_name
           when 'DESTINATION_ID' then (select description from rrtest.destinations where destination_id = x.new_value)
           when 'USAGE_ID' then (select description from rrtest.usages where usage_id = x.new_value)
+          when 'SQUARE' then x.new_value || ' м2'
           else x.new_value
           end, 'null') descr
         , case x.field_name
@@ -106,6 +112,7 @@ begin
         , fh.MODIFIED_BY_IP
         , fh.ACTION
         , fh.DESCRIPTION
+        , fh.FACILITY_ID
         , tp.record_order 
       from 
         table(temp_page) tp
