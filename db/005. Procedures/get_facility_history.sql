@@ -55,15 +55,11 @@ begin
   open p_cursor for
   select 
     r.FACILITY_HISTORY_ID
-    , max(case 
-        when p_facility_id is not null then null 
-        else (select f.CADASTRAL_NUMBER from RRTEST.FACILITIES f where f.FACILITY_ID = r.FACILITY_ID) 
-      end)
     , max(r.MODIFIED_DATE)
     , max(r.MODIFIED_BY)
     , max(r.MODIFIED_BY_IP)
     , max(r.ACTION)
-    , listagg(r.DESCR, '
+    , listagg(r.DESCR, ' 
 ') within group (order by r.f_order) txt_descr
   from
     (select 
@@ -117,16 +113,16 @@ begin
       from 
         table(temp_page) tp
         inner join RRTEST.FACILITY_HISTORY fh
-          on TP.record_id = FH.FACILITY_HISTORY_ID
+          on tp.record_id = fh.FACILITY_HISTORY_ID
       ) p
-      , XMLTable('/Fields/Field'
+      , XMLTable('/Fields/Field[fn:not(NAME="AREA_DESCRIPTION")]'
               passing p.DESCRIPTION
               columns field_name varchar(20) path 'NAME',
                       old_value varchar(4000) path 'OLD',
                       new_value varchar(4000) path 'NEW') x
-    where x.field_name <> 'AREA_DESCRIPTION'
     ) r
   group by r.FACILITY_HISTORY_ID, r.record_order
+  having count(*) > 1
   order by r.record_order ;
   
 end;

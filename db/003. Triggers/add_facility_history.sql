@@ -83,16 +83,6 @@ begin
     modified_by := :new.MODIFIED_BY;
     modified_by_ip := :new.MODIFIED_BY_IP;
     
-    if (:old.CADASTRAL_NUMBER <> :new.CADASTRAL_NUMBER) then
-      select ''||
-        XMLElement("Field", XMLForest('CADASTRAL_NUMBER' as Name
-                      , :old.CADASTRAL_NUMBER as Old
-                      , :new.CADASTRAL_NUMBER as New))
-      into changed_item
-      from dual;
-      changes := changes || changed_item;
-    end if;
-  
     if (:old.SQUARE <> :new.SQUARE) then
       select ''||
         XMLElement("Field", XMLForest('SQUARE' as Name
@@ -141,6 +131,16 @@ begin
       into changed_item
       from dual;    
       changes := changes || changed_item;
+    end if;
+
+    if (length(changes) > 0) then
+      select ''||
+        XMLElement("Field", XMLForest('CADASTRAL_NUMBER' as Name
+                      , :old.CADASTRAL_NUMBER as Old
+                      , :new.CADASTRAL_NUMBER as New))
+      into changed_item
+      from dual;
+      changes := changed_item || changes;
     end if;
     
   end if;
