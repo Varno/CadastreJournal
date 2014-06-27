@@ -241,16 +241,6 @@ begin
     modified_by := :new.MODIFIED_BY;
     modified_by_ip := :new.MODIFIED_BY_IP;
     
-    if (:old.CADASTRAL_NUMBER <> :new.CADASTRAL_NUMBER) then
-      select ''||
-        XMLElement("Field", XMLForest('CADASTRAL_NUMBER' as Name
-                      , :old.CADASTRAL_NUMBER as Old
-                      , :new.CADASTRAL_NUMBER as New))
-      into changed_item
-      from dual;
-      changes := changes || changed_item;
-    end if;
-  
     if (:old.SQUARE <> :new.SQUARE) then
       select ''||
         XMLElement("Field", XMLForest('SQUARE' as Name
@@ -300,6 +290,16 @@ begin
       from dual;    
       changes := changes || changed_item;
     end if;
+
+    if (length(changes) > 0) then
+      select ''||
+        XMLElement("Field", XMLForest('CADASTRAL_NUMBER' as Name
+                      , :old.CADASTRAL_NUMBER as Old
+                      , :new.CADASTRAL_NUMBER as New))
+      into changed_item
+      from dual;
+      changes := changed_item || changes;
+    end if;
     
   end if;
 
@@ -334,9 +334,10 @@ declare
   changed_item clob;
   descr xmltype;
   action RRTEST.FACILITY_HISTORY.ACTION%TYPE;
-  facility_id  RRTEST.FACILITY_HISTORY.FACILITY_ID%TYPE;
+  l_facility_id RRTEST.FACILITY_HISTORY.FACILITY_ID%TYPE;
   modified_by RRTEST.FACILITY_HISTORY.MODIFIED_BY%TYPE;
-  modified_by_ip  RRTEST.FACILITY_HISTORY.MODIFIED_BY_IP%TYPE;
+  modified_by_ip RRTEST.FACILITY_HISTORY.MODIFIED_BY_IP%TYPE;
+  l_cadastral_number RRTEST.FACILITIES.CADASTRAL_NUMBER%TYPE;
 begin
 
   changes := '';
@@ -345,7 +346,7 @@ begin
   if (:old.DOCUMENT_ID is null) then
     
     action := 'Создание документа';
-    facility_id := :new.FACILITY_ID;
+    l_facility_id := :new.FACILITY_ID;
     modified_by := :new.MODIFIED_BY;
     modified_by_ip := :new.MODIFIED_BY_IP;
 
@@ -365,7 +366,7 @@ begin
   elsif (:new.DOCUMENT_ID is null) then
     
     action := 'Удаление документа';
-    facility_id := :old.FACILITY_ID;
+    l_facility_id := :old.FACILITY_ID;
     modified_by := :old.MODIFIED_BY;
     modified_by_ip := :old.MODIFIED_BY_IP;
 
@@ -384,21 +385,11 @@ begin
 
   else
     
-    action := 'Обновление документа';
-    facility_id := :new.FACILITY_ID;
+    action := 'Изменение документа';
+    l_facility_id := :new.FACILITY_ID;
     modified_by := :new.MODIFIED_BY;
     modified_by_ip := :new.MODIFIED_BY_IP;
 
-    if (:old.FILE_NAME <> :new.FILE_NAME or :old.STORED_PATH <> :new.STORED_PATH) then
-      select ''||
-        XMLElement("Field", XMLForest('DOCUMENT_ID' as Name
-                      , :old.DOCUMENT_ID as Old
-                      , :new.DOCUMENT_ID as New))
-      into changed_item
-      from dual;
-      changes := changes || changed_item;
-    end if;
-    
     if (:old.FILE_NAME <> :new.FILE_NAME) then
       select ''||
         XMLElement("Field", XMLForest('FILE_NAME' as Name
@@ -419,16 +410,41 @@ begin
       changes := changes || changed_item;
     end if;
   
+    if (length(changes) > 0) then 
+      select ''||
+        XMLElement("Field", XMLForest('DOCUMENT_ID' as Name
+                      , :old.DOCUMENT_ID as Old
+                      , :new.DOCUMENT_ID as New))
+      into changed_item
+      from dual;
+      changes := changed_item || changes;
+    end if;
+  
   end if;
 
   if (length(changes) > 0) then
+
+    select f.CADASTRAL_NUMBER
+    into l_cadastral_number
+    from rrtest.facilities f
+    where f.facility_id = l_facility_id;
+
+    if (l_cadastral_number is not null) then
+      select ''||
+        XMLElement("Field", XMLForest('CADASTRAL_NUMBER' as Name
+                      , l_cadastral_number as Old
+                      , l_cadastral_number as New))
+      into changed_item
+      from dual;
+      changes := changed_item || changes;
+    end if;
 
     descr := xmltype('<Fields>'||changes||'</Fields>');
 
     insert into rrtest.facility_history
     values
       (rrtest.facility_history_seq.nextval
-      , facility_id
+      , l_facility_id
       , sysdate
       , modified_by
       , modified_by_ip
@@ -677,15 +693,11 @@ begin
   open p_cursor for
   select 
     r.FACILITY_HISTORY_ID
-    , max(case 
-        when p_facility_id is not null then null 
-        else (select f.CADASTRAL_NUMBER from RRTEST.FACILITIES f where f.FACILITY_ID = r.FACILITY_ID) 
-      end)
     , max(r.MODIFIED_DATE)
     , max(r.MODIFIED_BY)
     , max(r.MODIFIED_BY_IP)
     , max(r.ACTION)
-    , listagg(r.DESCR, '
+    , listagg(r.DESCR, ' 
 ') within group (order by r.f_order) txt_descr
   from
     (select 
@@ -739,16 +751,16 @@ begin
       from 
         table(temp_page) tp
         inner join RRTEST.FACILITY_HISTORY fh
-          on TP.record_id = FH.FACILITY_HISTORY_ID
+          on tp.record_id = fh.FACILITY_HISTORY_ID
       ) p
-      , XMLTable('/Fields/Field'
+      , XMLTable('/Fields/Field[fn:not(NAME="AREA_DESCRIPTION")]'
               passing p.DESCRIPTION
               columns field_name varchar(20) path 'NAME',
                       old_value varchar(4000) path 'OLD',
                       new_value varchar(4000) path 'NEW') x
-    where x.field_name <> 'AREA_DESCRIPTION'
     ) r
   group by r.FACILITY_HISTORY_ID, r.record_order
+  having count(*) > 1
   order by r.record_order ;
   
 end;
